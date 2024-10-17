@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
             if ($insert) {
                 if (move_uploaded_file($tempname, $folder)) {
                     echo "<script>alert('User Registered Successfully');
-                    window.location.href='login.php';</script>";
+                    window.location.href='index.php';</script>";
                 } else {
                     echo "<script>alert('Failed to upload image');
                     window.location.href='user_registration.php';</script>";

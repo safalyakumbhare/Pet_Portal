@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $user = mysqli_fetch_array($result);
 
     if (password_verify($password, $user['password'])) {
-      // Password is correct
+
       session_start();
       $_SESSION['username'] = $user['username'];
       $_SESSION['logged_in'] = true;
@@ -29,11 +29,11 @@ if (isset($_POST['submit'])) {
 
       // header("Location: dashboard.php");
     } else {
-      // Password is incorrect
+
       echo "<script>alert('Invalid password');</script>";
     }
   } else {
-    // Username does not exist
+
     echo "<script>alert('No user Found Please Register...!');</script>";
   }
 

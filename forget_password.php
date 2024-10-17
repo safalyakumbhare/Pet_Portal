@@ -19,7 +19,7 @@
 
                 if($update_query){
                     echo "<script>alert('Password Reset Successfully');
-                    window.location.href='login.php';</script>";
+                    window.location.href='index.php';</script>";
                 } else {
                     echo "<script>alert('Failed to Reset Password');
                     window.location.href='forget_password.php';</script>";
