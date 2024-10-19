@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
                     <img src="assets/images/user_registration.jpg" alt="">
                 </div>
                 <div class="signup-form">
-                    <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data">
+                    <form method="POST" id="register-form" class="register-form" id="register-form" enctype="multipart/form-data">
                         <h2>User Registration Form</h2>
 
                         <div class="form-group">
@@ -143,6 +143,9 @@ if (isset($_POST['submit'])) {
     <!-- JS -->
     <script src="assets/js/user_registration_js/vendor/jquery/jquery.min.js"></script>
     <script src="assets/js/user_registration_js/main.js"></script>
+    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="assets/jquery/jquery-ui.min.js"></script>
+    <script src="assets/jquery/jquery.validate.min.js"></script>
 </body>
 
 </html>
