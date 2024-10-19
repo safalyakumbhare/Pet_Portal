@@ -693,3 +693,8 @@ textarea.form-control-lg {
 .form-control-color.form-control-lg {
   height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2));
 }
+
+.error {
+  color: red;
+  font-style: italic;
+}

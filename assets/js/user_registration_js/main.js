@@ -1,10 +1,10 @@
-(function($) {
+// (function($) {
 
-  $('#reset').on('click', function(){
-      $('#register-form').reset();
-  });
+//   $('#reset').on('click', function(){
+//       $('#register-form').reset();
+//   });
 
-})(jQuery);
+// })(jQuery);
 
 $(document).ready(function(){
   $('#register-form').validate({
@@ -30,7 +30,6 @@ $(document).ready(function(){
         required: true,
         number: true,
         minlength: 10,
-        maxlenght: 10
       },
       address:{
         required: true
@@ -61,7 +60,7 @@ $(document).ready(function(){
         required: "Please enter a password",
         minlength: "Password must be at least 8 characters long"
       },
-      confirm_password: {
+      confirmpassword: {
         required: "Please confirm your password",
         minlength: "Password must be at least 8 characters long"
       },
@@ -69,7 +68,6 @@ $(document).ready(function(){
         required: "Please enter your phone number",
         number: "Please enter a valid phone number",
         minlength: "Phone number must be at least 10 digits long",
-        maxlength: "Phone number must not exceed 10 digits long"
       },
       address: {
         required: "Please enter your address"

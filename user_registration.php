@@ -77,23 +77,23 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-group">
                             <label for="name">Username :</label>
-                            <input type="text" name="name" id="name" placeholder="Enter your Name" required />
+                            <input type="text" name="name" id="name" placeholder="Enter your Name"  />
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address :</label>
-                            <input type="email" name="email" placeholder="Enter your email" id="email" required />
+                            <input type="email" name="email" placeholder="Enter your email" id="email"  />
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number :</label>
-                            <input type="phone" name="phone" placeholder="Enter your phone number" id="phone"
-                                required />
+                            <input type="number" name="phone" placeholder="Enter your phone number" id="phone"
+                                 />
                         </div>
 
                         <div class="form-group">
                             <label for="address">Address :</label>
-                            <!-- <input type="text" name="address"  id="address" required/> -->
-                            <textarea name="address" id="address" placeholder="Enter your address" required></textarea>
+                            <!-- <input type="text" name="address"  id="address" /> -->
+                            <textarea name="address" id="address" placeholder="Enter your address" ></textarea>
                         </div>
                         <div class="form-radio">
                             <label for="gender" class="radio-label">Gender :</label>
@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-group">
                             <label for="dob">DOB :</label>
-                            <input type="date" name="dob" id="dob" required>
+                            <input type="date" name="dob" id="dob" >
                         </div>
                         <div class="form-group">
                             <label for="pincode">Pincode :</label>
@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label for="imageupload">Profile Photo :</label>
-                            <input type="file" name="imageupload" class="form-control" accept="image/*" required>
+                            <input type="file" name="imageupload" class="form-control" accept="image/*" >
                         </div>
                         <div class="form-group">
                             <label for="password">Password :</label>
@@ -127,10 +127,10 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label for="password">Confirm Password :</label>
-                            <input type="confirmpassword" name="confirmpassword" id="confirmpassword" />
+                            <input type="password" name="confirmpassword" id="confirmpassword" />
                         </div>
                         <div class="form-submit">
-                            <input type="submit" value="Reset All" class="submit" name="reset" id="reset" />
+                            <input type="reset" value="Reset All" class="submit" name="reset" id="reset" />
                             <input type="submit" value="Register" class="submit" name="submit" id="submit" />
                         </div>
                     </form>
@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <!-- JS -->
-    <script src="assets/js/user_registration_js/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="assets/js/user_registration_js/vendor/jquery/jquery.min.js"></script>/ -->
     <script src="assets/js/user_registration_js/main.js"></script>
     <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
     <script src="assets/jquery/jquery-ui.min.js"></script>
