@@ -26,4 +26,4 @@ if ($role_id == 1) {
 
 ?>
 
-<a href="logout.php">Logout</a>
+<a href="common/logout.php">Logout</a>

@@ -23,11 +23,11 @@ if (isset($_POST['submit'])) {
       $_SESSION['username'] = $user['username'];
       $_SESSION['logged_in'] = true;
 
-      echo "<script>alert('Login successful');
-      window.location.href='dashboard.php'
-      </script>";
+      // echo "<script>alert('Login successful');
+      // window.location.href='dashboard.php'
+      // </script>";
 
-      // header("Location: dashboard.php");
+      header("Location: dashboard.php");
     } else {
 
       echo "<script>alert('Invalid password');</script>";
