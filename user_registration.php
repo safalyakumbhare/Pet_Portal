@@ -142,10 +142,10 @@ if (isset($_POST['submit'])) {
 
     <!-- JS -->
     <!-- <script src="assets/js/user_registration_js/vendor/jquery/jquery.min.js"></script>/ -->
-    <script src="assets/js/user_registration_js/main.js"></script>
     <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
     <script src="assets/jquery/jquery-ui.min.js"></script>
     <script src="assets/jquery/jquery.validate.min.js"></script>
+    <script src="assets/js/user_registration_js/main.js"></script>
 </body>
 
 </html>

@@ -45,6 +45,9 @@ $(document).ready(function(){
         number: true,
         minlength: 6,
         maxlength: 6
+      },
+      imageupload:{
+        required: true
       }
     },
     messages: {
@@ -78,6 +81,9 @@ $(document).ready(function(){
       dob:{
         required: "Please select your date of birth"
       },
+      imageupload:{
+        required: "Please upload your image"
+      }
     }
   })
 })
