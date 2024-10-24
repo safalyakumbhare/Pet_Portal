@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
       // window.location.href='dashboard.php'
       // </script>";
 
-      header("Location: dashboard.php");
+      header("Location: main-dashboard.php");
     } else {
 
       echo "<script>alert('Invalid password');</script>";
@@ -130,8 +130,8 @@ if (isset($_POST['submit'])) {
         </label>
         <label>
           <div class="fa fa-commenting"></div>
-          <input class="password" type="password" name="password" autocomplete="off" placeholder="password" />
-          <button class="password-button"><i class='bx bx-show'></i></button>
+          <input class="password" type="password" id="myInput" name="password" autocomplete="off" placeholder="password" />
+          <button class="password-button" onclick="showText()"><i class='bx bx-show'></i></button>
         </label>
         <button class="login-button" type="submit" name="submit">Login</button>
         <div class="row mt-4 justify-content-evenly">
