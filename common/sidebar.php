@@ -52,7 +52,7 @@ if (!isset($_SESSION['logged_in'])) {
 </head>
 
 <body>
-    <div class="wrapper">
+
 
 
         <?php
@@ -77,9 +77,8 @@ if (!isset($_SESSION['logged_in'])) {
                 <div class="sidebar-logo">
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
-                        <a href="index.html" class="logo">
-                            <img src="/assets/images/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
-                                height="20" />
+                        <a href="/main-dashboard.php" class="logo">
+                            <h1 class="text-white">Pets Portal</h1>
                         </a>
                         <div class="nav-toggle">
                             <button class="btn btn-toggle toggle-sidebar">
@@ -168,7 +167,7 @@ if (!isset($_SESSION['logged_in'])) {
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="#">Account Setting</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Logout</a>
+                                                <a class="dropdown-item" href="common/logout.php">Logout</a>
                                             </li>
                                         </div>
                                     </ul>
@@ -190,9 +189,8 @@ if (!isset($_SESSION['logged_in'])) {
                         <div class="sidebar-logo">
                             <!-- Logo Header -->
                             <div class="logo-header" data-background-color="dark">
-                                <a href="index.html" class="logo">
-                                    <img src="/assets/images/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
-                                        height="20" />
+                                <a href="/main-dashboard.php" class="logo">
+                                    <h1 class="text-white">Pets Portal</h1>
                                 </a>
                                 <div class="nav-toggle">
                                     <button class="btn btn-toggle toggle-sidebar">
@@ -249,7 +247,7 @@ if (!isset($_SESSION['logged_in'])) {
                         <div class="main-header">
                             <div class="main-header-logo">
                                 <!-- Logo Header -->
-                                <!-- <div class="logo-header" data-background-color="dark">
+                                <div class="logo-header" data-background-color="dark">
                         <a href="index.html" class="logo">
                             <img src="assets/images/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
                                 height="20" />
@@ -265,7 +263,7 @@ if (!isset($_SESSION['logged_in'])) {
                         <button class="topbar-toggler more">
                             <i class="gg-more-vertical-alt"></i>
                         </button>
-                    </div> -->
+                    </div>
                                 <!-- End Logo Header -->
                             </div>
                             <!-- Navbar Header -->
@@ -310,7 +308,7 @@ if (!isset($_SESSION['logged_in'])) {
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" href="#">Account Setting</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="logout.php">Logout</a>
+                                                        <a class="dropdown-item" href="common/logout.php">Logout</a>
                                                     </li>
                                                 </div>
                                             </ul>
