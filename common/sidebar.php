@@ -13,7 +13,7 @@ if (!isset($_SESSION['logged_in'])) {
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <!-- <title>Pets Protal -Dashboard</title> -->
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -152,8 +152,8 @@ if (!isset($_SESSION['logged_in'])) {
                                                             class="avatar-img rounded" />
                                                     </div>
                                                     <div class="u-text">
-                                                        <h4>Hizrian</h4>
-                                                        <p class="text-muted">hello@example.com</p>
+                                                        <h4><?php echo $row['username']?></h4>
+                                                        <p class="text-muted"><?php echo $row['email']?></p>
                                                         <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
                                                             Profile</a>
                                                     </div>
@@ -288,12 +288,12 @@ if (!isset($_SESSION['logged_in'])) {
                                                     <li>
                                                         <div class="user-box">
                                                             <div class="avatar-lg">
-                                                                <img src="assets/images/profile.jpg" alt="image profile"
+                                                                <img src="assets/images/<?php echo $row['profile']?>" alt="image profile"
                                                                     class="avatar-img rounded" />
                                                             </div>
                                                             <div class="u-text">
-                                                                <h4>Hizrian</h4>
-                                                                <p class="text-muted">hello@example.com</p>
+                                                                <h4><?php echo $row['username']?></h4>
+                                                                <p class="text-muted"><?php echo $row['email']?></p>
                                                                 <a href="profile.html"
                                                                     class="btn btn-xs btn-secondary btn-sm">View
                                                                     Profile</a>
