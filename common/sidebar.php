@@ -106,6 +106,11 @@ if (!isset($_SESSION['logged_in'])) {
                                 <div class="collapse" id="dashboard">
                                     <ul class="nav nav-collapse">
                                         <li>
+                                            <a href="/add_pet.php">
+                                                <span class="sub-item">Register Pet</span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="petowner.php">
                                                 <span class="sub-item">Pet</span>
                                             </a>

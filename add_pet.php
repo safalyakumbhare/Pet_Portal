@@ -47,6 +47,52 @@
 
     <?php
     include("common/sidebar.php");
+
+    if (isset($_POST['submit'])) {
+      $petname = $_POST['petname'];
+      $species = $_POST['species'];
+      $breed = $_POST['breed'];
+      $dob = $_POST['dob'];
+      $gender = $_POST['gender'];
+      $color = $_POST['color'];
+      $weight = $_POST['weight'];
+      $color = $_POST['color'];
+      $image = $_FILES['image']['name'];
+      $medical = $_POST['medical'];
+      $note = $_POST['notes'];
+      $user_id = $row['user_id'];
+      $tempname = $_FILES["image"]["tmp_name"];
+      $check = "SELECT * FROM pets WHERE name='$petname';";
+
+      $check_result = mysqli_query($conn, $check);
+
+      if (mysqli_num_rows($check_result) > 0) {
+        echo "<script>alert('Pet Already Exists');
+        window.location.href='add_pet.php'</script>";
+      } else {
+
+        $folder = "assets/images/pets/" . basename($image);
+
+        $sql = "INSERT INTO pets (name,`type`,breed,dob,gender,color,weight,image,medical,note,user_id,status) VALUES ('$petname', '$species', '$breed','$dob', '$gender', '$color', '$weight', '$image', '$medical', '$note', '$user_id','active');";
+
+        $insert = mysqli_query($conn, $sql);
+
+        if ($insert) {
+          if (move_uploaded_file($tempname, $folder)) {
+            echo "<script>alert('$petname Added Successfully');
+            window.location.href='main-dashboard.php'</script>";
+          } else {
+            echo "<script>alert('Error Uploading Image');
+            window.location.href='add_pet.php'</script>";
+          }
+        } else {
+          echo "<script>alert('Error occurred while Registering pet');
+          window.location.href='add_pet.php'</script>";
+        }
+      }
+
+
+    }
     ?>
 
     <div class="container">
@@ -83,8 +129,8 @@
                           <option value="other">Other</option>
                         </select>
 
-                        <input type="text" name="species" placeholder="Other" id="txtOther" class="form-control"
-                          style="display: none;">
+                        <!-- <input type="text" name="species" placeholder="Other" id="txtOther" class="form-control"
+                          style="display: none;"> -->
                       </div>
                     </div>
 
@@ -97,7 +143,7 @@
                     </div>
 
 
-                    
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="dob">Date of Birth :</label>
@@ -208,7 +254,7 @@
 
   </div>
 
-<script src="assets/jquery/jquery-3.7.1.min.js"></script>
-<script src="assets/jquery/jquery.validate.min.js"></script>
-<script src="assets/jquery/jquery-ui.min.js"></script>
-<script src="assets/js/add_pet_js/script.js"></script>
+  <script src="assets/jquery/jquery-3.7.1.min.js"></script>
+  <script src="assets/jquery/jquery.validate.min.js"></script>
+  <script src="assets/jquery/jquery-ui.min.js"></script>
+  <script src="assets/js/add_pet_js/script.js"></script>
