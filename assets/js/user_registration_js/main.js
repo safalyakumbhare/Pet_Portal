@@ -19,11 +19,11 @@ $(document).ready(function(){
       },
       password: {
         required: true,
-        minlength: 8
+        minlength: 6
       },
       confirmpassword: {
         required: true,
-        minlength: 8,
+        minlength: 6,
         equalTo: '#password'
       },
       phone:{

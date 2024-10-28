@@ -140,7 +140,7 @@ if (!isset($_SESSION['logged_in'])) {
                                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                                         aria-expanded="false">
                                         <div class="avatar-sm">
-                                            <img src="assets/images/profile.jpg" alt="..."
+                                            <img src="assets/images/<?php echo $row['profile']?>" alt="..."
                                                 class="avatar-img rounded-circle" />
                                         </div>
                                         <span class="profile-username">
@@ -153,7 +153,7 @@ if (!isset($_SESSION['logged_in'])) {
                                             <li>
                                                 <div class="user-box">
                                                     <div class="avatar-lg">
-                                                        <img src="assets/images/profile.jpg" alt="image profile"
+                                                        <img src="assets/images/<?php echo $row['profile']?>" alt="image profile"
                                                             class="avatar-img rounded" />
                                                     </div>
                                                     <div class="u-text">
