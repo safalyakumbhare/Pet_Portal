@@ -188,12 +188,12 @@
                                             ?>
                                             <div class="item-list">
                                                 <div class="avatar">
-                                                    <img src="assets/images/<?php echo $row['profile']?>" alt="..."
+                                                    <img src="assets/images/<?php echo $row['profile'] ?>" alt="..."
                                                         class="avatar-img rounded-circle" />
                                                 </div>
                                                 <div class="info-user ms-3">
-                                                    <div class="username"><?php echo $row['username']?></div>
-                                                    <div class="status"><?php echo $row['address']?></div>
+                                                    <div class="username"><?php echo $row['username'] ?></div>
+                                                    <div class="status"><?php echo $row['address'] ?></div>
                                                 </div>
                                                 <button class="btn btn-icon btn-link op-8 me-1">
                                                     <i class="far fa-envelope"></i>
@@ -345,6 +345,17 @@
                 </div>
             </div>
             <?php
+        } elseif ($row['role_id'] == 2) {
+
+
+            ?>
+
+            <div class="container">
+                <h1>Welcome User</h1>
+            </div>
+
+            <?php
+
         }
         ?>
         <footer class="footer">
@@ -359,7 +370,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"> Help </a>
                         </li>
-                        <li class="nav-item">
+                        elco <li class="nav-item">
                             <a class="nav-link" href="#"> Licenses </a>
                         </li>
                     </ul>
@@ -370,7 +381,7 @@
                 </div>
                 <div>
                     Distributed by
-                    <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                    ainer<a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
                 </div>
             </div>
         </footer>
