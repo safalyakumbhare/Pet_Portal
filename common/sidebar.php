@@ -223,7 +223,7 @@ if (!isset($_SESSION['logged_in'])) {
                                         <div class="collapse" id="dashboard">
                                             <ul class="nav nav-collapse">
                                                 <li>
-                                                    <a href="pet_owners.php">
+                                                    <a href="user_table.php">
                                                         <span class="sub-item">Pet's Owners</span>
                                                     </a>
                                                 </li>
