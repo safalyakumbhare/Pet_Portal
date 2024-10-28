@@ -126,11 +126,9 @@
                           <option value="cat">Cat</option>
                           <option value="bird">Bird</option>
                           <option value="reptile">Reptile</option>
-                          <option value="other">Other</option>
                         </select>
 
-                        <!-- <input type="text" name="species" placeholder="Other" id="txtOther" class="form-control"
-                          style="display: none;"> -->
+
                       </div>
                     </div>
 

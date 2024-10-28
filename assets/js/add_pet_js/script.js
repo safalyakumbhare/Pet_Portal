@@ -42,11 +42,11 @@ $(document).ready(function () {
   });
 });
 function EnableDisableTextBox(select) {
-    var txtOther = document.getElementById("txtOther");
-    if (select.value === "other") {
-      txtOther.style.display = "block";
-    } else {
-      txtOther.style.display = "none";
-      txtOther.value = ""; // Clear input when hidden
-    }
+  var txtOther = document.getElementById("txtOther");
+  if (select.value === "other") {
+    txtOther.style.display = "block";
+  } else {
+    txtOther.style.display = "none";
+    txtOther.value = ""; // Clear input when hidden
   }
+}
