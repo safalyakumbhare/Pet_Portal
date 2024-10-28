@@ -97,7 +97,7 @@
                                                         <td><?php echo $user['email'] ?></td>
                                                         <td><?php echo $user['address'] ?></td>
                                                         <td><?php
-                                                        if ($user['status'] == "active") {
+                                                        if ($user['status'] == "Active") {
                                                             echo "<span class='text-success'>Active</span>
                                                      </td>";
                                                         } else {
@@ -108,21 +108,21 @@
                                                         ?>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                <a  data-bs-toggle="tooltip" title="Edit"
                                                                     class="btn btn-link btn-primary btn-lg"
                                                                     data-original-title="Edit Task">
                                                                     <i class="fa fa-edit"></i>
-                                                                </button>
-                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                </a>
+                                                                <a data-bs-toggle="tooltip" title="Delete"
                                                                     class="btn btn-link btn-danger"
                                                                     data-original-title="Remove">
                                                                     <i class="fa fa-times"></i>
-                                                                </button>
-                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                </a>
+                                                                <a href="user_view.php?user_id=<?php echo $user['user_id'];?>" data-bs-toggle="tooltip" title="View Details"
                                                                     class="btn btn-link btn-success"
-                                                                    data-original-title="Remove">
+                                                                    data-original-title="View Details">
                                                                     <i class="fa-solid fa-eye"></i>
-                                                                </button>
+                                                                </a>
                                                             </div>
                                                         </td>
                                                     </tr>

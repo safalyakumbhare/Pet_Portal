@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Dashboard</title>
+    <title>Pets Portal - User Details</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -51,24 +51,125 @@
 
         if ($row['role_id'] == 1) {
 
+            if (isset($_GET['user_id'])) {
 
-            ?>
 
-            <div class="container">
-                <!-- Content -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" style="background-color:lightgray;">
-                                <h4 class="card-title">Users</h4>
-                            </div>
-                            <div class="card-body">
+                $user_id = $_GET['user_id'];
+                $user_detail_result = mysqli_query($conn, "SELECT * FROM users WHERE user_id=$user_id");
+
+                $user_detail = mysqli_fetch_array($user_detail_result);
+
+                $pet_detail_result = mysqli_query($conn, "SELECT * FROM pets WHERE user_id=$user_id");
+                $pet_detail = mysqli_fetch_array($pet_detail_result);
+                ?>
+
+                <div class="container">
+                    <div class="page-inner">
+                        <div class="page-header">
+                            <h3 class="fw-bold mb-3">User Details</h3>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <div class="row">
+                                    <div class="col-md-5 text-center">
+                                        <div class="card">
+
+                                            <div class="card-body">
+                                                <img src="assets/images/<?php echo $user_detail['profile']; ?>"
+                                                    style="height:150px; width:150px;" class=" rounded-circle"
+                                                    alt="no profile photo">
+                                                <h3 class="mt-md-4"><?php echo $user_detail['username']; ?></h3>
+                                                <p><?php if (isset($pet_detail['name'])) {
+                                                    echo "Owner of " . $pet_detail['name'];
+                                                } else {
+                                                    echo "Pet not Registered";
+                                                } ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-7">
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="card-title">Personal Information</div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Name :</h6>
+                                                        <p><?php echo $user_detail['username']; ?></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Pet's Name :</h6>
+                                                        <p> <?php if (isset($pet_detail['name'])) {
+                                                            echo "Owner of " . $pet_detail['name'];
+                                                        } else {
+                                                            echo "Pet not Registered";
+                                                        } ?></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Email :</h6>
+                                                        <p><?php echo $user_detail['email']; ?></p>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Phone :</h6>
+                                                        <p><?php echo $user_detail['phone']; ?></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Gender :</h6>
+                                                        <p><?php echo $user_detail['gender']; ?></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Date of Birth :</h6>
+                                                        <p>
+                                                            <?php
+                                                            $date = date_create($user_detail['dob']);
+                                                            echo date_format($date, "d-m-Y"); ?>
+                                                        </p>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Address :</h6>
+                                                        <p><?php echo $user_detail['address']; ?></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Account Created On :</h6>
+                                                        <p><?php $date = date_create($user_detail['created_at']);
+                                                        echo date_format($date, "d-m-Y"); ?></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-secondary fw-bold">Status :</h6>
+                                                        <p class="text-success"><?php echo $user_detail['status']; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <?php
+            } else {
+                ?>
+                    <div class="container">
+                        <h1>User Not Selected</h1>
+                    </div>
+                    <?php
+            }
+            ?>
 
+                <?php
         }
         ?>
-            </div>
+        </div>
