@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
 
 <body class="bg-dark">
 
-  <h1 class="text-white text-center pt-5">User Login!</h1>
+  <h1 class="text-center pt-5" style="color:#243946;">Login!</h1>
   <div class="center">
     <div class="ear ear--left"></div>
     <div class="ear ear--right"></div>

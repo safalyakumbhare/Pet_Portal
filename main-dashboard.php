@@ -195,8 +195,9 @@
                                                     <div class="username"><?php echo $row['username'] ?></div>
                                                     <div class="status"><?php echo $row['address'] ?></div>
                                                 </div>
-                                               
-                                                <a href="user_view.php?user_id=<?php echo $row['user_id'];?>" class="btn btn-icon btn-link btn-primary op-8">
+
+                                                <a href="user_view.php?user_id=<?php echo $row['user_id']; ?>"
+                                                    class="btn btn-icon btn-link btn-primary op-8">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                             </div>
@@ -346,24 +347,127 @@
         } elseif ($row['role_id'] == 2) {
 
 
+
             ?>
 
             <div class="container">
-                <h1>Welcome User</h1>
+                <div class="page-inner">
+                    <div class="page-header">
+                        <h3 class="fw-bold mb-3">Welcome <?php echo $row['username'] ?></h3>
+
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="card-title">Your Pets</h4>
+                                    <a class="btn btn-primary btn-round ms-auto">
+                                        <i class="fa fa-plus"></i>
+                                        Add Pets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <?php
+                                $user_id = $row['user_id'];
+                                $pet = "SELECT * FROM pets WHERE user_id = $user_id;";
+
+                                $pet_result = mysqli_query($conn, $pet);
+
+                                if (mysqli_num_rows($pet_result) > 0) {
+
+                                    while ($pet_row = mysqli_fetch_assoc($pet_result)) {
+                                        ?>
+                                        <div class="table-responsive">
+                                            <table id="add-row" class="display table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Photo</th>
+                                                        <th>Name</th>
+                                                        <th>Breed</th>
+                                                        <th>Gender</th>
+                                                        <th style="width: 10%">Action</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="avatar-xxl">
+                                                                <img src="assets/images/pets/<?php echo $pet_row['image']; ?>"
+                                                                    class="avatar-img rounded-circle" alt="no image found">
+                                                            </div>
+                                                        </td>
+                                                        <td><?php echo $pet_row['name'] ?></td>
+                                                        <td><?php echo $pet_row['breed'] ?></td>
+                                                        <td><?php echo $pet_row['gender'] ?></td>
+                                                        <td>
+                                                            <div class="form-button-action">
+                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                    class="btn btn-link btn-primary btn-lg"
+                                                                    data-original-title="Edit Task">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                    class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <div class="table-responsive">
+                                        <table id="add-row" class="display table table-striped table-hover">
+                                            <!-- <thead>
+                                                <tr>
+                                                    <th>Photo</th>
+                                                    <th>Name</th>
+                                                    <th>Breed</th>
+                                                    <th>Gender</th>
+                                                    <th style="width: 10%">Action</th>
+                                                </tr>
+                                            </thead> -->
+
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="5" class="text-center">No Pet Found</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <?php
 
         }
         ?>
-<?php
-    include("common/footer.php");
+        <?php
+        include("common/footer.php");
 
-?>
+        ?>
     </div>
 
 
-    </div>
 
 </body>
 

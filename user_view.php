@@ -108,7 +108,7 @@
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Pet's Name :</h6>
                                                         <p> <?php if (isset($pet_detail['name'])) {
-                                                            echo "Owner of " . $pet_detail['name'];
+                                                            echo  $pet_detail['name'];
                                                         } else {
                                                             echo "Pet not Registered";
                                                         } ?></p>
