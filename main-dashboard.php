@@ -362,7 +362,7 @@
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
                                     <h4 class="card-title">Your Pets</h4>
-                                    <a class="btn btn-primary btn-round ms-auto">
+                                    <a href="add_pet.php" class="btn btn-primary btn-round ms-auto">
                                         <i class="fa fa-plus"></i>
                                         Add Pets
                                     </a>

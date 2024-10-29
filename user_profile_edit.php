@@ -49,24 +49,42 @@
         <?php
         include("common/sidebar.php");
 
-        if ($row['role_id'] == 1) {
+        if ($row['role_id'] == 2) {
 
-            if (isset($_GET['user_id'])) {
+            if (isset($row['user_id'])) {
 
 
-                $user_id = $_GET['user_id'];
+                $user_id = $row['user_id'];
                 $user_detail_result = mysqli_query($conn, "SELECT * FROM users WHERE user_id=$user_id");
 
                 $user_detail = mysqli_fetch_array($user_detail_result);
 
                 $pet_detail_result = mysqli_query($conn, "SELECT * FROM pets WHERE user_id=$user_id");
                 $pet_detail = mysqli_fetch_array($pet_detail_result);
+
+                if (isset($_POST['submit'])) {
+                    $username = $_POST['username'];
+                    $email = $_POST['email'];
+                    $address = $_POST['address'];
+                    $gender = $_POST['gender'];
+                    $dob = date('Y-m-d', strtotime($_POST['dob']));
+                    $phone = $_POST['phone'];
+
+                    $sql = "UPDATE users SET username='$username', email='$email', address='$address', gender='$gender', dob='$dob', phone='$phone' WHERE user_id=$user_id";
+
+                    if (mysqli_query($conn, $sql)) {
+                        echo "<script>alert('User Details Updated Successfully');</script>";
+                    } else {
+                        echo "<script>alert('Failed to Update User Details');</script>";
+                    }
+                }
+
                 ?>
 
                 <div class="container">
                     <div class="page-inner">
                         <div class="page-header">
-                            <h3 class="fw-bold mb-3">User Details</h3>
+                            <h3 class="fw-bold mb-3">My Profile</h3>
 
                         </div>
 
@@ -100,56 +118,53 @@
                                                 <div class="card-title">Personal Information</div>
                                             </div>
                                             <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Name :</h6>
-                                                        <p><?php echo $user_detail['username']; ?></p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Pet's Name :</h6>
-                                                        <p> <?php if (isset($pet_detail['name'])) {
-                                                            echo $pet_detail['name'];
-                                                        } else {
-                                                            echo "Pet not Registered";
-                                                        } ?></p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Email :</h6>
-                                                        <p><?php echo $user_detail['email']; ?></p>
-                                                    </div>
+                                                <form action="user_profile_edit.php" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Name :</h6>
+                                                            <input type="text" class="form-control" name="username"
+                                                                value="<?php echo $user_detail['username']; ?>">
+                                                        </div>
 
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Phone :</h6>
-                                                        <p><?php echo $user_detail['phone']; ?></p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Gender :</h6>
-                                                        <p><?php echo $user_detail['gender']; ?></p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Date of Birth :</h6>
-                                                        <p>
-                                                            <?php
-                                                            $date = date_create($user_detail['dob']);
-                                                            echo date_format($date, "d-m-Y"); ?>
-                                                        </p>
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Email :</h6>
+                                                            <input type="email" class="form-control" name="email"
+                                                                value="<?php echo $user_detail['email']; ?>">
+                                                        </div>
 
-                                                    </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Phone :</h6>
+                                                            <input type="number" class="form-control" name="phone"
+                                                                value="<?php echo $user_detail['phone']; ?>">
 
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Address :</h6>
-                                                        <p><?php echo $user_detail['address']; ?></p>
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Gender :</h6>
+                                                            <input type="text" class="form-control" name="gender"
+                                                                value="<?php echo $user_detail['gender']; ?>">
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Date of Birth :</h6>
+
+                                                            <input type="text" value="<?php $date = date_create($user_detail['dob']);
+                                                            echo date_format($date, "d-m-Y"); ?>" name="dob" class="form-control">
+
+                                                        </div>
+
+                                                        <div class=" col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Address :</h6>
+                                                            <input type="text" class="form-control" name="address"
+                                                                value="<?php echo $user_detail['address']; ?>" class>
+                                                        </div>
+
+
+                                                        <div class="w-100"></div>
+                                                        <div class="col-md-6 mt-3">
+                                                            <button type="submit" name="submit" class="btn btn-primary">Make
+                                                                Changes</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Account Created On :</h6>
-                                                        <p><?php $date = date_create($user_detail['created_at']);
-                                                        echo date_format($date, "d-m-Y"); ?></p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Status :</h6>
-                                                        <p class="text-success"><?php echo $user_detail['status']; ?></p>
-                                                    </div>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -171,8 +186,13 @@
 
                 <?php
         } else {
-            // header("Location: index.php");
-            // exit();
+
+            ?>
+                <div class="container">
+                    <h1>Access Denied</h1>
+                </div>
+
+                <?php
         }
         ?>
         </div>

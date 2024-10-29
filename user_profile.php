@@ -49,12 +49,12 @@
         <?php
         include("common/sidebar.php");
 
-        if ($row['role_id'] == 1) {
+        if ($row['role_id'] == 2) {
 
-            if (isset($_GET['user_id'])) {
+            if (isset($row['user_id'])) {
 
 
-                $user_id = $_GET['user_id'];
+                $user_id = $row['user_id'];
                 $user_detail_result = mysqli_query($conn, "SELECT * FROM users WHERE user_id=$user_id");
 
                 $user_detail = mysqli_fetch_array($user_detail_result);
@@ -66,7 +66,7 @@
                 <div class="container">
                     <div class="page-inner">
                         <div class="page-header">
-                            <h3 class="fw-bold mb-3">User Details</h3>
+                            <h3 class="fw-bold mb-3">My Profile</h3>
 
                         </div>
 
@@ -149,6 +149,12 @@
                                                         <h6 class="text-secondary fw-bold">Status :</h6>
                                                         <p class="text-success"><?php echo $user_detail['status']; ?></p>
                                                     </div>
+
+                                                    <div class="w-100"></div>
+                                                    <div class="col-md-6">
+                                                        <a href="user_profile_edit.php?user_id=<?php echo $row['user_id'];?>"
+                                                            class="btn btn-primary">Edit Profile</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -173,6 +179,7 @@
         } else {
             // header("Location: index.php");
             // exit();
+            echo "You are not authorized to view this page.";
         }
         ?>
         </div>

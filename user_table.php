@@ -108,14 +108,14 @@
                                                         ?>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a  data-bs-toggle="tooltip" title="Edit"
+                                                                <a  data-bs-toggle="tooltip" title="Remove"
                                                                     class="btn btn-link btn-primary btn-lg"
-                                                                    data-original-title="Edit Task">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </a>
-                                                                <a data-bs-toggle="tooltip" title="Delete"
-                                                                    class="btn btn-link btn-danger"
                                                                     data-original-title="Remove">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </a>
+                                                                <a data-bs-toggle="tooltip" title="Inactive"
+                                                                    class="btn btn-link btn-danger"
+                                                                    data-original-title="Inactive">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
                                                                 <a href="user_view.php?user_id=<?php echo $user['user_id'];?>" data-bs-toggle="tooltip" title="View Details"
