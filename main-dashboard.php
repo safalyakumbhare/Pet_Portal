@@ -405,15 +405,19 @@
                                                         <td><?php echo $pet_row['gender'] ?></td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                <a href="#" data-bs-toggle="tooltip" title="Edit"
                                                                     class="btn btn-link btn-primary btn-lg"
                                                                     data-original-title="Edit Task">
                                                                     <i class="fa fa-edit"></i>
-                                                                </button>
-                                                                <button type="button" data-bs-toggle="tooltip" title=""
+                                                                </a>
+                                                                <a href="#" data-bs-toggle="tooltip" title="Remove"
                                                                     class="btn btn-link btn-danger" data-original-title="Remove">
-                                                                    <i class="fa fa-times"></i>
-                                                                </button>
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </a>
+                                                                <a href="pets_detail.php?pet_id=<?php echo $pet_row['pet_id']?>" data-bs-toggle="tooltip" title="Remove"
+                                                                    class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                    <i class="fa-regular fa-eye"></i>
+                                                                </a>
                                                             </div>
                                                         </td>
                                                     </tr>

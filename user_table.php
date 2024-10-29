@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Dashboard</title>
+    <title>Pets Portal - Pet's Owners</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -108,7 +108,7 @@
                                                         ?>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a  data-bs-toggle="tooltip" title="Remove"
+                                                                <a data-bs-toggle="tooltip" title="Remove"
                                                                     class="btn btn-link btn-primary btn-lg"
                                                                     data-original-title="Remove">
                                                                     <i class="fa-solid fa-trash"></i>
@@ -118,7 +118,8 @@
                                                                     data-original-title="Inactive">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
-                                                                <a href="user_view.php?user_id=<?php echo $user['user_id'];?>" data-bs-toggle="tooltip" title="View Details"
+                                                                <a href="user_view.php?user_id=<?php echo $user['user_id']; ?>"
+                                                                    data-bs-toggle="tooltip" title="View Details"
                                                                     class="btn btn-link btn-success"
                                                                     data-original-title="View Details">
                                                                     <i class="fa-solid fa-eye"></i>
@@ -139,10 +140,22 @@
                 </div>
             </div>
             <?php
+            include("common/footer.php");
+
+            ?>
+            <?php
 
         } elseif ($row['role_id'] == 2) {
 
-            header('Location:index.php');
+            ?>
+            <div class="container">
+                <h1>You don't have right to open this page</h1>
+            </div>
+            <?php
+            include("common/footer.php");
+
+            ?>
+            <?php
         }
         ?>
     </div>
