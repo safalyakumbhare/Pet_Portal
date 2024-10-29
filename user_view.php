@@ -170,6 +170,14 @@
             ?>
 
                 <?php
+        } else {
+            // header("Location: index.php");
+            // exit();
         }
         ?>
         </div>
+        <?php
+        include("common/footer.php");
+
+        ?>
+    </div>

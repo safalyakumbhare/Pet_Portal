@@ -29,7 +29,7 @@ $(document).ready(function(){
       phone:{
         required: true,
         number: true,
-        minlength: 10,
+        maxlength: 10,
       },
       address:{
         required: true
@@ -61,11 +61,11 @@ $(document).ready(function(){
       },
       password: {
         required: "Please enter a password",
-        minlength: "Password must be at least 8 characters long"
+        minlength: "Password must be at least 6 characters long"
       },
       confirmpassword: {
         required: "Please confirm your password",
-        minlength: "Password must be at least 8 characters long"
+        minlength: "Password must be at least 6 characters long"
       },
       phone: {
         required: "Please enter your phone number",
