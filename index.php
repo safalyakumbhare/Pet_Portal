@@ -13,24 +13,28 @@ if (isset($_POST['submit'])) {
 
   $sql = "SELECT * FROM users WHERE email= '$email'";
   $result = mysqli_query($conn, $sql);
-
+  // $row = mysqli_fetch_array($result);
   if (mysqli_num_rows($result) > 0) {
     $user = mysqli_fetch_array($result);
+    if ($user['status'] == "Inactive") {
+      echo "<script>alert('Account is Inactive. Please contact the admin.');</script>";
+      exit();
+    } elseif ($user['status'] == "Active") {
+      if (password_verify($password, $user['password'])) {
 
-    if (password_verify($password, $user['password'])) {
+        session_start();
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['logged_in'] = true;
 
-      session_start();
-      $_SESSION['username'] = $user['username'];
-      $_SESSION['logged_in'] = true;
+        // echo "<script>alert('Login successful');
+        // window.location.href='dashboard.php'
+        // </script>";
 
-      // echo "<script>alert('Login successful');
-      // window.location.href='dashboard.php'
-      // </script>";
+        header("Location: main-dashboard.php");
+      } else {
 
-      header("Location: main-dashboard.php");
-    } else {
-
-      echo "<script>alert('Invalid password');</script>";
+        echo "<script>alert('Invalid password');</script>";
+      }
     }
   } else {
 
@@ -130,7 +134,8 @@ if (isset($_POST['submit'])) {
         </label>
         <label>
           <div class="fa fa-commenting"></div>
-          <input class="password" type="password" id="myInput" name="password" autocomplete="off" placeholder="password" />
+          <input class="password" type="password" id="myInput" name="password" autocomplete="off"
+            placeholder="password" />
           <button class="password-button" onclick="showText()"><i class='bx bx-show'></i></button>
         </label>
         <button class="login-button" type="submit" name="submit">Login</button>

@@ -58,7 +58,7 @@
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
-                        <h3 class="fw-bold mb-3">Pet Registration</h3>
+                        <h3 class="fw-bold mb-3">Pet Owners</h3>
 
                     </div>
 
@@ -73,6 +73,7 @@
                                         <table id="add-row" class="display table table-striped table-hover">
                                             <thead>
                                                 <tr>
+                                                    <th>Profile Photo</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Address</th>
@@ -93,6 +94,12 @@
 
                                                     ?>
                                                     <tr>
+                                                        <td>
+                                                            <div class="avatar-xxl">
+                                                                <img src="assets/images/<?php echo $user['profile']; ?>"
+                                                                    class="avatar-img rounded-circle" alt="no image found">
+                                                            </div>
+                                                        </td>
                                                         <td><?php echo $user['username'] ?></td>
                                                         <td><?php echo $user['email'] ?></td>
                                                         <td><?php echo $user['address'] ?></td>
