@@ -77,29 +77,15 @@
 
                             <div class="card">
                                 <div class="card-header rounded-top-3" style="background-color: lightgray;">
-                                    <div class="card-title">Pet Image</div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <img src="assets/images/pets/<?php echo $pet_row['image'] ?>" class="img-fluid"
-                                                alt="">
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header rounded-top-3" style="background-color: lightgray;">
                                     <div class="card-title">Pet Information</div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4 d-flex flex-column justify-content-between">
+                                    <div class="row justify-content-between">
+                                        <div class="col-md-4">
+                                            <img src="assets/images/pets/<?php echo $pet_row['image'] ?>"
+                                                class="img-fluid rounded-4" alt="">
+                                        </div>
+                                        <div class="col-md-4 d-flex flex-column justify-content-evenly">
                                             <div class="form-group">
                                                 <h3>Name :</h3>
                                                 <h4 class="fw-light"><?php echo $pet_row['name'] ?></h4>
@@ -108,28 +94,6 @@
                                                 <h3 class="mt-1">Pet of :</h3>
 
                                                 <h4 class="fw-light"><?php echo $user_row['username'] ?></h4>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-4 d-flex flex-column justify-content-between">
-                                            <div class="form-group">
-                                                <h3>Pet Type :</h3>
-                                                <h4 class="fw-light"><?php echo $pet_row['type'] ?></h4>
-                                            </div>
-                                            <div class="form-group">
-                                                <h3 class="mt-1">Breed :</h3>
-
-                                                <h4 class="fw-light"><?php echo $pet_row['breed'] ?></h4>
-                                            </div>
-
-                                        </div>
-
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <h3>Date of Birth :</h3>
-                                                <h4 class="fw-light"><?php $date = date_create($pet_row['dob']);
-                                                echo date_format($date, "d-m-Y"); ?></h4>
                                             </div>
                                             <div class="form-group">
                                                 <h3 class="mt-1">Age :</h3>
@@ -145,14 +109,99 @@
                                                 $age = $currentDate->diff($birthDate)->y;
 
                                                 // Print the age
-                                                echo  $age . " years";
+                                                // echo $age . " years";
+                                            
+                                                if ($age == 0) {
+                                                    echo "Newly born puppy";
+                                                } else {
+                                                    echo $age . " years";
+
+                                                }
                                                 ?></h4>
+                                            </div>
+                                            <div class="form-group">
+                                                <h3>Date of Birth :</h3>
+                                                <h4 class="fw-light"><?php $date = date_create($pet_row['dob']);
+                                                echo date_format($date, "d-m-Y"); ?></h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header rounded-top-3" style="background-color: lightgray;">
+                                    <div class="card-title">Pet Type</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+
+                                        <div class="col-md-4 d-flex flex-column justify-content-between">
+                                            <div class="form-group">
+                                                <h3>Pet Type :</h3>
+                                                <h4 class="fw-light"><?php echo $pet_row['type'] ?></h4>
+                                            </div>
+                                            <div class="form-group">
+                                                <h3 class="mt-1">Breed :</h3>
+
+                                                <h4 class="fw-light"><?php echo $pet_row['breed'] ?></h4>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-4">
+
+                                            <div class="form-group">
+                                                <h3>Gender :</h3>
+                                                <h4 class="fw-light"><?php echo $pet_row['gender'] ?></h4>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h3 class="mt-1">Color :</h3>
+                                                <h4 class="fw-light"><?php echo $pet_row['color'] ?></h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <h3>Weight :</h3>
+                                                <h4 class="fw-light"><?php echo $pet_row['weight'] . " kgs"; ?></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header rounded-top-3" style="background-color: lightgray;">
+                                    <div class="card-title">Pet Medical Condition</div>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="fw-light card-text"><?php echo $pet_row['medical'] ?></h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header rounded-top-3" style="background-color: lightgray;">
+                                    <div class="card-title">Pet Description</div>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="fw-light card-text"><?php echo $pet_row['note'] ?></h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
                     <?php
         }
