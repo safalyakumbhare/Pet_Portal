@@ -228,6 +228,11 @@ if (!isset($_SESSION['logged_in'])) {
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a href="pets_table.php">
+                                                        <span class="sub-item">Pets </span>
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="pets_and_petsowner.php">
                                                         <span class="sub-item">Pets and Pet's Owner</span>
                                                     </a>

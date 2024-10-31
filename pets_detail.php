@@ -85,44 +85,46 @@
                                             <img src="assets/images/pets/<?php echo $pet_row['image'] ?>"
                                                 class="img-fluid rounded-4" alt="">
                                         </div>
-                                        <div class="col-md-4 d-flex flex-column justify-content-evenly">
-                                            <div class="form-group">
-                                                <h3>Name :</h3>
-                                                <h4 class="fw-light"><?php echo $pet_row['name'] ?></h4>
-                                            </div>
-                                            <div class="form-group">
-                                                <h3 class="mt-1">Pet of :</h3>
+                                        <div class="col-md-6 ">
+                                            <div class="row ">
+                                                <div class="col-md-4 m-md-2">
+                                                    <h3>Name :</h3>
+                                                    <h4 class="fw-light"><?php echo $pet_row['name'] ?></h4>
+                                                </div>
+                                                <div class="col-md-4 m-md-2">
+                                                    <h3 class="mt-1">Pet of :</h3>
 
-                                                <h4 class="fw-light"><?php echo $user_row['username'] ?></h4>
-                                            </div>
-                                            <div class="form-group">
-                                                <h3 class="mt-1">Age :</h3>
+                                                    <h4 class="fw-light"><?php echo $user_row['username'] ?></h4>
+                                                </div>
+                                                <div class="col-md-4 m-md-2">
+                                                    <h3 class="mt-1">Age :</h3>
 
-                                                <h4 class="fw-light"><?php
-                                                $dob = $pet_row['dob'];
+                                                    <h4 class="fw-light"><?php
+                                                    $dob = $pet_row['dob'];
 
-                                                // Convert the birthdate into a DateTime object
-                                                $birthDate = new DateTime($dob);
-                                                $currentDate = new DateTime(); // Get the current date
-                                            
-                                                // Calculate the difference between the current date and birth date
-                                                $age = $currentDate->diff($birthDate)->y;
+                                                    // Convert the birthdate into a DateTime object
+                                                    $birthDate = new DateTime($dob);
+                                                    $currentDate = new DateTime(); // Get the current date
+                                                
+                                                    // Calculate the difference between the current date and birth date
+                                                    $age = $currentDate->diff($birthDate)->y;
 
-                                                // Print the age
-                                                // echo $age . " years";
-                                            
-                                                if ($age == 0) {
-                                                    echo "Newly born puppy";
-                                                } else {
-                                                    echo $age . " years";
+                                                    // Print the age
+                                                    // echo $age . " years";
+                                                
+                                                    if ($age == 0) {
+                                                        echo "Newly born puppy";
+                                                    } else {
+                                                        echo $age . " years";
 
-                                                }
-                                                ?></h4>
-                                            </div>
-                                            <div class="form-group">
-                                                <h3>Date of Birth :</h3>
-                                                <h4 class="fw-light"><?php $date = date_create($pet_row['dob']);
-                                                echo date_format($date, "d-m-Y"); ?></h4>
+                                                    }
+                                                    ?></h4>
+                                                </div>
+                                                <div class="col-md-4 m-md-2">
+                                                    <h3>Date of Birth :</h3>
+                                                    <h4 class="fw-light"><?php $date = date_create($pet_row['dob']);
+                                                    echo date_format($date, "d-m-Y"); ?></h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

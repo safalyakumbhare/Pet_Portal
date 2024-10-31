@@ -48,32 +48,41 @@
         <!-- Including sidebar and navbar -->
         <?php
         include("common/sidebar.php");
-
-        if (isset($_GET['user_id'])) {
-            $rid = intval($_GET['user_id']);
-
-            $check = "SELECT * FROM users WHERE user_id = $rid;";
-
-            $result = mysqli_query($conn, $check);
-            $check_row = mysqli_fetch_array($result);
-
-            $status = $check_row['status'];
-
-            if ($status == 'Inactive') {
-
-
-                $sql = mysqli_query($conn, "UPDATE users SET status = 'Active' WHERE user_id = '$rid'");
-                echo "<script>alert('User Activated');</script>";
-                echo "<script>window.location.href = 'user_table.php'</script>";
-            }
-            if ($status == 'Active') {
-                $sql = mysqli_query($conn, "UPDATE users SET status = 'Inactive' WHERE user_id = '$rid'");
-                echo "<script>alert('User Deactivated');</script>";
-                echo "<script>window.location.href = 'user_table.php'</script>";
-            }
-        }
-
         if ($row['role_id'] == 1) {
+
+
+            if (isset($_GET['dlt_id'])) {
+                $user_id = $_GET['dlt_id'];
+                $sql = mysqli_query($conn, "DELETE FROM users WHERE user_id = '$user_id'");
+                echo "<script>alert('User Deleted');</script>";
+                echo "<script>window.location.href = 'user_table.php'</script>";
+            }
+
+            if (isset($_GET['user_id'])) {
+                $rid = intval($_GET['user_id']);
+
+                $check = "SELECT * FROM users WHERE user_id = $rid;";
+
+                $result = mysqli_query($conn, $check);
+                $check_row = mysqli_fetch_array($result);
+
+                $status = $check_row['status'];
+
+                if ($status == 'Inactive') {
+
+
+                    $sql = mysqli_query($conn, "UPDATE users SET status = 'Active' WHERE user_id = '$rid'");
+                    echo "<script>alert('User Activated');</script>";
+                    echo "<script>window.location.href = 'user_table.php'</script>";
+                }
+                if ($status == 'Active') {
+                    $sql = mysqli_query($conn, "UPDATE users SET status = 'Inactive' WHERE user_id = '$rid'");
+                    echo "<script>alert('User Deactivated');</script>";
+                    echo "<script>window.location.href = 'user_table.php'</script>";
+                }
+            }
+
+
 
 
             ?>
@@ -139,9 +148,11 @@
                                                         ?>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a data-bs-toggle="tooltip" title="Remove"
+                                                                <a href="user_table.php?dlt_id=<?php echo $user['user_id'] ?>"
+                                                                    data-bs-toggle="tooltip" title="Remove"
                                                                     class="btn btn-link btn-primary btn-lg"
-                                                                    data-original-title="Remove">
+                                                                    data-original-title="Remove"
+                                                                    onclick="return remove()">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
 
@@ -153,6 +164,7 @@
                                                                     <a href="user_table.php?user_id=<?php echo $user['user_id'] ?>"
                                                                         data-bs-toggle="tooltip" title="Inactive"
                                                                         class="btn btn-link btn-danger"
+                                                                        onclick="return confirmDeactivation()"
                                                                         data-original-title="Inactive">
                                                                         <i class="fa fa-times"></i>
                                                                     </a>
@@ -165,6 +177,7 @@
                                                                     <a href="user_table.php?user_id=<?php echo $user['user_id'] ?>"
                                                                         data-bs-toggle="tooltip" title="Active"
                                                                         class="btn btn-link btn-success"
+                                                                        onclick="return confirmactivation()"
                                                                         data-original-title="Inactive">
                                                                         <i class="fa-solid fa-check"></i>
                                                                     </a>
@@ -204,7 +217,8 @@
 
             ?>
             <div class="container">
-                <h1>You don't have right to open this page</h1>
+                <h1 class="text-center text-danger">You don't have right to open this page</h1>
+
             </div>
             <?php
             include("common/footer.php");
@@ -214,3 +228,15 @@
         }
         ?>
     </div>
+
+    <script>
+        function confirmDeactivation() {
+            return confirm('Do you want to Deactivate this user?');
+        }
+        function confirmactivation(){
+            return confirm('Do you want to activate this user?');
+        }
+        function remove(){
+            return confirm('Do you want to activate this user?');
+        }
+    </script>
