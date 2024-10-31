@@ -17,7 +17,8 @@ if (isset($_POST['submit'])) {
   if (mysqli_num_rows($result) > 0) {
     $user = mysqli_fetch_array($result);
     if ($user['status'] == "Inactive") {
-      echo "<script>alert('Account is Inactive. Please contact the admin.');</script>";
+      echo "<script>alert('Account is Inactive. Please contact the admin.');
+       window.location.href='index.php';</script>";
       exit();
     } elseif ($user['status'] == "Active") {
       if (password_verify($password, $user['password'])) {

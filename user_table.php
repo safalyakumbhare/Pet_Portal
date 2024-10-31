@@ -49,6 +49,30 @@
         <?php
         include("common/sidebar.php");
 
+        if (isset($_GET['user_id'])) {
+            $rid = intval($_GET['user_id']);
+
+            $check = "SELECT * FROM users WHERE user_id = $rid;";
+
+            $result = mysqli_query($conn, $check);
+            $check_row = mysqli_fetch_array($result);
+
+            $status = $check_row['status'];
+
+            if ($status == 'Inactive') {
+
+
+                $sql = mysqli_query($conn, "UPDATE users SET status = 'Active' WHERE user_id = '$rid'");
+                echo "<script>alert('User Activated');</script>";
+                echo "<script>window.location.href = 'user_table.php'</script>";
+            }
+            if ($status == 'Active') {
+                $sql = mysqli_query($conn, "UPDATE users SET status = 'Inactive' WHERE user_id = '$rid'");
+                echo "<script>alert('User Deactivated');</script>";
+                echo "<script>window.location.href = 'user_table.php'</script>";
+            }
+        }
+
         if ($row['role_id'] == 1) {
 
 
@@ -120,11 +144,35 @@
                                                                     data-original-title="Remove">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
-                                                                <a data-bs-toggle="tooltip" title="Inactive"
-                                                                    class="btn btn-link btn-danger"
-                                                                    data-original-title="Inactive">
-                                                                    <i class="fa fa-times"></i>
-                                                                </a>
+
+                                                                <?php
+                                                                if ($user['status'] == "Active") {
+                                                                    ?>
+
+
+                                                                    <a href="user_table.php?user_id=<?php echo $user['user_id'] ?>"
+                                                                        data-bs-toggle="tooltip" title="Inactive"
+                                                                        class="btn btn-link btn-danger"
+                                                                        data-original-title="Inactive">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </a>
+
+
+                                                                    <?php
+                                                                } elseif ($user['status'] == "Inactive") {
+                                                                    ?>
+
+                                                                    <a href="user_table.php?user_id=<?php echo $user['user_id'] ?>"
+                                                                        data-bs-toggle="tooltip" title="Active"
+                                                                        class="btn btn-link btn-success"
+                                                                        data-original-title="Inactive">
+                                                                        <i class="fa-solid fa-check"></i>
+                                                                    </a>
+
+                                                                    <?php
+                                                                }
+                                                                ?>
+
                                                                 <a href="user_view.php?user_id=<?php echo $user['user_id']; ?>"
                                                                     data-bs-toggle="tooltip" title="View Details"
                                                                     class="btn btn-link btn-success"

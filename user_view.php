@@ -147,7 +147,17 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Status :</h6>
-                                                        <p class="text-success"><?php echo $user_detail['status']; ?></p>
+                                                        <p class="text-success">
+                                                            <?php
+                                                            if ($user_detail['status'] == "Active") {
+                                                                echo "<span class='text-success'>Active</span>
+                                                     </td>";
+                                                            } else {
+                                                                echo "<span class='text-danger'>Inactive</span>
+                                                     </td>";
+                                                            }
+                                                            ?>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
