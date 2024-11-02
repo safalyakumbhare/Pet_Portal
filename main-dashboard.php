@@ -88,12 +88,12 @@
                                                 <i class="fas fa-users"></i>
                                             </div>
                                         </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
+                                        <a href="user_table.php" class="col col-stats ms-3 ms-sm-0">
                                             <div class="numbers">
                                                 <p class="card-category">Pet Owners</p>
                                                 <h4 class="card-title"><?php echo mysqli_num_rows($user_result) ?></h4>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -107,12 +107,12 @@
                                                 <i class="fa-solid fa-paw"></i>
                                             </div>
                                         </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
+                                        <a href="pets_table.php" class="col col-stats ms-3 ms-sm-0">
                                             <div class="numbers">
                                                 <p class="card-category">Pets</p>
                                                 <h4 class="card-title"><?php echo mysqli_num_rows($pet_result) ?></h4>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

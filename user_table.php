@@ -54,8 +54,13 @@
             if (isset($_GET['dlt_id'])) {
                 $user_id = $_GET['dlt_id'];
                 $sql = mysqli_query($conn, "DELETE FROM users WHERE user_id = '$user_id'");
-                echo "<script>alert('User Deleted');</script>";
-                echo "<script>window.location.href = 'user_table.php'</script>";
+                $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE user_id = '$user_id'");
+
+                if($sql && $dlt_pet){
+                    echo "<script>alert('User Deleted');</script>";
+                    echo "<script>window.location.href = 'user_table.php'</script>";
+                }
+               
             }
 
             if (isset($_GET['user_id'])) {
@@ -237,6 +242,6 @@
             return confirm('Do you want to activate this user?');
         }
         function remove(){
-            return confirm('Do you want to activate this user?');
+            return confirm('Do you want to Remove this user?');
         }
     </script>
