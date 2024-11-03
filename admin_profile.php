@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - User Details</title>
+    <title>Pets Portal - Admin Profile</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -51,22 +51,22 @@
 
         if ($row['role_id'] == 1) {
 
-            if (isset($_GET['user_id'])) {
+            if (isset($row['user_id'])) {
 
 
-                $user_id = $_GET['user_id'];
+                $user_id = $row['user_id'];
                 $user_detail_result = mysqli_query($conn, "SELECT * FROM users WHERE user_id=$user_id");
 
                 $user_detail = mysqli_fetch_array($user_detail_result);
 
-                $pet_detail_result = mysqli_query($conn, "SELECT * FROM pets WHERE user_id=$user_id");
-                $pet_detail = mysqli_fetch_array($pet_detail_result);
+                // $pet_detail_result = mysqli_query($conn, "SELECT * FROM pets WHERE user_id=$user_id");
+                // $pet_detail = mysqli_fetch_array($pet_detail_result);
                 ?>
 
                 <div class="container">
                     <div class="page-inner">
                         <div class="page-header">
-                            <h3 class="fw-bold mb-3">User Details</h3>
+                            <h3 class="fw-bold mb-3">Admin Profile</h3>
 
                         </div>
 
@@ -80,14 +80,10 @@
 
                                             <div class="card-body">
                                                 <img src="assets/images/<?php echo $user_detail['profile']; ?>"
-                                                    style="height:150px; width:150px;" class=" rounded-circle"
+                                                    style="height:155px; width:150px;" class=" rounded-circle"
                                                     alt="no profile photo">
                                                 <h3 class="mt-md-4"><?php echo $user_detail['username']; ?></h3>
-                                                <p><?php if (isset($pet_detail['name'])) {
-                                                    echo "Owner of " . $pet_detail['name'];
-                                                } else {
-                                                    echo "Pet not Registered";
-                                                } ?></p>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -105,14 +101,7 @@
                                                         <h6 class="text-secondary fw-bold">Name :</h6>
                                                         <p><?php echo $user_detail['username']; ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-secondary fw-bold">Pet's Name :</h6>
-                                                        <p> <?php if (isset($pet_detail['name'])) {
-                                                            echo $pet_detail['name'];
-                                                        } else {
-                                                            echo "Pet not Registered";
-                                                        } ?></p>
-                                                    </div>
+                                                   
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Email :</h6>
                                                         <p><?php echo $user_detail['email']; ?></p>
@@ -152,17 +141,13 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Status :</h6>
-                                                        <p class="text-success">
-                                                            <?php
-                                                            if ($user_detail['status'] == "Active") {
-                                                                echo "<span class='text-success'>Active</span>
-                                                     </td>";
-                                                            } else {
-                                                                echo "<span class='text-danger'>Inactive</span>
-                                                     </td>";
-                                                            }
-                                                            ?>
-                                                        </p>
+                                                        <p class="text-success"><?php echo $user_detail['status']; ?></p>
+                                                    </div>
+
+                                                    <div class="w-100"></div>
+                                                    <div class="col-md-6">
+                                                        <a href="admin_profile_edit.php?user_id=<?php echo $row['user_id'];?>"
+                                                            class="btn btn-primary">Edit Profile</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,12 +173,7 @@
         } else {
             // header("Location: index.php");
             // exit();
-            ?>
-                <div class="container">
-                    <h1 class="text-center text-danger">You are not authorized to open this page</h1>
-                </div>
-
-                <?php
+            echo "You are not authorized to view this page.";
         }
         ?>
         </div>

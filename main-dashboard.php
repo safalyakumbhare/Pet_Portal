@@ -182,27 +182,44 @@
                                     <div class="card-list py-4">
 
                                         <?php
-                                        while ($row = mysqli_fetch_array($user_result)) {
+
+                                        $currentdate = date('Y-m-d'); // Get only the current date
+                                        $new = "SELECT * FROM users WHERE DATE(created_at) = '$currentdate'";
+                                        $new_result = mysqli_query($conn, $new);
+
+                                        if (mysqli_num_rows($new_result)) {
+                                            while ($new_data = mysqli_fetch_array($new_result)) {
 
 
-                                            ?>
+
+
+
+                                                ?>
+                                                <div class="item-list">
+                                                    <div class="avatar">
+                                                        <img src="assets/images/<?php echo $new_data['profile'] ?>" alt="..."
+                                                            class="avatar-img rounded-circle" />
+                                                    </div>
+                                                    <div class="info-user ms-3">
+                                                        <div class="username"><?php echo $new_data['username'] ?></div>
+                                                        <div class="status"><?php echo $new_data['address'] ?></div>
+                                                    </div>
+
+                                                    <a href="user_view.php?user_id=<?php echo $new_data['user_id']; ?>"
+                                                        class="btn btn-icon btn-link btn-primary op-8">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <?php
+
+                                            }
+                                        } else {
+?>
+
                                             <div class="item-list">
-                                                <div class="avatar">
-                                                    <img src="assets/images/<?php echo $row['profile'] ?>" alt="..."
-                                                        class="avatar-img rounded-circle" />
-                                                </div>
-                                                <div class="info-user ms-3">
-                                                    <div class="username"><?php echo $row['username'] ?></div>
-                                                    <div class="status"><?php echo $row['address'] ?></div>
-                                                </div>
-
-                                                <a href="user_view.php?user_id=<?php echo $row['user_id']; ?>"
-                                                    class="btn btn-icon btn-link btn-primary op-8">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                </a>
+                                                <p class="text-center">No New User Found</p>
                                             </div>
-                                            <?php
-
+<?php
                                         }
                                         ?>
                                     </div>
@@ -414,7 +431,8 @@
                                                                     class="btn btn-link btn-danger" data-original-title="Remove">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
-                                                                <a href="pets_detail.php?pet_id=<?php echo $pet_row['pet_id']?>" data-bs-toggle="tooltip" title="View details"
+                                                                <a href="pets_detail.php?pet_id=<?php echo $pet_row['pet_id'] ?>"
+                                                                    data-bs-toggle="tooltip" title="View details"
                                                                     class="btn btn-link btn-success" data-original-title="Remove">
                                                                     <i class="fa-regular fa-eye"></i>
                                                                 </a>

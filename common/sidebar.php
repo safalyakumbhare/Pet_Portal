@@ -159,7 +159,7 @@ if (!isset($_SESSION['logged_in'])) {
                                                     <div class="u-text">
                                                         <h4><?php echo $row['username']?></h4>
                                                         <p class="text-muted"><?php echo $row['email']?></p>
-                                                        <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
+                                                        <a href="user_profile.php" class="btn btn-xs btn-secondary btn-sm">View
                                                             Profile</a>
                                                     </div>
                                                 </div>
@@ -299,12 +299,12 @@ if (!isset($_SESSION['logged_in'])) {
                                                         <div class="user-box">
                                                             <div class="avatar-lg">
                                                                 <img src="assets/images/<?php echo $row['profile']?>" alt="image profile"
-                                                                    class="avatar-img rounded" />
+                                                                    class="avatar-img rounded"/>
                                                             </div>
                                                             <div class="u-text">
                                                                 <h4><?php echo $row['username']?></h4>
                                                                 <p class="text-muted"><?php echo $row['email']?></p>
-                                                                <a href="profile.html"
+                                                                <a href="admin_profile.php"
                                                                     class="btn btn-xs btn-secondary btn-sm">View
                                                                     Profile</a>
                                                             </div>
@@ -312,11 +312,11 @@ if (!isset($_SESSION['logged_in'])) {
                                                     </li>
                                                     <li>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">My Profile</a>
-                                                        <a class="dropdown-item" href="#">My Balance</a>
-                                                        <a class="dropdown-item" href="#">Inbox</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">Account Setting</a>
+                                                        <a class="dropdown-item" href="admin_profile.php">My Profile</a>
+                                                        <!-- <a class="dropdown-item" href="#">My Balance</a> -->
+                                                        <!-- <a class="dropdown-item" href="#">Inbox</a> -->
+                                                        <!-- <div class="dropdown-divider"></div> -->
+                                                        <!-- <a class="dropdown-item" href="#">Account Setting</a> -->
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" href="common/logout.php">Logout</a>
                                                     </li>

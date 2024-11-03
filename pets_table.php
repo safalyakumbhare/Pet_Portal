@@ -49,12 +49,22 @@
         <?php
         include("common/sidebar.php");
         if ($row['role_id'] == 1) {
+
+
+            if(isset($_GET['dlt_id'])){
+                $pet_id = $_GET['dlt_id'];
+                $pet = mysqli_query($conn, "DELETE FROM pets WHERE pet_id = $pet_id");
+                if($pet){
+                    echo "<script> alert('Deleted Successfully');
+                    window.location.href='pets_table.php';</script>";
+                }
+            }
             ?>
 
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
-                        <h3 class="fw-bold mb-3">Welcome <?php echo $row['username'] ?></h3>
+                        <h3 class="fw-bold mb-3">Pets</h3>
 
 
                     </div>
@@ -102,8 +112,8 @@
                                                     <td>
                                                         <div class="form-button-action">
                                                            
-                                                            <a href="#" data-bs-toggle="tooltip" title="Remove"
-                                                                class="btn btn-link btn-danger" data-original-title="Remove">
+                                                            <a href="pets_table.php?dlt_id=<?php echo $pet_row['pet_id']?>" data-bs-toggle="tooltip" title="Remove"
+                                                                class="btn btn-link btn-danger"  onclick="return remove()" data-original-title="Remove">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </a>
                                                             <a href="pets_detail.php?pet_id=<?php echo $pet_row['pet_id'] ?>"
@@ -135,3 +145,9 @@
 
         ?>
     </div>
+
+    <script>
+        function remove(){
+            return confirm('Do you want to Remove this pet?');
+        }
+    </script>

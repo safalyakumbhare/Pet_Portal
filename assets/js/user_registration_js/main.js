@@ -30,6 +30,7 @@ $(document).ready(function(){
         required: true,
         number: true,
         maxlength: 10,
+        minlength: 10,
       },
       address:{
         required: true
@@ -71,6 +72,7 @@ $(document).ready(function(){
         required: "Please enter your phone number",
         number: "Please enter a valid phone number",
         minlength: "Phone number must be at least 10 digits long",
+        maxlength: "Phone number not more than 10 digits ",
       },
       address: {
         required: "Please enter your address"
