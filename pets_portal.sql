@@ -61,3 +61,7 @@ INSERT INTO users (username, email, password, phone, address, gender, dob, role_
         status VARCHAR(255) NOT NULL DEFAULT 'active',
         FOREIGN KEY (user_id) REFERENCES users(id)
     );
+
+    CREATE TABLE doctor (
+        
+    )

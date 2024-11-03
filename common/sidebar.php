@@ -144,7 +144,7 @@ if (!isset($_SESSION['logged_in'])) {
                                                 class="avatar-img rounded-circle" />
                                         </div>
                                         <span class="profile-username">
-                                            <span class="op-7">Hi,</span>
+                                            <span class="op-7">Welcome,</span>
                                             <span class="fw-bold"><?php echo $row['username']?></span>
                                         </span>
                                     </a>
@@ -289,7 +289,7 @@ if (!isset($_SESSION['logged_in'])) {
 
                                                 </div>
                                                 <span class="profile-username">
-                                                    <span class="op-7">Hi,</span>
+                                                    <span class="op-7">Welcome,</span>
                                                     <span class="fw-bold"><?php echo $row['username'] ?></span>
                                                 </span>
                                             </a>
