@@ -63,5 +63,56 @@ INSERT INTO users (username, email, password, phone, address, gender, dob, role_
     );
 
     CREATE TABLE doctor (
-        
-    )
+        doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(10) NOT NULL UNIQUE,
+        dob VARCHAR(10) NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        gender NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        profile TEXT,
+        license_no VARCHAR(10) NOT NULL,
+        specilization TEXT,
+        experience TEXT,
+        certification TEXT,
+        role_id INT DEFAULT 3,
+        FOREIGN KEY (role_id) REFERENCES roles(role_id),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        status VARCHAR(10) DEFAULT 'Inactive',
+        approval VARCHAR(10) DEFAULT 'Pending', 
+    );
+
+    CREATE TABLE appointment (
+        appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+        user_id INT,
+        doctor_id INT,
+        pet_id INT,
+        appointment_date DATE NOT NULL,
+        appointment_time TIME NOT NULL,
+        status VARCHAR(255) NOT NULL DEFAULT 'active',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id),
+        FOREIGN KEY (pet_id) REFERENCES pets(pet_id)
+    );
+
+    CREATE TABLE clinic (
+        clinic_id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        phone VARCHAR(10) NOT NULL UNIQUE,
+        doctor_id INT NOT NULL,
+        FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id),
+        open_time TIME NOT NULL,
+        close_time TIME NOT NULL,
+        open_days VARCHAR(100) NOT NULL,
+        close_days VARCHAR(100) NOT NULL,
+        fees TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        status VARCHAR(10) NOT NULL DEFAULT 'Inactive',
+        approval VARCHAR(10) DEFAULT 'Pending',
+    );

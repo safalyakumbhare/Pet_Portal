@@ -37,7 +37,6 @@ $(document).ready(function () {
       },
       experience: {
         required: true,
-        number: true,
       },
       certification: {
         required: true,
@@ -121,7 +120,6 @@ $(document).ready(function () {
       specialization: { required: "Specialization is required" },
       experience: {
         required: "Experience is required",
-        number: "Please enter a valid number",
       },
       certification: { required: "Certification is required" },
       //   Clinic Details
@@ -140,6 +138,16 @@ $(document).ready(function () {
       closing_time: { required: "Closing time is required", time: "Please enter a valid time" },
       opening_days: { required: "Opening days are required" },
       closing_days: { required: "Closing days are required" },
+
+      password :{
+        required: "Password is required",
+        minlength: "Password should have at least 6 characters",
+      },
+      confirm_password: {
+        required: "Confirm password is required",
+        minlength: "Confirm password should have at least 6 characters",
+        equalTo: "Passwords do not match",
+      }
     },
   });
 });
