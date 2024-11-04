@@ -7,32 +7,32 @@ if (isset($_POST['submit'])) {
   $phone = $_POST['phone'];
   $dob = $_POST['dob'];
   $gender = $_POST['gender'];
-  $profile = $_FILES["profile"]["name"];
+  $profile = $_FILES['profile']["name"];
   $license = $_POST["license"];
   $specialization = $_POST["specialization"];
   $certification = $_POST["certification"];
   $experience = $_POST["experience"];
-  $password = password_hash($_POST['password'],PASSWORD_BCRYPT);
+  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
   $confirm_password = $_POST['confirm_password'];
 
-  $folder = "assets/images/doctors/". basename($profile);
+  $folder = "assets/images/doctors/" . basename($profile);
 
-  if($_POST['password'] !== $confirm_password){
+  if ($_POST['password'] !== $confirm_password) {
     echo "<script>alert('Confirm Password do not match');
     window.location.href='doctor_registration.php';</script>";
   } else {
     $check = "SELECT * FROM doctor WHERE name ='$fname';";
     $check_result = mysqli_query($conn, $check);
 
-    if(mysqli_num_rows($check_result)){
+    if (mysqli_num_rows($check_result)) {
       echo "<script>alert('Doctor Already Registered');
       window.location.href='doctor_registration.php';</script>";
-    }else{
+    } else {
       $sql = "INSERT INTO doctor(name,email,phone,dob,address,gender,password,profile,license_no,specialization,experience,certification) VALUES ('$fname','$email','$phone','$dob','$address','$gender','$password','$profile','$license','$specialization','$experience','$certification');";
 
       $result = mysqli_query($conn, $sql);
 
-      if($result){
+      if ($result) {
         if (move_uploaded_file($_FILES["profile"]["tmp_name"], $folder)) {
           echo "<script>alert('Doctor Registered Successfully');
           window.location.href='index.php';</script>";
@@ -176,94 +176,94 @@ if (isset($_POST['submit'])) {
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header rounded-top-3" style="background-color: lightgray">
-                    <div class="card-title">Professional Details :</div>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="license">License Number : </label>
-                          <input type="text" class="form-control" name="license" id="license"
-                            placeholder="Enter License Number" required />
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="specialization">Specialization :
-                          </label>
-                          <input type="text" class="form-control" name="specialization" id="specialization"
-                            placeholder="Enter Specialization" required />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="certification">Certification & Qualifications :</label>
-                          <textarea class="form-control" name="certification" id="certification" rows="3"
-                            placeholder="List Certification & Qualifications" required></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="experience">Experience : </label>
-                          <textarea class="form-control" name="experience" id="experience" rows="3"
-                            placeholder="Enter your Experience" required></textarea>
-                          
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header rounded-top-3" style="background-color: lightgray">
+                  <div class="card-title">Professional Details :</div>
                 </div>
-
-
-              </div>
-
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header rounded-top-3" style="background-color: lightgray">
-                    <div class="card-title">Password :</div>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="password">Password : </label>
-                          <input type="password" class="form-control" name="password" id="password"
-                            placeholder="Enter Password" required />
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="confirm_password">Confirm Password :
-                          </label>
-                          <input type="password" class="form-control" name="confirm_password" id="confirm_password"
-                            placeholder="Confirm Password" required />
-                        </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="license">License Number : </label>
+                        <input type="text" class="form-control" name="license" id="license"
+                          placeholder="Enter License Number" required />
                       </div>
                     </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="specialization">Specialization :
+                        </label>
+                        <input type="text" class="form-control" name="specialization" id="specialization"
+                          placeholder="Enter Specialization" required />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="certification">Certification & Qualifications :</label>
+                        <textarea class="form-control" name="certification" id="certification" rows="3"
+                          placeholder="List Certification & Qualifications" required></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="experience">Experience : </label>
+                        <textarea class="form-control" name="experience" id="experience" rows="3"
+                          placeholder="Enter your Experience" required></textarea>
+
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-body justify-content-center">
-                    <div class="row justify-content-center">
-                      <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary btn-block" name="submit">
-                          Send Approval
-                        </button>
+
+            </div>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header rounded-top-3" style="background-color: lightgray">
+                  <div class="card-title">Password :</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="password">Password : </label>
+                        <input type="password" class="form-control" name="password" id="password"
+                          placeholder="Enter Password" required />
                       </div>
-                      <div class="col-md-2">
-                        <a href="index.php" class="btn btn-danger btn-block">Cancel</a>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="confirm_password">Confirm Password :
+                        </label>
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                          placeholder="Confirm Password" required />
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body justify-content-center">
+                  <div class="row justify-content-center">
+                    <div class="col-md-2">
+                      <button type="submit" class="btn btn-primary btn-block" name="submit">
+                        Send Approval
+                      </button>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="index.php" class="btn btn-danger btn-block">Cancel</a>
                     </div>
                   </div>
                 </div>
@@ -273,10 +273,11 @@ if (isset($_POST['submit'])) {
         </form>
       </div>
     </div>
-    <?php
 
-      include("common/footer.php");
-?>
+  <?php
+
+  include("common/footer.php");
+  ?>
   </div>
 
   <script src="assets/jquery/jquery-3.7.1.min.js"></script>

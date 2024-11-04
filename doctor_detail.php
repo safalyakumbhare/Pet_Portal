@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Doctor Approval</title>
+    <title>Pets Portal - Doctor Detail</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -56,7 +56,7 @@
                 $doctor_id = $_GET['doctor_id'];
 
 
-                $doctor_data = "SELECT * FROM doctor WHERE doctor_id=$doctor_id AND approval = 'Pending';";
+                $doctor_data = "SELECT * FROM doctor WHERE doctor_id='$doctor_id';";
                 $doctor_result = mysqli_query($conn, $doctor_data);
 
                 if (mysqli_num_rows($doctor_result)) {
@@ -109,11 +109,13 @@
                                                             echo $doctor_row['phone']
                                                                 ?></h4>
                                                         </div>
-                                                        <div class="col-md-4 m-md-2">
+                                                        <div class="col-md-5 m-md-2">
                                                             <h3>Date of Birth :</h3>
                                                             <h4 class="fw-light"><?php $date = date_create($doctor_row['dob']);
                                                             echo date_format($date, "d-m-Y"); ?></h4>
                                                         </div>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,6 +123,70 @@
                                     </div>
                                 </div>
 
+
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header rounded-top-3" style="background-color: lightgray;">
+                                            <div class="card-title">Pets Portal Details</div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h3>Status</h3>
+                                                        <?php
+                                                        if ($doctor_row['status'] == "Active") {
+                                                            echo "<h4 class='text-success'>Active</h4>";
+                                                        } else {
+                                                            echo "<h4 class='text-danger'>Inactive</h4>";
+                                                        }
+
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h3>Approval</h3>
+                                                        <?php
+                                                        if ($doctor_row['approval'] == "Approved") {
+                                                            echo "<h4 class='text-success'>Approved</h4>";
+                                                        } else if ($doctor_row['approval'] == "Pending") {
+                                                            echo "<h4 class='text-primary'>Pending</h4>";
+                                                        } else if ($doctor_row['approval'] == "Rejected") {
+                                                            echo "<h4 class='text-danger'>Rejected</h4>";
+                                                        }
+
+                                                        ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h3>Registration At :</h3>
+                                                        <h4 class="fw-light"><?php  $date = date_create($doctor_row['created_at']);
+                                                        echo date_format($date, "d-m-Y");
+                                                        echo "<br>";
+                                                        echo date_format($date,"h:m:s"); ?></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h3>Updated At : </h3>
+                                                        <h4 class="fw-light"><?php
+                                                        
+                                                        $date = date_create($doctor_row['updated_at']);
+                                                        echo date_format($date, "d-m-Y");
+                                                        echo "<br>";
+                                                        echo date_format($date,"h:m:s");
+                                                        // echo $doctor_row['updated_at'];
+                                                        
+                                                        ?></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-md-12">
                                     <div class="card">
@@ -162,31 +228,40 @@
                         </div>
 
 
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body justify-content-center">
+                        <?php
 
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-2">
+                        if ($doctor_row['approval'] == "Pending" || $doctor_row['approval'] == "Rejected") {
+                            ?>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body justify-content-center">
 
-                                            <a href="doctor_approve_reject.php?approve_id=<?php echo $doctor_id; ?>"
-                                                class="btn btn-success btn-block" name="approve">
-                                                Approve
-                                            </a>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-2">
+
+                                                <a href="doctor_approve_reject.php?approve_id=<?php echo $doctor_id; ?>"
+                                                    class="btn btn-success btn-block" name="approve">
+                                                    Approve
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a href="doctor_approve_reject.php?reject_id=<?php echo $doctor_id; ?>"
+                                                    class="btn btn-danger btn-block" name="reject">Reject</a>
+                                            </div>
+
                                         </div>
-                                        <div class="col-md-2">
-                                            <a href="doctor_approve_reject.php?reject_id=<?php echo $doctor_id; ?>" class="btn btn-danger btn-block"
-                                                name="reject">Reject</a>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
+                        <?php
+
+                        }
 
 
-                    </div>
-                    <?php
+
                 } else {
                     ?>
 

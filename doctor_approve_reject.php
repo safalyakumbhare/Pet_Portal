@@ -9,10 +9,10 @@ if (isset($_GET['approve_id'])) {
 
     if ($update_result) {
         echo "<script>alert('Doctor Approved');</script>";
-        echo "<script>window.location.href = 'doctors_table.php'</script>";
+        echo "<script>window.location.href = 'doctor_table.php'</script>";
     } else {
         echo "<script>alert('Failed to Approve Doctor');</script>";
-        echo "<script>window.location.href = 'doctors_table.php'</script>";
+        echo "<script>window.location.href = 'doctor_table.php'</script>";
     }
 }
 
@@ -25,10 +25,10 @@ if (isset($_GET['reject_id'])) {
 
     if ($update_result) {
         echo "<script>alert('Doctor Approval Rejected');</script>";
-        echo "<script>window.location.href = 'doctors_table.php'</script>";
+        echo "<script>window.location.href = 'doctor_table.php'</script>";
     } else {
         echo "<script>alert('Failed to Reject Doctor');</script>";
-        echo "<script>window.location.href = 'doctors_table.php'</script>";
+        echo "<script>window.location.href = 'doctor_table.php'</script>";
     }
 }
 

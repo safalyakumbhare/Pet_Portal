@@ -142,13 +142,17 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Account Created On :</h6>
-                                                        <p><?php $date = date_create($user_detail['created_at']);
-                                                        echo date_format($date, "d-m-Y"); ?></p>
+                                                        <p><?php    $date = date_create($user_detail['created_at']);
+                                                        echo date_format($date, "d-m-Y");
+                                                        echo "<br>";
+                                                        echo date_format($date,"h:m:s"); ?></p>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Account Updated On :</h6>
                                                         <p><?php $date = date_create($user_detail['updated_at']);
-                                                        echo date_format($date, "d-m-Y"); ?></p>
+                                                        echo date_format($date, "d-m-Y");
+                                                        echo "<br>";
+                                                        echo date_format($date, "h:m:s"); ?></p>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <h6 class="text-secondary fw-bold">Status :</h6>

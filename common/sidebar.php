@@ -238,8 +238,8 @@ if (!isset($_SESSION['logged_in'])) {
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="adoption.php">
-                                                        <span class="sub-item">Adoption</span>
+                                                    <a href="doctor_table.php">
+                                                        <span class="sub-item">Doctors</span>
                                                     </a>
                                                 </li>
 

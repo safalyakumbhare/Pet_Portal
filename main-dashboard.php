@@ -129,12 +129,12 @@
                                             <i class="fa-solid fa-user-doctor"></i>
                                             </div>
                                         </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
+                                        <a href="doctor_table.php" class="col col-stats ms-3 ms-sm-0">
                                             <div class="numbers">
                                                 <p class="card-category">Doctors</p>
                                                 <h4 class="card-title"><?php echo mysqli_num_rows($doctor_result) ?></h4>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
