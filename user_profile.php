@@ -152,7 +152,7 @@
 
                                                     <div class="w-100"></div>
                                                     <div class="col-md-6">
-                                                        <a href="user_profile_edit.php?user_id=<?php echo $row['user_id'];?>"
+                                                        <a href="user_profile_edit.php"
                                                             class="btn btn-primary">Edit Profile</a>
                                                     </div>
                                                 </div>

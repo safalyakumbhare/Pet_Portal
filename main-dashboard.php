@@ -126,7 +126,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-icon">
                                             <div class="icon-big text-center icon-success bubble-shadow-small">
-                                            <i class="fa-solid fa-user-doctor"></i>
+                                                <i class="fa-solid fa-user-doctor"></i>
                                             </div>
                                         </div>
                                         <a href="doctor_table.php" class="col col-stats ms-3 ms-sm-0">
@@ -217,12 +217,12 @@
 
                                             }
                                         } else {
-?>
+                                            ?>
 
                                             <div class="item-list justify-content-center">
                                                 <p>No New User Found</p>
                                             </div>
-<?php
+                                            <?php
                                         }
                                         ?>
                                     </div>
@@ -234,7 +234,7 @@
                                 <div class="card-header">
                                     <div class="card-head-row card-tools-still-right">
                                         <div class="card-title">New Doctor Approvals</div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
@@ -251,35 +251,37 @@
                                             </thead>
                                             <tbody>
 
-                                            <?php
+                                                <?php
                                                 $doctor = "SELECT * FROM doctor WHERE approval = 'Pending';";
                                                 $doctor_result = mysqli_query($conn, $doctor);
 
                                                 if (mysqli_num_rows($doctor_result)) {
                                                     while ($doctor_data = mysqli_fetch_array($doctor_result)) {
-                                            ?>
-                                                <tr>
-                                                    <th scope="row">
-                                                        <?php echo $doctor_data['name']; ?>
-                                                    </th>
-                                                    <td class="text-end">   <?php echo $doctor_data['address']; ?></td>
-                                                    <td class="text-end"> <?php echo $doctor_data['specialization']; ?>
-                                                    <td class="text-center">
-                                                        <a href="doctor_approval.php?doctor_id=<?php echo $doctor_data['doctor_id']?>"><i class="fa-solid text-primary fa-eye"></i></a>
-                                                    
-                                                    </td>
-                                                </tr>
-                                                <?php
+                                                        ?>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <?php echo $doctor_data['name']; ?>
+                                                            </th>
+                                                            <td class="text-end"> <?php echo $doctor_data['address']; ?></td>
+                                                            <td class="text-end"> <?php echo $doctor_data['specialization']; ?></td>
+                                                            <td class="text-center">
+                                                                <a
+                                                                    href="doctor_approval.php?doctor_id=<?php echo $doctor_data['doctor_id'] ?>"><i
+                                                                        class="fa-solid text-primary fa-eye"></i></a>
 
-                                                }
-                                            } else {
+                                                            </td>
+                                                        </tr>
+                                                        <?php
 
-                                                ?>
+                                                    }
+                                                } else {
+
+                                                    ?>
                                                     <tr>
                                                         <td colspan="4" class="text-center">No New Doctor Approvals</td>
                                                     </tr>
-                                                <?php
-                                            }
+                                                    <?php
+                                                }
                                                 ?>
                                             </tbody>
                                         </table>
@@ -317,29 +319,30 @@
                             </div>
                             <div class="card-body">
 
-                                <?php
-                                $user_id = $row['user_id'];
-                                $pet = "SELECT * FROM pets WHERE user_id = $user_id;";
 
-                                $pet_result = mysqli_query($conn, $pet);
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Photo</th>
+                                                <th>Name</th>
+                                                <th>Breed</th>
+                                                <th>Gender</th>
+                                                <th style="width: 10%" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
 
-                                if (mysqli_num_rows($pet_result) > 0) {
+                                        <tbody>
+                                            <?php
+                                            $user_id = $row['user_id'];
+                                            $pet = "SELECT * FROM pets WHERE user_id = $user_id;";
 
-                                    while ($pet_row = mysqli_fetch_assoc($pet_result)) {
-                                        ?>
-                                        <div class="table-responsive">
-                                            <table id="add-row" class="display table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Photo</th>
-                                                        <th>Name</th>
-                                                        <th>Breed</th>
-                                                        <th>Gender</th>
-                                                        <th style="width: 10%" class="text-center">Action</th>
-                                                    </tr>
-                                                </thead>
+                                            $pet_result = mysqli_query($conn, $pet);
 
-                                                <tbody>
+                                            if (mysqli_num_rows($pet_result) > 0) {
+
+                                                while ($pet_row = mysqli_fetch_assoc($pet_result)) {
+                                                    ?>
                                                     <tr>
                                                         <td>
                                                             <div class="avatar-xxl">
@@ -352,7 +355,8 @@
                                                         <td><?php echo $pet_row['gender'] ?></td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a href="#" data-bs-toggle="tooltip" title="Edit"
+                                                                <a href="pet_edit.php?pet_id=<?php echo $pet_row['pet_id'] ?>"
+                                                                    data-bs-toggle="tooltip" title="Edit"
                                                                     class="btn btn-link btn-primary btn-lg"
                                                                     data-original-title="Edit Task">
                                                                     <i class="fa fa-edit"></i>
@@ -369,18 +373,24 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="5" class="text-center">No Pet Found</td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                                </tbody>
-                                            </table>
-                                        </div>
 
-                                        <?php
-                                    }
-                                } else {
-                                    ?>
-                                    <div class="table-responsive">
-                                        <table id="add-row" class="display table table-striped table-hover">
-                                            <!-- <thead>
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <!-- <thead>
                                                 <tr>
                                                     <th>Photo</th>
                                                     <th>Name</th>
@@ -390,19 +400,15 @@
                                                 </tr>
                                             </thead> -->
 
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="5" class="text-center">No Pet Found</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        <tbody>
 
 
-                                    <?php
-                                }
-                                ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
                             </div>
                         </div>
                     </div>

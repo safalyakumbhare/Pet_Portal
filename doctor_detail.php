@@ -133,7 +133,7 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h3>Status</h3>
+                                                        <h3>Status :</h3>
                                                         <?php
                                                         if ($doctor_row['status'] == "Active") {
                                                             echo "<h4 class='text-success'>Active</h4>";
@@ -146,7 +146,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h3>Approval</h3>
+                                                        <h3>Approval :</h3>
                                                         <?php
                                                         if ($doctor_row['approval'] == "Approved") {
                                                             echo "<h4 class='text-success'>Approved</h4>";

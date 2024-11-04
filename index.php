@@ -11,37 +11,69 @@ if (isset($_POST['submit'])) {
   $password = $_POST['password'];
   // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-  $sql = "SELECT * FROM users WHERE email= '$email'";
-  $result = mysqli_query($conn, $sql);
-  // $row = mysqli_fetch_array($result);
-  if (mysqli_num_rows($result) > 0) {
-    $user = mysqli_fetch_array($result);
-    if ($user['status'] == "Inactive") {
-      echo "<script>alert('Account is Inactive. Please contact the admin.');
+  $doctor = "SELECT * FROM doctor WHERE email = '$email';";
+  $doctor_result = mysqli_query($conn, $doctor);
+
+  if (mysqli_num_rows($doctor_result)) {
+
+    $doctor_row = mysqli_fetch_assoc($doctor_result);
+    if ($doctor_row['approval'] == "Pending") {
+      echo "<script>alert('Your account is pending approval. Please wait for the admin approval.');
        window.location.href='index.php';</script>";
       exit();
-    } elseif ($user['status'] == "Active") {
-      if (password_verify($password, $user['password'])) {
+    } elseif ($doctor_row['approval'] == "Rejected") {
+      echo "<script>alert('Your account is Rejected. Please contact the admin.');
+      window.location.href='index.php';</script>";
+      exit();
+    } elseif ($doctor_row['approval'] == "Approved") {
+      if (password_verify($password, $doctor_row['password'])) {
 
-        session_start();
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['username'] = $doctor_row['name'];
         $_SESSION['logged_in'] = true;
-
-        // echo "<script>alert('Login successful');
-        // window.location.href='dashboard.php'
-        // </script>";
-
         header("Location: main-dashboard.php");
       } else {
-
         echo "<script>alert('Invalid password');</script>";
+        exit();
       }
+
     }
   } else {
 
-    echo "<script>alert('No user Found Please Register...!');</script>";
-  }
 
+
+
+
+    $sql = "SELECT * FROM users WHERE email= '$email'";
+    $result = mysqli_query($conn, $sql);
+    // $row = mysqli_fetch_array($result);
+    if (mysqli_num_rows($result) > 0) {
+      $user = mysqli_fetch_array($result);
+      if ($user['status'] == "Inactive") {
+        echo "<script>alert('Account is Inactive. Please contact the admin.');
+       window.location.href='index.php';</script>";
+        exit();
+      } elseif ($user['status'] == "Active") {
+        if (password_verify($password, $user['password'])) {
+
+          session_start();
+          $_SESSION['username'] = $user['username'];
+          $_SESSION['logged_in'] = true;
+
+          // echo "<script>alert('Login successful');
+          // window.location.href='dashboard.php'
+          // </script>";
+
+          header("Location: main-dashboard.php");
+        } else {
+
+          echo "<script>alert('Invalid password');</script>";
+        }
+      }
+    } else {
+
+      echo "<script>alert('No user Found Please Register...!');</script>";
+    }
+  }
 }
 
 ?>
