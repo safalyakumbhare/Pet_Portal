@@ -145,7 +145,7 @@ if (isset($_POST['submit'])) {
             <a href="forget_password.php">Forgot Password?</a>
           </div>
           <div class="col-md-4  text-center">
-            <a href="user_registration.php">Register Now</a>
+            <a href="who_register.php">Register Now</a>
 
           </div>
         </div>

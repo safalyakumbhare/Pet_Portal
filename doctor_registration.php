@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
       echo "<script>alert('Doctor Already Registered');
       window.location.href='doctor_registration.php';</script>";
     }else{
-      $sql = "INSERT INTO doctor(name,email,phone,dob,address,gender,password,profile,license_no,specilization,experience,certification) VALUES ('$fname','$email','$phone','$dob','$address','$gender','$password','$profile','$license','$specialization','$experience','$certification');";
+      $sql = "INSERT INTO doctor(name,email,phone,dob,address,gender,password,profile,license_no,specialization,experience,certification) VALUES ('$fname','$email','$phone','$dob','$address','$gender','$password','$profile','$license','$specialization','$experience','$certification');";
 
       $result = mysqli_query($conn, $sql);
 

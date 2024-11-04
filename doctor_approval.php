@@ -51,82 +51,107 @@
 
         if ($row['role_id'] == 1) {
 
-            //  Error Code for Approve Doctor
-            // if (isset($_POST['approve'])) {
-            //     $approve_status = "1";
-            //     $update_query = "UPDATE doctor SET approval = 'Approved' WHERE doctor_id=$doctor_id;";
-            //     $update_result = mysqli_query($conn, $update_query);
-
-            //     if ($update_result) {
-            //         echo "<script>alert('Doctor Approved');</script>";
-            //         echo "<script>window.location.href = 'doctors_table.php'</script>";
-            //     }
-            // } else {
-            //     echo "<script>alert('Failed to Approve Doctor');</script>";
-            //     echo "<script>window.location.href = 'doctors_table.php'</script>";
-            // }
 
             if (isset($_GET['doctor_id'])) {
                 $doctor_id = $_GET['doctor_id'];
 
 
-
-
-
-
-                $doctor_data = "SELECT * FROM doctor WHERE doctor_id=$doctor_id;";
+                $doctor_data = "SELECT * FROM doctor WHERE doctor_id=$doctor_id AND approval = 'Pending';";
                 $doctor_result = mysqli_query($conn, $doctor_data);
-                $doctor_row = mysqli_fetch_assoc($doctor_result);
 
-                ?>
+                if (mysqli_num_rows($doctor_result)) {
 
-                <div class="container">
-                    <div class="page-inner">
-                        <div class="page-header">
-                            <h3 class="fw-bold mb-3">Doctor Detail</h3>
 
-                        </div>
+                    $doctor_row = mysqli_fetch_assoc($doctor_result);
 
-                        <div class="row">
-                            <div class="col-md-12">
+                    ?>
 
-                                <div class="card">
-                                    <div class="card-header rounded-top-3" style="background-color: lightgray;">
-                                        <div class="card-title">Doctor Information</div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row justify-content-between">
-                                            <div class="col-md-4">
-                                                <img src="assets/images/doctors/<?php echo $doctor_row['profile'] ?>"
-                                                    class="img-fluid rounded-4" alt="No Profile Photo">
+                    <div class="container">
+                        <div class="page-inner">
+                            <div class="page-header">
+                                <h3 class="fw-bold mb-3">Doctor Detail</h3>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="card">
+                                        <div class="card-header rounded-top-3" style="background-color: lightgray;">
+                                            <div class="card-title">Doctor Information</div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row justify-content-between">
+                                                <div class="col-md-4">
+                                                    <img src="assets/images/doctors/<?php echo $doctor_row['profile'] ?>"
+                                                        class="img-fluid rounded-4" alt="No Profile Photo">
+                                                </div>
+                                                <div class="col-md-7 ">
+                                                    <div class="row ">
+                                                        <div class="col-md-5 m-md-2">
+                                                            <h3>Doctor Name :</h3>
+                                                            <h4 class="fw-light"><?php echo $doctor_row['name'] ?></h4>
+                                                        </div>
+                                                        <div class="col-md-5 m-md-2">
+                                                            <h3 class="mt-1">Address :</h3>
+
+                                                            <h4 class="fw-light"><?php echo $doctor_row['address'] ?></h4>
+                                                        </div>
+                                                        <div class="col-md-5 m-md-2">
+                                                            <h3 class="mt-1">Email :</h3>
+
+                                                            <h4 class="fw-light"><?php echo $doctor_row['email'] ?></h4>
+                                                        </div>
+                                                        <div class="col-md-5 m-md-2">
+                                                            <h3 class="mt-1">Phone Number :</h3>
+
+                                                            <h4 class="fw-light"><?php
+                                                            echo $doctor_row['phone']
+                                                                ?></h4>
+                                                        </div>
+                                                        <div class="col-md-4 m-md-2">
+                                                            <h3>Date of Birth :</h3>
+                                                            <h4 class="fw-light"><?php $date = date_create($doctor_row['dob']);
+                                                            echo date_format($date, "d-m-Y"); ?></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-7 ">
-                                                <div class="row ">
-                                                    <div class="col-md-5 m-md-2">
-                                                        <h3>Doctor Name :</h3>
-                                                        <h4 class="fw-light"><?php echo $doctor_row['name'] ?></h4>
-                                                    </div>
-                                                    <div class="col-md-5 m-md-2">
-                                                        <h3 class="mt-1">Address :</h3>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                                        <h4 class="fw-light"><?php echo $doctor_row['address'] ?></h4>
-                                                    </div>
-                                                    <div class="col-md-5 m-md-2">
-                                                        <h3 class="mt-1">Email :</h3>
 
-                                                        <h4 class="fw-light"><?php echo $doctor_row['email'] ?></h4>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header rounded-top-3" style="background-color: lightgray;">
+                                            <div class="card-title">Doctor Professional Details</div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>License Number :</h3>
+                                                        <h4 class="fw-light"><?php echo $doctor_row['license_no'] ?></h4>
                                                     </div>
-                                                    <div class="col-md-5 m-md-2">
-                                                        <h3 class="mt-1">Phone Number :</h3>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Specialization :</h3>
+                                                        <h4 class="fw-light"><?php echo $doctor_row['specialization'] ?></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
 
-                                                        <h4 class="fw-light"><?php
-                                                        echo $doctor_row['phone']
-                                                            ?></h4>
+                                                    <div class="form-group">
+                                                        <h3>Experience :</h3>
+                                                        <h4 class="fw-light"><?php echo $doctor_row['experience'] ?></h4>
                                                     </div>
-                                                    <div class="col-md-4 m-md-2">
-                                                        <h3>Date of Birth :</h3>
-                                                        <h4 class="fw-light"><?php $date = date_create($doctor_row['dob']);
-                                                        echo date_format($date, "d-m-Y"); ?></h4>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Certifications and Qualifications :</h3>
+                                                        <h4 class="fw-light"><?php echo $doctor_row['certification'] ?></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,72 +159,43 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header rounded-top-3" style="background-color: lightgray;">
-                                        <div class="card-title">Doctor Professional Details</div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h3>License Number :</h3>
-                                                    <h4 class="fw-light"><?php echo $doctor_row['license_no'] ?></h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h3>Specialization :</h3>
-                                                    <h4 class="fw-light"><?php echo $doctor_row['specialization'] ?></h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <h3>Experience :</h3>
-                                                    <h4 class="fw-light"><?php echo $doctor_row['experience'] ?></h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h3>Certifications and Qualifications :</h3>
-                                                    <h4 class="fw-light"><?php echo $doctor_row['certification'] ?></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body justify-content-center">
-                                <form action="doctor_approval.php" method="post">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body justify-content-center">
+
                                     <div class="row justify-content-center">
                                         <div class="col-md-2">
-                                           
-                                            <button type="submit" class="btn btn-success btn-block" name="approve">
+
+                                            <a href="doctor_approve_reject.php?approve_id=<?php echo $doctor_id; ?>"
+                                                class="btn btn-success btn-block" name="approve">
                                                 Approve
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="submit" class="btn btn-danger btn-block" name="reject">Reject</button>
+                                            <a href="doctor_approve_reject.php?reject_id=<?php echo $doctor_id; ?>" class="btn btn-danger btn-block"
+                                                name="reject">Reject</a>
                                         </div>
 
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
+
+
+                    </div>
+                    <?php
+                } else {
+                    ?>
+
+                    <div class="container">
+                        <h1 class="text-center">Doctor already approved</h1>
                     </div>
 
-
-                </div>
-                <?php
+                    <?php
+                }
             }
         }
 

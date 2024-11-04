@@ -59,6 +59,9 @@
         $pets = "SELECT * FROM pets;";
         $pet_result = mysqli_query($conn, $pets);
 
+        $doctors = "SELECT * FROM doctor WHERE approval = 'Approved';";
+        $doctor_result = mysqli_query($conn, $doctors);
+
         ?>
         <?php
         if ($row['role_id'] == 1) {
@@ -123,13 +126,13 @@
                                     <div class="row align-items-center">
                                         <div class="col-icon">
                                             <div class="icon-big text-center icon-success bubble-shadow-small">
-                                                <i class="fas fa-luggage-cart"></i>
+                                            <i class="fa-solid fa-user-doctor"></i>
                                             </div>
                                         </div>
                                         <div class="col col-stats ms-3 ms-sm-0">
                                             <div class="numbers">
-                                                <p class="card-category">Adoptions</p>
-                                                <h4 class="card-title">$ 1,345</h4>
+                                                <p class="card-category">Doctors</p>
+                                                <h4 class="card-title"><?php echo mysqli_num_rows($doctor_result) ?></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -216,8 +219,8 @@
                                         } else {
 ?>
 
-                                            <div class="item-list">
-                                                <p class="text-center">No New User Found</p>
+                                            <div class="item-list justify-content-center">
+                                                <p>No New User Found</p>
                                             </div>
 <?php
                                         }
@@ -270,6 +273,12 @@
 
                                                 }
                                             } else {
+
+                                                ?>
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">No New Doctor Approvals</td>
+                                                    </tr>
+                                                <?php
                                             }
                                                 ?>
                                             </tbody>
