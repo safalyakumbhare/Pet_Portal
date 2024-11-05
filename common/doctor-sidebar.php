@@ -154,14 +154,14 @@ if (!isset($_SESSION['logged_in'])) {
                                             <div class="u-text">
                                                 <h4><?php echo $row['name'] ?></h4>
                                                 <p class="text-muted"><?php echo $row['email'] ?></p>
-                                                <a href="user_profile.php" class="btn btn-xs btn-secondary btn-sm">View
+                                                <a href="doctor_profile.php" class="btn btn-xs btn-secondary btn-sm">View
                                                     Profile</a>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="user_profile.php">My Profile</a>
+                                        <a class="dropdown-item" href="doctor_profile.php">My Profile</a>
                                         <a class="dropdown-item" href="#">My Balance</a>
                                         <a class="dropdown-item" href="#">Inbox</a>
                                         <div class="dropdown-divider"></div>
