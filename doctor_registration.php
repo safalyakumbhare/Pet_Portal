@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
       if ($result) {
         if (move_uploaded_file($_FILES["profile"]["tmp_name"], $folder)) {
-          echo "<script>alert('Doctor Registered Successfully');
+          echo "<script>alert('Approval Sent to Admin');
           window.location.href='index.php';</script>";
         } else {
           echo "<script>alert('Failed to Upload Profile Image');

@@ -18,11 +18,11 @@ if (isset($_POST['submit'])) {
 
     $doctor_row = mysqli_fetch_assoc($doctor_result);
     if ($doctor_row['approval'] == "Pending") {
-      echo "<script>alert('Your account is pending approval. Please wait for the admin approval.');
+      echo "<script>alert('Your account is pending for approval. Please wait for the admin approval.');
        window.location.href='index.php';</script>";
       exit();
     } elseif ($doctor_row['approval'] == "Rejected") {
-      echo "<script>alert('Your account is Rejected. Please contact the admin.');
+      echo "<script>alert('Your Approval is Rejected. Please contact the admin.');
       window.location.href='index.php';</script>";
       exit();
     } elseif ($doctor_row['approval'] == "Approved") {
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 
         $_SESSION['username'] = $doctor_row['name'];
         $_SESSION['logged_in'] = true;
-        header("Location: main-dashboard.php");
+        header("Location: doctor-dashboard.php");
       } else {
         echo "<script>alert('Invalid password');</script>";
         exit();

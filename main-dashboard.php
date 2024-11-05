@@ -59,7 +59,7 @@
         $pets = "SELECT * FROM pets;";
         $pet_result = mysqli_query($conn, $pets);
 
-        $doctors = "SELECT * FROM doctor WHERE approval = 'Approved';";
+        $doctors = "SELECT * FROM doctor;";
         $doctor_result = mysqli_query($conn, $doctors);
 
         ?>
