@@ -20,7 +20,12 @@ if (isset($_POST['submit'])) {
       echo "<script>alert('Your Approval is Rejected. Please contact the admin.');
       window.location.href='index.php';</script>";
       exit();
-    } elseif ($doctor_row['approval'] == "Approved") {
+    } elseif ($doctor_row['status'] == "Inactive") {
+      echo "<script>alert('Account is Inactive. Please contact the admin.');
+       window.location.href='index.php';</script>";
+      exit();
+
+    } elseif ($doctor_row['approval'] == "Approved" && $doctor_row['status'] == "Active") {
       if (password_verify($password, $doctor_row['password'])) {
 
         $_SESSION['username'] = $doctor_row['name'];
@@ -28,7 +33,6 @@ if (isset($_POST['submit'])) {
         header("Location: doctor-dashboard.php");
       } else {
         echo "<script>alert('Invalid password');</script>";
-        exit();
       }
 
     }
@@ -54,14 +58,12 @@ if (isset($_POST['submit'])) {
           $_SESSION['username'] = $user['username'];
           $_SESSION['logged_in'] = true;
 
-          // echo "<script>alert('Login successful');
-          // window.location.href='dashboard.php'
-          // </script>";
 
           header("Location: main-dashboard.php");
         } else {
 
-          echo "<script>alert('Invalid password');</script>";
+          echo "<script>alert('Invalid password');
+          window.location.href='index.php';</script>";
         }
       }
     } else {
@@ -85,7 +87,7 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
     integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Login - Pets Portal</title>
+  <title>Pets Portal - Login</title>
 </head>
 
 <body class="bg-dark">
@@ -155,7 +157,7 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
     <div class="login">
-      <form action="" method="post">
+      <form method="post">
         <label>
           <div class="fa fa-phone"></div>
           <input class="username" name="email" type="email" autocomplete="on" placeholder="Email" />

@@ -231,20 +231,6 @@
                                 <div class="card-body">
                                     <div class="card-head-row card-tools-still-right">
                                         <div class="card-title">New Users</div>
-                                        <div class="card-tools">
-                                            <!-- <div class="dropdown">
-                                                <button class="btn btn-icon btn-clean me-0" type="button"
-                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </div> -->
-                                        </div>
                                     </div>
                                     <div class="card-list py-4">
 
@@ -335,7 +321,7 @@
                                                             <td> <?php echo $clinic_data['pet_type']; ?></td>
                                                             <td class="text-center">
                                                                 <a
-                                                                    href="doctor_approval.php?doctor_id=<?php echo $clinic_data['doctor_id'] ?>"><i
+                                                                    href="clinic_detail.php?clinic_id=<?php echo $clinic_data['clinic_id'] ?>"><i
                                                                         class="fa-solid text-primary fa-eye"></i></a>
 
                                                             </td>

@@ -139,7 +139,7 @@
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
 
-                                                                <a href="clinic_detail.php?clinic_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                <a href="clinic_view.php?clinic_id=<?php echo $doctor_row['clinic_id']?>"
                                                                     data-bs-toggle="tooltip" title="View Details"
                                                                     class="btn btn-link btn-success btn-lg"
                                                                     data-original-title="View Details">

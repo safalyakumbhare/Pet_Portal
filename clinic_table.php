@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Doctors</title>
+    <title>Pets Portal - clinics</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -52,21 +52,21 @@
 
 
             if (isset($_GET['dlt_id'])) {
-                $doctor_id = $_GET['dlt_id'];
-                $sql = mysqli_query($conn, "DELETE FROM doctor WHERE doctor_id = '$doctor_id'");
-                // $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE doctor_id = '$doctor_id'");
+                $clinic_id = $_GET['dlt_id'];
+                $sql = mysqli_query($conn, "DELETE FROM clinic WHERE clinic_id = '$clinic_id'");
+                // $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE clinic_id = '$clinic_id'");
         
                 if ($sql && $dlt_pet) {
                     echo "<script>alert('User Deleted');</script>";
-                    echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    echo "<script>window.location.href = 'clinic_table.php'</script>";
                 }
 
             }
 
-            if (isset($_GET['doctor_id'])) {
-                $rid = intval($_GET['doctor_id']);
+            if (isset($_GET['clinic_id'])) {
+                $rid = intval($_GET['clinic_id']);
 
-                $check = "SELECT * FROM doctor WHERE doctor_id = $rid;";
+                $check = "SELECT * FROM clinic WHERE clinic_id = $rid;";
 
                 $result = mysqli_query($conn, $check);
                 $check_row = mysqli_fetch_array($result);
@@ -76,14 +76,14 @@
                 if ($status == 'Inactive') {
 
 
-                    $sql = mysqli_query($conn, "UPDATE doctor SET status = 'Active' WHERE doctor_id = '$rid'");
+                    $sql = mysqli_query($conn, "UPDATE clinic SET status = 'Active' WHERE clinic_id = '$rid'");
                     echo "<script>alert('User Activated');</script>";
-                    echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    echo "<script>window.location.href = 'clinic_table.php'</script>";
                 }
                 if ($status == 'Active') {
-                    $sql = mysqli_query($conn, "UPDATE doctor SET status = 'Inactive' WHERE doctor_id = '$rid'");
+                    $sql = mysqli_query($conn, "UPDATE clinic SET status = 'Inactive' WHERE clinic_id = '$rid'");
                     echo "<script>alert('User Deactivated');</script>";
-                    echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    echo "<script>window.location.href = 'clinic_table.php'</script>";
                 }
             }
 
@@ -96,7 +96,7 @@
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
-                        <h3 class="fw-bold mb-3">Doctors</h3>
+                        <h3 class="fw-bold mb-3">Clinics</h3>
 
                     </div>
 
@@ -111,10 +111,10 @@
                                         <table id="add-row" class="display table table-striped table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Profile Photo</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
+                                                    <th>Clinic Name</th>
+                                                    <th>Doctor Name</th>
                                                     <th>Address</th>
+                                                    <th>Phone No.</th>
                                                     <th>Status</th>
                                                     <th>Approval</th>
                                                     <th style="width: 10%; text-align:center;">Action</th>
@@ -124,26 +124,28 @@
                                             <tbody>
                                                 <?php
 
-                                                $doctor_table = "SELECT * FROM doctor WHERE role_id = 3";
+                                                $clinic_table = "SELECT * FROM clinic ";
 
-                                                $doctor_result = mysqli_query($conn, $doctor_table);
+                                                $clinic_result = mysqli_query($conn, $clinic_table);
 
-                                                while ($doctor = mysqli_fetch_array($doctor_result)) {
+                                                while ($clinic = mysqli_fetch_array($clinic_result)) {
 
-
+                                                    $doctor_id = $clinic['doctor_id'];
+                                                    
+                                                    $doctor_query = "SELECT name FROM doctor WHERE doctor_id = $doctor_id";
+                                                    
+                                                    $doctor_result = mysqli_query($conn, $doctor_query);
+                                                    
+                                                    $doctor = mysqli_fetch_array($doctor_result);
                                                     ?>
                                                     <tr>
-                                                        <td>
-                                                            <div class="avatar-xxl">
-                                                                <img src="assets/images/doctors/<?php echo $doctor['profile']; ?>"
-                                                                    class="avatar-img rounded-circle" alt="no image found">
-                                                            </div>
-                                                        </td>
+                                                        
+                                                        <td><?php echo $clinic['name'] ?></td>
                                                         <td><?php echo $doctor['name'] ?></td>
-                                                        <td><?php echo $doctor['email'] ?></td>
-                                                        <td><?php echo $doctor['address'] ?></td>
+                                                        <td><?php echo $clinic['address'] ?></td>
+                                                        <td><?php echo $clinic['phone'] ?></td>
                                                         <td><?php
-                                                        if ($doctor['status'] == "Active") {
+                                                        if ($clinic['status'] == "Active") {
                                                             echo "<span class='text-success'>Active</span>
                                                      </td>";
                                                         } else {
@@ -152,35 +154,34 @@
                                                         }
 
                                                         ?>
-                                                        </td>
-                                                        <?php
-                                                        if ($doctor['approval'] == "Approved") {
+                                                       <?php
+                                                        if ($clinic['approval'] == "Approved") {
                                                             echo "<td class='text-success'>Approved</td>";
-                                                        } else if ($doctor['approval'] == "Pending") {
+                                                        } else if ($clinic['approval'] == "Pending") {
                                                             echo "<td class='text-primary'>Pending</td>";
-                                                        } else if ($doctor['approval'] == "Rejected") {
+                                                        } else if ($clinic['approval'] == "Rejected") {
                                                             echo "<td class='text-danger'>Rejected</td>";
                                                         } ?>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a href="doctor_table.php?dlt_id=<?php echo $doctor['doctor_id'] ?>"
+                                                                <a href="clinic_table.php?dlt_id=<?php echo $clinic['clinic_id'] ?>"
                                                                     data-bs-toggle="tooltip" title="Remove"
-                                                                    class="btn btn-link btn-primary btn-lg"
+                                                                    class="btn btn-link btn-primary "
                                                                     data-original-title="Remove" onclick="return remove()">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
 
                                                                 <?php
 
-                                                                if ($doctor['approval'] == "Pending" || $doctor['approval'] == "Rejected") {
-                                                                    // echo "<span class='badge badge-danger'>$doctor[approval]</span>";
+                                                                if ($clinic['approval'] == "Pending" || $clinic['approval'] == "Rejected") {
+                                                                    // echo "<span class='badge badge-danger'>$clinic[approval]</span>";
                                                                 } else {
 
-                                                                    if ($doctor['status'] == "Active") {
+                                                                    if ($clinic['status'] == "Active") {
                                                                         ?>
 
 
-                                                                        <a href="doctor_table.php?doctor_id=<?php echo $doctor['doctor_id'] ?>"
+                                                                        <a href="clinic_table.php?clinic_id=<?php echo $clinic['clinic_id'] ?>"
                                                                             data-bs-toggle="tooltip" title="Inactive"
                                                                             class="btn btn-link btn-danger"
                                                                             onclick="return confirmDeactivation()"
@@ -190,10 +191,10 @@
 
 
                                                                         <?php
-                                                                    } elseif ($doctor['status'] == "Inactive") {
+                                                                    } elseif ($clinic['status'] == "Inactive") {
                                                                         ?>
 
-                                                                        <a href="doctor_table.php?doctor_id=<?php echo $doctor['doctor_id'] ?>"
+                                                                        <a href="clinic_table.php?clinic_id=<?php echo $clinic['clinic_id'] ?>"
                                                                             data-bs-toggle="tooltip" title="Active"
                                                                             class="btn btn-link btn-success"
                                                                             onclick="return confirmactivation()"
@@ -206,7 +207,7 @@
                                                                 }
                                                                 ?>
 
-                                                                <a href="doctor_detail.php?doctor_id=<?php echo $doctor['doctor_id']; ?>"
+                                                                <a href="clinic_detail.php?clinic_id=<?php echo $clinic['clinic_id']; ?>"
                                                                     data-bs-toggle="tooltip" title="View Details"
                                                                     class="btn btn-link btn-success"
                                                                     data-original-title="View Details">
@@ -257,6 +258,6 @@
             return confirm('Do you want to activate this user?');
         }
         function remove() {
-            return confirm('Do you want to Remove this Doctor?');
+            return confirm('Do you want to Remove this clinic?');
         }
     </script>

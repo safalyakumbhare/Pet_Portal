@@ -47,9 +47,9 @@
 
         <!-- Including sidebar and navbar -->
         <?php
-        include("common/sidebar.php");
+        include("common/doctor-sidebar.php");
 
-        if ($row['role_id'] == 1) {
+        if ($row['role_id'] == 3) {
 
 
             if (isset($_GET['clinic_id'])) {
@@ -190,156 +190,29 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <h3>Clinic Registered at :</h3>
-                                                            <h4 class="fw-light"><?php $date = date_create($clinic_row['created_at']);
-                                                            echo date_format($date, "d-m-Y");
-                                                            echo "<br>";
-                                                            echo date_format($date, "h:m:s"); ?></h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <h3>Clinic Updated at : </h3>
-                                                            <h4 class="fw-light"><?php
-
-                                                            $date = date_create($clinic_row['updated_at']);
-                                                            echo date_format($date, "d-m-Y");
-                                                            echo "<br>";
-                                                            echo date_format($date, "h:m:s");
-                                                            // echo $clinic_row['updated_at'];
-                                                
-                                                            ?></h4>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-header rounded-top-3" style="background-color: lightgray;">
-                                                <div class="card-title">Clinic's Doctor Details</div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
 
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <h3>Doctor Name :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['name'] ?></h4>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <h3>Address : </h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['address'] ?></h4>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <h3>Phone Number :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['phone'] ?></h4>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <h3>Email Address :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['email'] ?></h4>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <h3>License Number :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['license_no'] ?></h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <h3>Specialization :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['specialization'] ?></h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-
-                                                        <div class="form-group">
-                                                            <h3>Experience :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['experience'] ?></h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <h3>Certifications and Qualifications :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['certification'] ?></h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
-
                             <?php
-
-                            if ($clinic_row['approval'] == "Pending" || $clinic_row['approval'] == "Rejected") {
-                                ?>
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-body justify-content-center">
-
-                                            <div class="row justify-content-center">
-                                                <div class="col-md-2">
-
-                                                    <a href="clinic_approve_reject.php?approve_id=<?php echo $clinic_id; ?>"
-                                                        class="btn btn-success btn-block" name="approve">
-                                                        Approve
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <a href="clinic_approve_reject.php?reject_id=<?php echo $clinic_id; ?>"
-                                                        class="btn btn-danger btn-block" name="reject">Reject</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <?php
-
-                            }
-
-
-
-                } else {
-                    ?>
-
-                        <div class="container">
-                            <h1 class="text-center">clinic already approved</h1>
-                        </div>
-
-                        <?php
                 }
             }
         }
-
         ?>
 
 
+
+
+            </div>
+            <?php
+            include("common/footer.php");
+
+            ?>
         </div>
-        <?php
-        include("common/footer.php");
-
-        ?>
-    </div>
     </div>

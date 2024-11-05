@@ -242,6 +242,11 @@ if (!isset($_SESSION['logged_in'])) {
                                                         <span class="sub-item">Doctors</span>
                                                     </a>
                                                 </li>
+                                                <li>
+                                                    <a href="clinic_table.php">
+                                                        <span class="sub-item">Clinics</span>
+                                                    </a>
+                                                </li>
 
                                             </ul>
                                         </div>
