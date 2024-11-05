@@ -77,6 +77,7 @@
 
 
                     $sql = mysqli_query($conn, "UPDATE users SET status = 'Active' WHERE user_id = '$rid'");
+                    
                     echo "<script>alert('User Activated');</script>";
                     echo "<script>window.location.href = 'user_table.php'</script>";
                 }

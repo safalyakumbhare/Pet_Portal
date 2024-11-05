@@ -1,11 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "pets");
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
+include("common/connection.php");
 if (isset($_POST['submit'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];

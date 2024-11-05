@@ -62,6 +62,9 @@
         $doctors = "SELECT * FROM doctor;";
         $doctor_result = mysqli_query($conn, $doctors);
 
+        $clinic = "SELECT * FROM clinic;";
+        $clinic_result = mysqli_query($conn, $clinic);
+
         ?>
         <?php
         if ($row['role_id'] == 1) {
@@ -145,13 +148,13 @@
                                     <div class="row align-items-center">
                                         <div class="col-icon">
                                             <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                                <i class="far fa-check-circle"></i>
+                                                <i class="fa-solid fa-house-chimney-medical"></i>
                                             </div>
                                         </div>
                                         <div class="col col-stats ms-3 ms-sm-0">
                                             <div class="numbers">
-                                                <p class="card-category">Order</p>
-                                                <h4 class="card-title">576</h4>
+                                                <p class="card-category">Pet Clinics</p>
+                                                <h4 class="card-title"><?php echo mysqli_num_rows($clinic_result) ?></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -162,73 +165,7 @@
 
 
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="card card-round">
-                                <div class="card-body">
-                                    <div class="card-head-row card-tools-still-right">
-                                        <div class="card-title">New Users</div>
-                                        <div class="card-tools">
-                                            <!-- <div class="dropdown">
-                                                <button class="btn btn-icon btn-clean me-0" type="button"
-                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                    <div class="card-list py-4">
 
-                                        <?php
-
-                                        $currentdate = date('Y-m-d'); // Get only the current date
-                                        $new = "SELECT * FROM users WHERE DATE(created_at) = '$currentdate'";
-                                        $new_result = mysqli_query($conn, $new);
-
-                                        if (mysqli_num_rows($new_result)) {
-                                            while ($new_data = mysqli_fetch_array($new_result)) {
-
-
-
-
-
-                                                ?>
-                                                <div class="item-list">
-                                                    <div class="avatar">
-                                                        <img src="assets/images/<?php echo $new_data['profile'] ?>" alt="..."
-                                                            class="avatar-img rounded-circle" />
-                                                    </div>
-                                                    <div class="info-user ms-3">
-                                                        <div class="username"><?php echo $new_data['username'] ?></div>
-                                                        <div class="status"><?php echo $new_data['address'] ?></div>
-                                                    </div>
-
-                                                    <a href="user_view.php?user_id=<?php echo $new_data['user_id']; ?>"
-                                                        class="btn btn-icon btn-link btn-primary op-8">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                                <?php
-
-                                            }
-                                        } else {
-                                            ?>
-
-                                            <div class="item-list justify-content-center">
-                                                <p>No New User Found</p>
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-8">
                             <div class="card card-round">
                                 <div class="card-header">
@@ -267,6 +204,138 @@
                                                             <td class="text-center">
                                                                 <a
                                                                     href="doctor_approval.php?doctor_id=<?php echo $doctor_data['doctor_id'] ?>"><i
+                                                                        class="fa-solid text-primary fa-eye"></i></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+
+                                                    }
+                                                } else {
+
+                                                    ?>
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">No New Doctor Approvals</td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-round">
+                                <div class="card-body">
+                                    <div class="card-head-row card-tools-still-right">
+                                        <div class="card-title">New Users</div>
+                                        <div class="card-tools">
+                                            <!-- <div class="dropdown">
+                                                <button class="btn btn-icon btn-clean me-0" type="button"
+                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="card-list py-4">
+
+                                        <?php
+
+                                        $currentdate = date('Y-m-d'); // Get only the current date
+                                        $new = "SELECT * FROM users WHERE DATE(created_at) = '$currentdate'";
+                                        $new_result = mysqli_query($conn, $new);
+
+                                        if (mysqli_num_rows($new_result)) {
+                                            while ($new_data = mysqli_fetch_array($new_result)) {
+                                                ?>
+                                                <div class="item-list">
+                                                    <div class="avatar">
+                                                        <img src="assets/images/<?php echo $new_data['profile'] ?>" alt="..."
+                                                            class="avatar-img rounded-circle" />
+                                                    </div>
+                                                    <div class="info-user ms-3">
+                                                        <div class="username"><?php echo $new_data['username'] ?></div>
+                                                        <div class="status"><?php echo $new_data['address'] ?></div>
+                                                    </div>
+
+                                                    <a href="user_view.php?user_id=<?php echo $new_data['user_id']; ?>"
+                                                        class="btn btn-icon btn-link btn-primary op-8">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <?php
+
+                                            }
+                                        } else {
+                                            ?>
+
+                                            <div class="item-list justify-content-center">
+                                                <p>No New User Found</p>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card card-round">
+                                <div class="card-header">
+                                    <div class="card-head-row card-tools-still-right">
+                                        <div class="card-title">New Clinic Approvals</div>
+
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <!-- Projects table -->
+                                        <table class="table align-items-center mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Clinic Name</th>
+                                                    <th scope="col">Clinic Doctor</th>
+                                                    <th scope="col">Address</th>
+                                                    <th scope="col">Pets Type</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+                                                $clinic = "SELECT * FROM clinic WHERE approval = 'Pending';";
+                                                $clinic_result = mysqli_query($conn, $clinic);
+
+
+                                                if (mysqli_num_rows($clinic_result)) {
+                                                    while ($clinic_data = mysqli_fetch_array($clinic_result)) {
+                                                        $doctor_id = $clinic_data['doctor_id'];
+
+                                                        $doctor_data = "SELECT * FROM doctor WHERE doctor_id = $doctor_id;";
+
+                                                        $doctor_result = mysqli_query($conn, $doctor_data);
+
+                                                        $doctor_data = mysqli_fetch_assoc($doctor_result);
+                                                        ?>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <?php echo $clinic_data['name']; ?>
+                                                            </th>
+                                                            <td> <?php echo $doctor_data['name']; ?></td>
+                                                            <td> <?php echo $clinic_data['address']; ?></td>
+                                                            <td> <?php echo $clinic_data['pet_type']; ?></td>
+                                                            <td class="text-center">
+                                                                <a
+                                                                    href="doctor_approval.php?doctor_id=<?php echo $clinic_data['doctor_id'] ?>"><i
                                                                         class="fa-solid text-primary fa-eye"></i></a>
 
                                                             </td>

@@ -51,10 +51,10 @@
         if ($row['role_id'] == 1) {
 
 
-            if(isset($_GET['dlt_id'])){
+            if (isset($_GET['dlt_id'])) {
                 $pet_id = $_GET['dlt_id'];
                 $pet = mysqli_query($conn, "DELETE FROM pets WHERE pet_id = $pet_id");
-                if($pet){
+                if ($pet) {
                     echo "<script> alert('Deleted Successfully');
                     window.location.href='pets_table.php';</script>";
                 }
@@ -86,6 +86,7 @@
                                                 <th>Name</th>
                                                 <th>Breed</th>
                                                 <th>Gender</th>
+                                                <th>Status</th>
                                                 <th style="width: 10%" class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -110,10 +111,23 @@
                                                     <td><?php echo $pet_row['breed'] ?></td>
                                                     <td><?php echo $pet_row['gender'] ?></td>
                                                     <td>
+                                                        <?php
+                                                        if ($pet_row['status'] == "active") {
+                                                            echo "<span class='text-success'>Active</span>
+                                                         </td>";
+                                                        } else {
+                                                            echo "<span class='text-danger'>Inactive</span>
+                                                         </td>";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
                                                         <div class="form-button-action">
-                                                           
-                                                            <a href="pets_table.php?dlt_id=<?php echo $pet_row['pet_id']?>" data-bs-toggle="tooltip" title="Remove"
-                                                                class="btn btn-link btn-danger"  onclick="return remove()" data-original-title="Remove">
+
+                                                            <a href="pets_table.php?dlt_id=<?php echo $pet_row['pet_id'] ?>"
+                                                                data-bs-toggle="tooltip" title="Remove"
+                                                                class="btn btn-link btn-danger" onclick="return remove()"
+                                                                data-original-title="Remove">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </a>
                                                             <a href="pets_detail.php?pet_id=<?php echo $pet_row['pet_id'] ?>"
@@ -147,7 +161,7 @@
     </div>
 
     <script>
-        function remove(){
+        function remove() {
             return confirm('Do you want to Remove this pet?');
         }
     </script>

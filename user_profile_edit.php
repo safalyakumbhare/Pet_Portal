@@ -73,7 +73,8 @@
                     $sql = "UPDATE users SET username='$username', email='$email', address='$address', gender='$gender', dob='$dob', phone='$phone' WHERE user_id=$user_id";
 
                     if (mysqli_query($conn, $sql)) {
-                        echo "<script>alert('User Details Updated Successfully');</script>";
+                        echo "<script>alert('User Details Updated Successfully');
+                        window.location.href='user_profile.php';</script>";
                     } else {
                         echo "<script>alert('Failed to Update User Details');</script>";
                     }

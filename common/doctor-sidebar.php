@@ -72,7 +72,7 @@ if (!isset($_SESSION['logged_in'])) {
         <div class="sidebar-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
-                <a href="/main-dashboard.php" class="logo">
+                <a href="/doctor-dashboard.php" class="logo">
                     <h1 class="text-white">Pets Portal</h1>
                 </a>
                 <div class="nav-toggle">
@@ -101,13 +101,13 @@ if (!isset($_SESSION['logged_in'])) {
                         <div class="collapse" id="dashboard">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="/add_pet.php">
-                                        <span class="sub-item">Register Pet</span>
+                                    <a href="/clinic_register.php">
+                                        <span class="sub-item">Register Clinic</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="petowner.php">
-                                        <span class="sub-item">Pet</span>
+                                    <a href="appointments.php">
+                                        <span class="sub-item">Appointments</span>
                                     </a>
                                 </li>
 

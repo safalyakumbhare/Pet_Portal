@@ -58,7 +58,117 @@
 
 
                     </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="card-title">Your Clinic</h4>
+                                    <a href="add_pet.php" class="btn btn-primary btn-round ms-auto">
+                                        <i class="fa fa-plus"></i>
+                                        Add Clinics
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
 
+
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Address</th>
+                                                <th>Phone</th>
+                                                <th>Status</th>
+                                                <th>Approval</th>
+                                                <th style="width: 10%" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <?php
+                                            $user_id = $row['doctor_id'];
+                                            $doctor = "SELECT * FROM clinic WHERE doctor_id = $user_id;";
+
+                                            $doctor_result = mysqli_query($conn, $doctor);
+
+                                            if (mysqli_num_rows($doctor_result) > 0) {
+
+                                                while ($doctor_row = mysqli_fetch_assoc($doctor_result)) {
+                                                    ?>
+                                                    <tr>
+
+                                                        <td><?php echo $doctor_row['name'] ?></td>
+                                                        <td><?php echo $doctor_row['address'] ?></td>
+                                                        <td><?php echo $doctor_row['phone'] ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if ($doctor_row['status'] == "Active") {
+                                                                echo "<span class='text-success'>Active</span>
+                                                     </td>";
+                                                            } else {
+                                                                echo "<span class='text-danger'>Inactive</span>
+                                                     </td>";
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($doctor_row['approval'] == "Pending") {
+                                                                echo "<span class='text-warning'>Pending</span>";
+                                                            } elseif ($doctor_row['approval'] == "Approved") {
+                                                                echo "<span class='text-success'>Approved</span>";
+                                                            } elseif ($doctor_row['approval'] == "Rejected") {
+                                                                echo "<span class='text-danger'>Rejected</span>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-button-action">
+                                                                <a href="edit_clinic.php?edit_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                    class="btn btn-link btn-primary btn-lg"
+                                                                    data-original-title="Edit">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </a>
+                                                                <a href="clinic_table.php?dlt_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                    data-bs-toggle="tooltip" title="Remove"
+                                                                    class="btn btn-link btn-danger btn-lg"
+                                                                    data-original-title="Remove"
+                                                                    onclick="return remove()">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
+
+                                                                <a href="clinic_detail.php?clinic_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                    data-bs-toggle="tooltip" title="View Details"
+                                                                    class="btn btn-link btn-success btn-lg"
+                                                                    data-original-title="View Details">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="6" class="text-center">No Clinic Registered</td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
