@@ -76,7 +76,8 @@
                     VALUES ('$clinic_name','$clinic_address','$clinic_phone','$doctor_id','$open_time','$close_time','$open_day','$close_day','$fees','$pet_type');";
 
                     if (mysqli_query($conn, $sql)) {
-                        echo "<script>alert('Clinic Registered Successfully');</script>";
+                        echo "<script>alert('Clinic Registered Successfully');
+                        window.location.href='doctor-dashboard.php'</script>";
                     } else {
                         echo "<script>alert('Failed to Register Clinic');</script>";
                     }

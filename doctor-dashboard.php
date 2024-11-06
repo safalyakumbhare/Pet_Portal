@@ -63,7 +63,7 @@
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
                                     <h4 class="card-title">Your Clinic</h4>
-                                    <a href="add_pet.php" class="btn btn-primary btn-round ms-auto">
+                                    <a href="clinic_register.php" class="btn btn-primary btn-round ms-auto">
                                         <i class="fa fa-plus"></i>
                                         Add Clinics
                                     </a>

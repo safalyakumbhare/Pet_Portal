@@ -344,6 +344,54 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="card card-round">
+                                <div class="card-body">
+                                    <div class="card-head-row card-tools-still-right">
+                                        <div class="card-title">New Doctor</div>
+                                    </div>
+                                    <div class="card-list py-4">
+
+                                        <?php
+
+                                        $currentdate = date('Y-m-d'); // Get only the current date
+                                        $new = "SELECT * FROM doctor WHERE DATE(created_at) = '$currentdate'";
+                                        $new_result = mysqli_query($conn, $new);
+
+                                        if (mysqli_num_rows($new_result)) {
+                                            while ($new_data = mysqli_fetch_array($new_result)) {
+                                                ?>
+                                                <div class="item-list">
+                                                    <div class="avatar">
+                                                        <img src="assets/images/<?php echo $new_data['profile'] ?>" alt="..."
+                                                            class="avatar-img rounded-circle" />
+                                                    </div>
+                                                    <div class="info-user ms-3">
+                                                        <div class="username"><?php echo $new_data['name'] ?></div>
+                                                        <div class="status"><?php echo $new_data['address'] ?></div>
+                                                    </div>
+
+                                                    <a href="doctor_detail.php?user_id=<?php echo $new_data['doctor_id']; ?>"
+                                                        class="btn btn-icon btn-link btn-primary op-8">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <?php
+
+                                            }
+                                        } else {
+                                            ?>
+
+                                            <div class="item-list justify-content-center">
+                                                <p>No New User Found</p>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

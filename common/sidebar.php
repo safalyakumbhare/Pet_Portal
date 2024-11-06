@@ -103,27 +103,17 @@ if (!isset($_SESSION['logged_in'])) {
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
-                            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                            <a class="nav-link" href="main-dashboard.php">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
-                                <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="/add_pet.php">
-                                            <span class="sub-item">Register Pet</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="petowner.php">
-                                            <span class="sub-item">Pet</span>
-                                        </a>
-                                    </li>
+                        </li>
 
-
-                                </ul>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pet_register.php">
+                                <i class="fa-solid fa-dog"></i>
+                                <p>Register Pet</p>
+                            </a>
                         </li>
 
                     </ul>
@@ -219,42 +209,51 @@ if (!isset($_SESSION['logged_in'])) {
                     <div class="sidebar-wrapper scrollbar scrollbar-inner">
                         <div class="sidebar-content">
                             <ul class="nav nav-secondary">
-                                <li class="nav-item active">
-                                    <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                                <li class="nav-item">
+                                    <a href="/main-dashboard.php" class="nav-link" aria-expanded="false">
                                         <i class="fas fa-home"></i>
                                         <p>Dashboard</p>
-                                        <span class="caret"></span>
+                                        <!-- <span class="caret"></span> -->
                                     </a>
-                                    <div class="collapse" id="dashboard">
-                                        <ul class="nav nav-collapse">
-                                            <li>
-                                                <a href="user_table.php">
-                                                    <span class="sub-item">Pet's Owners</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="pets_table.php">
-                                                    <span class="sub-item">Pets </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="pets_and_petsowner.php">
-                                                    <span class="sub-item">Pets and Pet's Owner</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="doctor_table.php">
-                                                    <span class="sub-item">Doctors</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="clinic_table.php">
-                                                    <span class="sub-item">Clinics</span>
-                                                </a>
-                                            </li>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="/user_table.php" class="nav-link" aria-expanded="false">
+                                        <i class="fa-solid fa-users"></i>
+                                        <p>Users</p>
+                                        <!-- <span class="caret"></span> -->
+                                    </a>
+                                </li>
 
-                                        </ul>
-                                    </div>
+                                <li class="nav-item ">
+                                    <a href="/pets_table.php" class="nav-link" aria-expanded="false">
+                                        <i class="fa-solid fa-dog"></i>
+                                        <p>Pets</p>
+                                        <!-- <span class="caret"></span> -->
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/pets_and_petsowner.php" class="nav-link" aria-expanded="false">
+                                        <i class="fa-solid fa-person"></i>
+                                        <p>Pets and Pet's Owner</p>
+                                        <!-- <span class="caret"></span> -->
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="/doctor_table.php" class="nav-link" aria-expanded="false">
+                                        <i class="fa-solid fa-user-doctor"></i>
+                                        <p>Doctors</p>
+                                        <!-- <span class="caret"></span> -->
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/clinic_table.php" class="nav-link" aria-expanded="false">
+                                    <i class="fa-solid fa-house-chimney-medical"></i>
+                                        <p>Clinic</p>
+                                        <!-- <span class="caret"></span> -->
+                                    </a>
                                 </li>
 
                             </ul>
@@ -386,7 +385,32 @@ if (!isset($_SESSION['logged_in'])) {
             <!-- Kaiadmin JS -->
             <script src="/assets/js/dashboard_js/kaiadmin.min.js"></script>
 
-            >
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const navLinks = document.querySelectorAll('.nav-link');
+
+                    // Get the active link from localStorage and set it
+                    const activeLink = localStorage.getItem('activeLink');
+                    if (activeLink) {
+                        document.querySelector(`#${activeLink}`).classList.add('active');
+                    }
+
+                    // Loop through each nav-link and add click event
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', function () {
+                            // Remove 'active' class from all links
+                            navLinks.forEach(nav => nav.classList.remove('active'));
+
+                            // Add 'active' class to the clicked link
+                            this.classList.add('active');
+
+                            // Store the clicked link's id in localStorage
+                            localStorage.setItem('activeLink', this.id);
+                        });
+                    });
+                });
+
+            </script>
             <script>
                 $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
                     type: "line",

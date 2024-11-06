@@ -68,7 +68,7 @@
 
       if (mysqli_num_rows($check_result) > 0) {
         echo "<script>alert('Pet Already Exists');
-        window.location.href='add_pet.php'</script>";
+        window.location.href='pet_register.php'</script>";
       } else {
 
         $folder = "assets/images/pets/" . basename($image);
@@ -83,11 +83,11 @@
             window.location.href='main-dashboard.php'</script>";
           } else {
             echo "<script>alert('Error Uploading Image');
-            window.location.href='add_pet.php'</script>";
+            window.location.href='pet_register.php'</script>";
           }
         } else {
           echo "<script>alert('Error occurred while Registering pet');
-          window.location.href='add_pet.php'</script>";
+          window.location.href='pet_register.php'</script>";
         }
       }
 
@@ -108,7 +108,7 @@
                 <div class="card-title">Pet Information</div>
               </div>
               <div class="card-body">
-                <form action="add_pet.php" id="pets" method="post" enctype="multipart/form-data">
+                <form id="pets" method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -232,4 +232,4 @@
   <script src="assets/jquery/jquery-3.7.1.min.js"></script>
   <script src="assets/jquery/jquery.validate.min.js"></script>
   <script src="assets/jquery/jquery-ui.min.js"></script>
-  <script src="assets/js/add_pet_js/script.js"></script>
+  <script src="assets/js/pet_register_js/script.js"></script>
