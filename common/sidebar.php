@@ -55,147 +55,222 @@ if (!isset($_SESSION['logged_in'])) {
 
 
 
-        <?php
+    <?php
 
-        $user = $_SESSION['username'];
+    $user = $_SESSION['username'];
+    $doctor_check = mysqli_query($conn, "SELECT * FROM doctor WHERE name = '$user';");
+    $doctor_count = mysqli_num_rows($doctor_check);
+    if ($doctor_count > 0) {
+        header('Location: /index.php');
+        exit;
+    }
 
-        $sql = "SELECT * FROM users WHERE username = '$user';";
+    $sql = "SELECT * FROM users WHERE username = '$user';";
+    $result = mysqli_query($conn, $sql);
 
-        $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
 
-        $row = mysqli_fetch_assoc($result);
-
-        if ($row['role_id'] == 2) {
-
+    if ($row['role_id'] == 2) {
 
 
 
-            ?>
 
-            <!-- Sidebar -->
-            <div class="sidebar" data-background-color="dark">
-                <div class="sidebar-logo">
-                    <!-- Logo Header -->
-                    <div class="logo-header" data-background-color="dark">
-                        <a href="/main-dashboard.php" class="logo">
-                            <h1 class="text-white">Pets Portal</h1>
-                        </a>
-                        <div class="nav-toggle">
-                            <button class="btn btn-toggle toggle-sidebar">
-                                <i class="gg-menu-right"></i>
-                            </button>
-                            <button class="btn btn-toggle sidenav-toggler">
-                                <i class="gg-menu-left"></i>
-                            </button>
-                        </div>
-                        <button class="topbar-toggler more">
-                            <i class="gg-more-vertical-alt"></i>
+        ?>
+
+        <!-- Sidebar -->
+        <div class="sidebar" data-background-color="dark">
+            <div class="sidebar-logo">
+                <!-- Logo Header -->
+                <div class="logo-header" data-background-color="dark">
+                    <a href="/main-dashboard.php" class="logo">
+                        <h1 class="text-white">Pets Portal</h1>
+                    </a>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
                         </button>
                     </div>
-                    <!-- End Logo Header -->
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
                 </div>
-                <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                    <div class="sidebar-content">
-                        <ul class="nav nav-secondary">
-                            <li class="nav-item active">
-                                <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                                    <i class="fas fa-home"></i>
-                                    <p>Dashboard</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="dashboard">
-                                    <ul class="nav nav-collapse">
-                                        <li>
-                                            <a href="/add_pet.php">
-                                                <span class="sub-item">Register Pet</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="petowner.php">
-                                                <span class="sub-item">Pet</span>
-                                            </a>
-                                        </li>
+                <!-- End Logo Header -->
+            </div>
+            <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                <div class="sidebar-content">
+                    <ul class="nav nav-secondary">
+                        <li class="nav-item active">
+                            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="dashboard">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a href="/add_pet.php">
+                                            <span class="sub-item">Register Pet</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="petowner.php">
+                                            <span class="sub-item">Pet</span>
+                                        </a>
+                                    </li>
 
 
-                                    </ul>
-                                </div>
-                            </li>
+                                </ul>
+                            </div>
+                        </li>
 
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <!-- End Sidebar -->
+        </div>
+        <!-- End Sidebar -->
 
-            <div class="main-panel">
-                <div class="main-header">
-                    <div class="main-header-logo">
+        <div class="main-panel">
+            <div class="main-header">
+                <div class="main-header-logo">
 
-                    </div>
-                    <!-- Navbar Header -->
-                    <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-                        <div class="container-fluid">
-                            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                                <li class="nav-item topbar-user dropdown hidden-caret">
-                                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
-                                        aria-expanded="false">
-                                        <div class="avatar-sm">
-                                            <img src="assets/images/<?php echo $row['profile']?>" alt="..."
-                                                class="avatar-img rounded-circle" />
-                                        </div>
-                                        <span class="profile-username">
-                                            <span class="op-7">Welcome,</span>
-                                            <span class="fw-bold"><?php echo $row['username']?></span>
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                        <div class="dropdown-user-scroll scrollbar-outer">
-                                            <li>
-                                                <div class="user-box">
-                                                    <div class="avatar-lg">
-                                                        <img src="assets/images/<?php echo $row['profile']?>" alt="image profile"
-                                                            class="avatar-img rounded" />
-                                                    </div>
-                                                    <div class="u-text">
-                                                        <h4><?php echo $row['username']?></h4>
-                                                        <p class="text-muted"><?php echo $row['email']?></p>
-                                                        <a href="user_profile.php" class="btn btn-xs btn-secondary btn-sm">View
-                                                            Profile</a>
-                                                    </div>
+                </div>
+                <!-- Navbar Header -->
+                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                            <li class="nav-item topbar-user dropdown hidden-caret">
+                                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
+                                    aria-expanded="false">
+                                    <div class="avatar-sm">
+                                        <img src="assets/images/<?php echo $row['profile'] ?>" alt="..."
+                                            class="avatar-img rounded-circle" />
+                                    </div>
+                                    <span class="profile-username">
+                                        <span class="op-7">Welcome,</span>
+                                        <span class="fw-bold"><?php echo $row['username'] ?></span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                    <div class="dropdown-user-scroll scrollbar-outer">
+                                        <li>
+                                            <div class="user-box">
+                                                <div class="avatar-lg">
+                                                    <img src="assets/images/<?php echo $row['profile'] ?>"
+                                                        alt="image profile" class="avatar-img rounded" />
                                                 </div>
+                                                <div class="u-text">
+                                                    <h4><?php echo $row['username'] ?></h4>
+                                                    <p class="text-muted"><?php echo $row['email'] ?></p>
+                                                    <a href="user_profile.php" class="btn btn-xs btn-secondary btn-sm">View
+                                                        Profile</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="user_profile.php">My Profile</a>
+                                            <a class="dropdown-item" href="#">My Balance</a>
+                                            <a class="dropdown-item" href="#">Inbox</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Account Setting</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="common/logout.php">Logout</a>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+            </div>
+
+
+            <?php
+    } else if ($row['role_id'] == 1) {
+
+
+        ?>
+
+                <div class="sidebar" data-background-color="dark">
+                    <div class="sidebar-logo">
+                        <!-- Logo Header -->
+                        <div class="logo-header" data-background-color="dark">
+                            <a href="/main-dashboard.php" class="logo">
+                                <h1 class="text-white">Pets Portal</h1>
+                            </a>
+                            <div class="nav-toggle">
+                                <button class="btn btn-toggle toggle-sidebar">
+                                    <i class="gg-menu-right"></i>
+                                </button>
+                                <button class="btn btn-toggle sidenav-toggler">
+                                    <i class="gg-menu-left"></i>
+                                </button>
+                            </div>
+                            <button class="topbar-toggler more">
+                                <i class="gg-more-vertical-alt"></i>
+                            </button>
+                        </div>
+                        <!-- End Logo Header -->
+                    </div>
+                    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                        <div class="sidebar-content">
+                            <ul class="nav nav-secondary">
+                                <li class="nav-item active">
+                                    <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                                        <i class="fas fa-home"></i>
+                                        <p>Dashboard</p>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="collapse" id="dashboard">
+                                        <ul class="nav nav-collapse">
+                                            <li>
+                                                <a href="user_table.php">
+                                                    <span class="sub-item">Pet's Owners</span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="user_profile.php">My Profile</a>
-                                                <a class="dropdown-item" href="#">My Balance</a>
-                                                <a class="dropdown-item" href="#">Inbox</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Account Setting</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="common/logout.php">Logout</a>
+                                                <a href="pets_table.php">
+                                                    <span class="sub-item">Pets </span>
+                                                </a>
                                             </li>
-                                        </div>
-                                    </ul>
+                                            <li>
+                                                <a href="pets_and_petsowner.php">
+                                                    <span class="sub-item">Pets and Pet's Owner</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="doctor_table.php">
+                                                    <span class="sub-item">Doctors</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="clinic_table.php">
+                                                    <span class="sub-item">Clinics</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
                                 </li>
+
                             </ul>
                         </div>
-                    </nav>
-                    <!-- End Navbar -->
+                    </div>
                 </div>
+                <!-- End Sidebar -->
 
-
-                <?php
-        } else if ($row['role_id'] == 1) {
-
-
-            ?>
-
-                    <div class="sidebar" data-background-color="dark">
-                        <div class="sidebar-logo">
+                <div class="main-panel">
+                    <div class="main-header">
+                        <div class="main-header-logo">
                             <!-- Logo Header -->
                             <div class="logo-header" data-background-color="dark">
-                                <a href="/main-dashboard.php" class="logo">
-                                    <h1 class="text-white">Pets Portal</h1>
+                                <a href="index.html" class="logo">
+                                    <img src="assets/images/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
+                                        height="20" />
                                 </a>
                                 <div class="nav-toggle">
                                     <button class="btn btn-toggle toggle-sidebar">
@@ -211,132 +286,62 @@ if (!isset($_SESSION['logged_in'])) {
                             </div>
                             <!-- End Logo Header -->
                         </div>
-                        <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                            <div class="sidebar-content">
-                                <ul class="nav nav-secondary">
-                                    <li class="nav-item active">
-                                        <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                                            <i class="fas fa-home"></i>
-                                            <p>Dashboard</p>
-                                            <span class="caret"></span>
+                        <!-- Navbar Header -->
+                        <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                            <div class="container-fluid">
+                                <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                                    <li class="nav-item topbar-user dropdown hidden-caret">
+                                        <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
+                                            aria-expanded="false">
+                                            <div class="avatar-sm">
+                                                <img src="assets/images/<?php echo $row['profile']; ?>" alt="..."
+                                                    class="avatar-img rounded-circle" />
+
+                                            </div>
+                                            <span class="profile-username">
+                                                <span class="op-7">Welcome,</span>
+                                                <span class="fw-bold"><?php echo $row['username'] ?></span>
+                                            </span>
                                         </a>
-                                        <div class="collapse" id="dashboard">
-                                            <ul class="nav nav-collapse">
+                                        <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                            <div class="dropdown-user-scroll scrollbar-outer">
                                                 <li>
-                                                    <a href="user_table.php">
-                                                        <span class="sub-item">Pet's Owners</span>
-                                                    </a>
+                                                    <div class="user-box">
+                                                        <div class="avatar-lg">
+                                                            <img src="assets/images/<?php echo $row['profile'] ?>"
+                                                                alt="image profile" class="avatar-img rounded" />
+                                                        </div>
+                                                        <div class="u-text">
+                                                            <h4><?php echo $row['username'] ?></h4>
+                                                            <p class="text-muted"><?php echo $row['email'] ?></p>
+                                                            <a href="admin_profile.php"
+                                                                class="btn btn-xs btn-secondary btn-sm">View
+                                                                Profile</a>
+                                                        </div>
+                                                    </div>
                                                 </li>
                                                 <li>
-                                                    <a href="pets_table.php">
-                                                        <span class="sub-item">Pets </span>
-                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="admin_profile.php">My Profile</a>
+                                                    <!-- <a class="dropdown-item" href="#">My Balance</a> -->
+                                                    <!-- <a class="dropdown-item" href="#">Inbox</a> -->
+                                                    <!-- <div class="dropdown-divider"></div> -->
+                                                    <!-- <a class="dropdown-item" href="#">Account Setting</a> -->
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="common/logout.php">Logout</a>
                                                 </li>
-                                                <li>
-                                                    <a href="pets_and_petsowner.php">
-                                                        <span class="sub-item">Pets and Pet's Owner</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="doctor_table.php">
-                                                        <span class="sub-item">Doctors</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="clinic_table.php">
-                                                        <span class="sub-item">Clinics</span>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
+                                            </div>
+                                        </ul>
                                     </li>
-
                                 </ul>
                             </div>
-                        </div>
+                        </nav>
+                        <!-- End Navbar -->
                     </div>
-                    <!-- End Sidebar -->
 
-                    <div class="main-panel">
-                        <div class="main-header">
-                            <div class="main-header-logo">
-                                <!-- Logo Header -->
-                                <div class="logo-header" data-background-color="dark">
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
-                                height="20" />
-                        </a>
-                        <div class="nav-toggle">
-                            <button class="btn btn-toggle toggle-sidebar">
-                                <i class="gg-menu-right"></i>
-                            </button>
-                            <button class="btn btn-toggle sidenav-toggler">
-                                <i class="gg-menu-left"></i>
-                            </button>
-                        </div>
-                        <button class="topbar-toggler more">
-                            <i class="gg-more-vertical-alt"></i>
-                        </button>
-                    </div>
-                                <!-- End Logo Header -->
-                            </div>
-                            <!-- Navbar Header -->
-                            <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-                                <div class="container-fluid">
-                                    <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                                        <li class="nav-item topbar-user dropdown hidden-caret">
-                                            <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
-                                                aria-expanded="false">
-                                                <div class="avatar-sm">
-                                                    <img src="assets/images/<?php echo $row['profile']; ?>" alt="..."
-                                                        class="avatar-img rounded-circle" />
-
-                                                </div>
-                                                <span class="profile-username">
-                                                    <span class="op-7">Welcome,</span>
-                                                    <span class="fw-bold"><?php echo $row['username'] ?></span>
-                                                </span>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                                <div class="dropdown-user-scroll scrollbar-outer">
-                                                    <li>
-                                                        <div class="user-box">
-                                                            <div class="avatar-lg">
-                                                                <img src="assets/images/<?php echo $row['profile']?>" alt="image profile"
-                                                                    class="avatar-img rounded"/>
-                                                            </div>
-                                                            <div class="u-text">
-                                                                <h4><?php echo $row['username']?></h4>
-                                                                <p class="text-muted"><?php echo $row['email']?></p>
-                                                                <a href="admin_profile.php"
-                                                                    class="btn btn-xs btn-secondary btn-sm">View
-                                                                    Profile</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="admin_profile.php">My Profile</a>
-                                                        <!-- <a class="dropdown-item" href="#">My Balance</a> -->
-                                                        <!-- <a class="dropdown-item" href="#">Inbox</a> -->
-                                                        <!-- <div class="dropdown-divider"></div> -->
-                                                        <!-- <a class="dropdown-item" href="#">Account Setting</a> -->
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="common/logout.php">Logout</a>
-                                                    </li>
-                                                </div>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                            <!-- End Navbar -->
-                        </div>
-
-                    <?php
-        }
-        ?>
+                <?php
+    }
+    ?>
 
 
 
@@ -348,68 +353,68 @@ if (!isset($_SESSION['logged_in'])) {
 
 
 
-                <!--   Core JS Files   -->
-                <script src="/assets/js/dashboard_js/core/jquery-3.7.1.min.js"></script>
-                <script src="/assets/js/dashboard_js/core/popper.min.js"></script>
-                <script src="/assets/js/dashboard_js/core/bootstrap.min.js"></script>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/dashboard_js/core/jquery-3.7.1.min.js"></script>
+            <script src="/assets/js/dashboard_js/core/popper.min.js"></script>
+            <script src="/assets/js/dashboard_js/core/bootstrap.min.js"></script>
 
-                <!-- jQuery Scrollbar -->
-                <script src="/assets/js/dashboard_js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="/assets/js/dashboard_js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-                <!-- Chart JS -->
-                <script src="/assets/js/dashboard_js/plugin/chart.js/chart.min.js"></script>
+            <!-- Chart JS -->
+            <script src="/assets/js/dashboard_js/plugin/chart.js/chart.min.js"></script>
 
-                <!-- jQuery Sparkline -->
-                <script src="/assets/js/dashboard_js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+            <!-- jQuery Sparkline -->
+            <script src="/assets/js/dashboard_js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
-                <!-- Chart Circle -->
-                <script src="/assets/js/dashboard_js/plugin/chart-circle/circles.min.js"></script>
+            <!-- Chart Circle -->
+            <script src="/assets/js/dashboard_js/plugin/chart-circle/circles.min.js"></script>
 
-                <!-- Datatables -->
-                <script src="/assets/js/dashboard_js/plugin/datatables/datatables.min.js"></script>
+            <!-- Datatables -->
+            <script src="/assets/js/dashboard_js/plugin/datatables/datatables.min.js"></script>
 
-                <!-- Bootstrap Notify -->
-                <script src="/assets/js/dashboard_js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="/assets/js/dashboard_js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-                <!-- jQuery Vector Maps -->
-                <script src="/assets/js/dashboard_js/plugin/jsvectormap/jsvectormap.min.js"></script>
-                <script src="/assets/js/dashboard_js/plugin/jsvectormap/world.js"></script>
+            <!-- jQuery Vector Maps -->
+            <script src="/assets/js/dashboard_js/plugin/jsvectormap/jsvectormap.min.js"></script>
+            <script src="/assets/js/dashboard_js/plugin/jsvectormap/world.js"></script>
 
-                <!-- Sweet Alert -->
-                <script src="/assets/js/dashboard_js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- Sweet Alert -->
+            <script src="/assets/js/dashboard_js/plugin/sweetalert/sweetalert.min.js"></script>
 
-                <!-- Kaiadmin JS -->
-                <script src="/assets/js/dashboard_js/kaiadmin.min.js"></script>
+            <!-- Kaiadmin JS -->
+            <script src="/assets/js/dashboard_js/kaiadmin.min.js"></script>
 
->
-                <script>
-                    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-                        type: "line",
-                        height: "70",
-                        width: "100%",
-                        lineWidth: "2",
-                        lineColor: "#177dff",
-                        fillColor: "rgba(23, 125, 255, 0.14)",
-                    });
+            >
+            <script>
+                $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#177dff",
+                    fillColor: "rgba(23, 125, 255, 0.14)",
+                });
 
-                    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-                        type: "line",
-                        height: "70",
-                        width: "100%",
-                        lineWidth: "2",
-                        lineColor: "#f3545d",
-                        fillColor: "rgba(243, 84, 93, .14)",
-                    });
+                $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#f3545d",
+                    fillColor: "rgba(243, 84, 93, .14)",
+                });
 
-                    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-                        type: "line",
-                        height: "70",
-                        width: "100%",
-                        lineWidth: "2",
-                        lineColor: "#ffa534",
-                        fillColor: "rgba(255, 165, 52, .14)",
-                    });
-                </script>
+                $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#ffa534",
+                    fillColor: "rgba(255, 165, 52, .14)",
+                });
+            </script>
 
 </body>
 

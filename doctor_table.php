@@ -165,7 +165,7 @@
                                                             <div class="form-button-action">
                                                                 <a href="doctor_table.php?dlt_id=<?php echo $doctor['doctor_id'] ?>"
                                                                     data-bs-toggle="tooltip" title="Remove"
-                                                                    class="btn btn-link btn-primary btn-lg"
+                                                                    class="btn btn-link btn-primary "
                                                                     data-original-title="Remove" onclick="return remove()">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>

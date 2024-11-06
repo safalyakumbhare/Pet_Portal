@@ -333,7 +333,7 @@
 
                                                     ?>
                                                     <tr>
-                                                        <td colspan="4" class="text-center">No New Doctor Approvals</td>
+                                                        <td colspan="5" class="text-center">No New Clinic Approvals</td>
                                                     </tr>
                                                     <?php
                                                 }
@@ -412,7 +412,7 @@
                                                             <div class="form-button-action">
                                                                 <a href="pet_edit.php?pet_id=<?php echo $pet_row['pet_id'] ?>"
                                                                     data-bs-toggle="tooltip" title="Edit"
-                                                                    class="btn btn-link btn-primary btn-lg"
+                                                                    class="btn btn-link btn-primary "
                                                                     data-original-title="Edit Task">
                                                                     <i class="fa fa-edit"></i>
                                                                 </a>

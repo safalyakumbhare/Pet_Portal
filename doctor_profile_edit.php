@@ -55,25 +55,28 @@
 
 
                 $doctor_id = $row['doctor_id'];
-                $doctor_detail_result = mysqli_query($conn, "SELECT * FROM doctors WHERE doctor_id=$doctor_id");
+                $doctor_detail_result = mysqli_query($conn, "SELECT * FROM doctor WHERE doctor_id=$doctor_id");
 
                 $doctor_detail = mysqli_fetch_array($doctor_detail_result);
 
-                $pet_detail_result = mysqli_query($conn, "SELECT * FROM pets WHERE doctor_id=$doctor_id");
-                $pet_detail = mysqli_fetch_array($pet_detail_result);
+
 
                 if (isset($_POST['submit'])) {
-                    $doctorname = $_POST['doctorname'];
+                    $doctorname = $_POST['name'];
                     $email = $_POST['email'];
                     $address = $_POST['address'];
                     $gender = $_POST['gender'];
                     $dob = date('Y-m-d', strtotime($_POST['dob']));
                     $phone = $_POST['phone'];
+                    $license = $_POST["license_no"];
+                    $specialization = $_POST["specialization"];
+                    $certification = $_POST["certification"];
+                    $experience = $_POST["experience"];
 
-                    $sql = "UPDATE doctors SET doctorname='$doctorname', email='$email', address='$address', gender='$gender', dob='$dob', phone='$phone' WHERE doctor_id=$doctor_id";
+                    $sql = "UPDATE doctor SET name='$doctorname', email='$email', address='$address', gender='$gender', dob='$dob', phone='$phone' , license_no='$license' , specialization = '$specialization' , certification='$certification' , experience='$experience'  WHERE doctor_id=$doctor_id";
 
                     if (mysqli_query($conn, $sql)) {
-                        echo "<script>alert('doctor Details Updated Successfully');
+                        echo "<script>alert('Doctor Details Updated Successfully');
                         window.location.href='doctor_profile.php';</script>";
                     } else {
                         echo "<script>alert('Failed to Update doctor Details');</script>";
@@ -85,46 +88,45 @@
                 <div class="container">
                     <div class="page-inner">
                         <div class="page-header">
-                            <h3 class="fw-bold mb-3">My Profile</h3>
+                            <h3 class="fw-bold mb-3">My Profile Edit</h3>
 
                         </div>
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-12 ">
 
-                        <div class="row">
-                            <div class="col-md-12">
 
+                                    <div class="row  d-flex justify-content-center">
+                                        <div class="col-md-5 text-center">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="card-title">
+                                                        Profile
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <img src="assets/images/doctors/<?php echo $doctor_detail['profile']; ?>"
+                                                        style="height:150px; width:150px;" class=" rounded-circle"
+                                                        alt="no profile photo">
+                                                    <h3 class="mt-md-4"><?php echo $doctor_detail['name']; ?></h3>
 
-                                <div class="row">
-                                    <div class="col-md-5 text-center">
-                                        <div class="card">
-
-                                            <div class="card-body">
-                                                <img src="assets/images/<?php echo $doctor_detail['profile']; ?>"
-                                                    style="height:150px; width:150px;" class=" rounded-circle"
-                                                    alt="no profile photo">
-                                                <h3 class="mt-md-4"><?php echo $doctor_detail['doctorname']; ?></h3>
-                                                <p><?php if (isset($pet_detail['name'])) {
-                                                    echo "Owner of " . $pet_detail['name'];
-                                                } else {
-                                                    echo "Pet not Registered";
-                                                } ?></p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="col-md-7">
+                                        <div class="col-md-12">
 
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <div class="card-title">Personal Information</div>
-                                            </div>
-                                            <div class="card-body">
-                                                <form action="doctor_profile_edit.php" method="post">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="card-title">Edit Personal Information</div>
+                                                </div>
+                                                <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-md-6 mt-2">
                                                             <h6 class="text-secondary fw-bold">Name :</h6>
-                                                            <input type="text" class="form-control" name="doctorname"
-                                                                value="<?php echo $doctor_detail['doctorname']; ?>">
+                                                            <input type="text" class="form-control" name="name"
+                                                                value="<?php echo $doctor_detail['name']; ?>">
                                                         </div>
 
                                                         <div class="col-md-6 mt-2">
@@ -148,7 +150,8 @@
                                                             <h6 class="text-secondary fw-bold">Date of Birth :</h6>
 
                                                             <input type="text" value="<?php $date = date_create($doctor_detail['dob']);
-                                                            echo date_format($date, "d-m-Y"); ?>" name="dob" class="form-control">
+                                                            echo date_format($date, "d-m-Y"); ?>" name="dob"
+                                                                class="form-control">
 
                                                         </div>
 
@@ -159,20 +162,67 @@
                                                         </div>
 
 
-                                                        <div class="w-100"></div>
-                                                        <div class="col-md-6 mt-3">
-                                                            <button type="submit" name="submit" class="btn btn-primary">Make
-                                                                Changes</button>
-                                                        </div>
                                                     </div>
-                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="card-title">Edit Professional Information</div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">License No. :</h6>
+                                                            <input type="text" class="form-control" name="license_no"
+                                                                value="<?php echo $doctor_detail['license_no']; ?>">
+                                                        </div>
+
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Specialization :</h6>
+                                                            <input type="text" class="form-control" name="specialization"
+                                                                value="<?php echo $doctor_detail['specialization']; ?>">
+                                                        </div>
+
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Certifications :</h6>
+                                                            <textarea class="form-control" rows="3"
+                                                                name="certification"><?php echo $doctor_detail['certification']; ?></textarea>
+
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <h6 class="text-secondary fw-bold">Experience :</h6>
+                                                            <textarea class="form-control" name="experience"
+                                                                rows="3"><?php echo $doctor_detail['experience']; ?></textarea>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <div class="col-md-2">
+                                                    <button type="submit" class="btn btn-primary btn-block" name="submit">Edit
+                                                        Profile</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                     <?php

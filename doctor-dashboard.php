@@ -127,13 +127,13 @@
                                                         <td>
                                                             <div class="form-button-action">
                                                                 <a href="edit_clinic.php?edit_id=<?php echo $doctor_row['clinic_id']?>"
-                                                                    class="btn btn-link btn-primary btn-lg"
+                                                                    class="btn btn-link btn-primary "
                                                                     data-original-title="Edit">
                                                                     <i class="fa fa-edit"></i>
                                                                 </a>
                                                                 <a href="clinic_table.php?dlt_id=<?php echo $doctor_row['clinic_id']?>"
                                                                     data-bs-toggle="tooltip" title="Remove"
-                                                                    class="btn btn-link btn-danger btn-lg"
+                                                                    class="btn btn-link btn-danger "
                                                                     data-original-title="Remove"
                                                                     onclick="return remove()">
                                                                     <i class="fa fa-trash"></i>
@@ -141,7 +141,7 @@
 
                                                                 <a href="clinic_view.php?clinic_id=<?php echo $doctor_row['clinic_id']?>"
                                                                     data-bs-toggle="tooltip" title="View Details"
-                                                                    class="btn btn-link btn-success btn-lg"
+                                                                    class="btn btn-link btn-success "
                                                                     data-original-title="View Details">
                                                                     <i class="fa fa-eye"></i>
                                                                 </a>
