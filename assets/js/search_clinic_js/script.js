@@ -13,11 +13,13 @@ $(document).ready(function(){
             data: {input: input},
             success: function(data){
                 $("#live-search-results").html(data);
+                $("#all-data").css("display","none");
             }
         });
        }
        else{
-        $("#live-search-results").css("display","none");
+        $("#live-search-results").css("display","none"); 
+        $("#all-data").css("display","block");
        }
     });
 

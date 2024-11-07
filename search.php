@@ -3,7 +3,7 @@ include("common/connection.php");
 
 if (isset($_POST['input'])) {
     $input = $_POST['input'];
-    $query = "SELECT * FROM clinic WHERE address LIKE '%$input%'";
+    $query = "SELECT * FROM clinic WHERE address LIKE '%$input%' AND status = 'Active' AND approval = 'Approved';";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result)) {

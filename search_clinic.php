@@ -89,11 +89,11 @@
 
 
                         <h1 id="live-search-results" class="text-center"></h1>
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="all-data">
                             <div class="row ">
                                 <div class="card-group justify-content-around">
                                     <?php
-                                    $sql = "SELECT * FROM clinic WHERE status = 'Active' AND approval = 'Approved';";
+                                    $sql = "SELECT * FROM clinic WHERE status= 'Active';";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         while ($row = mysqli_fetch_assoc($result)) {
