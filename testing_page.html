@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Listing Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <!-- Search and Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="Search for clinics by location, pet type, or service...">
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary btn-block">Search</button>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <!-- Filter Options -->
+        <div class="col-md-3">
+            <select class="form-control">
+                <option value="">Location</option>
+                <option value="city1">City 1</option>
+                <option value="city2">City 2</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control">
+                <option value="">Pet Type</option>
+                <option value="dogs">Dogs</option>
+                <option value="cats">Cats</option>
+                <option value="birds">Birds</option>
+                <option value="exotic">Exotic Pets</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control">
+                <option value="">Service</option>
+                <option value="vaccination">Vaccination</option>
+                <option value="emergency">Emergency Care</option>
+                <option value="grooming">Grooming</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control">
+                <option value="">Rating</option>
+                <option value="4stars">4 Stars & Above</option>
+                <option value="3stars">3 Stars & Above</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Clinic Cards Section -->
+    <div class="row">
+        <!-- Clinic Card 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="clinic-image.jpg" class="card-img-top" alt="Clinic Image">
+                <div class="card-body">
+                    <h5 class="card-title">Happy Paws Veterinary Clinic</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> City, Address Line</p>
+                    <p class="card-text">Specializes in Dogs, Cats, and Birds</p>
+                    <p class="card-text"><strong>Open:</strong> Mon-Sat | <strong>Hours:</strong> 10 AM - 6 PM</p>
+                    <p class="card-text"><i class="fas fa-star text-warning"></i> 4.5 (150 Reviews)</p>
+                    <a href="#" class="btn btn-primary btn-block">View Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clinic Card 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="clinic-image2.jpg" class="card-img-top" alt="Clinic Image">
+                <div class="card-body">
+                    <h5 class="card-title">PetCare Animal Hospital</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> Another City, Address Line</p>
+                    <p class="card-text">Specializes in Small Animals and Exotic Pets</p>
+                    <p class="card-text"><strong>Open:</strong> Mon-Fri | <strong>Hours:</strong> 9:30 AM - 8 PM</p>
+                    <p class="card-text"><i class="fas fa-star text-warning"></i> 4.7 (230 Reviews)</p>
+                    <a href="#" class="btn btn-primary btn-block">View Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clinic Card 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="clinic-image3.jpg" class="card-img-top" alt="Clinic Image">
+                <div class="card-body">
+                    <h5 class="card-title">Exotic Animal Care Center</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> Nearby City, Address Line</p>
+                    <p class="card-text">Specializes in Reptiles and Birds</p>
+                    <p class="card-text"><strong>Open:</strong> Mon-Fri | <strong>Hours:</strong> 11 AM - 7 PM</p>
+                    <p class="card-text"><i class="fas fa-star text-warning"></i> 4.8 (90 Reviews)</p>
+                    <a href="#" class="btn btn-primary btn-block">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome and Bootstrap JS for icons and interactivity -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

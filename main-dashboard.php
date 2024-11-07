@@ -151,12 +151,12 @@
                                                 <i class="fa-solid fa-house-chimney-medical"></i>
                                             </div>
                                         </div>
-                                        <div class="col col-stats ms-3 ms-sm-0">
+                                        <a href="clinic_table.php" class="col col-stats ms-3 ms-sm-0">
                                             <div class="numbers">
                                                 <p class="card-category">Pet Clinics</p>
                                                 <h4 class="card-title"><?php echo mysqli_num_rows($clinic_result) ?></h4>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@
                             <div class="card card-round">
                                 <div class="card-body">
                                     <div class="card-head-row card-tools-still-right">
-                                        <div class="card-title">New Doctor</div>
+                                        <div class="card-title">New Doctors</div>
                                     </div>
                                     <div class="card-list py-4">
 
@@ -363,7 +363,7 @@
                                                 ?>
                                                 <div class="item-list">
                                                     <div class="avatar">
-                                                        <img src="assets/images/<?php echo $new_data['profile'] ?>" alt="..."
+                                                        <img src="assets/images/doctors/<?php echo $new_data['profile'] ?>" alt="..."
                                                             class="avatar-img rounded-circle" />
                                                     </div>
                                                     <div class="info-user ms-3">
@@ -371,7 +371,7 @@
                                                         <div class="status"><?php echo $new_data['address'] ?></div>
                                                     </div>
 
-                                                    <a href="doctor_detail.php?user_id=<?php echo $new_data['doctor_id']; ?>"
+                                                    <a href="doctor_detail.php?doctor_id=<?php echo $new_data['doctor_id']; ?>"
                                                         class="btn btn-icon btn-link btn-primary op-8">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>
