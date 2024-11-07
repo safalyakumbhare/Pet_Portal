@@ -88,6 +88,7 @@
                         </div>
 
 
+                        <h1 id="live-search-results" class="text-center"></h1>
                         <div class="col-md-12">
                             <div class="row ">
                                 <div class="card-group justify-content-around">
@@ -158,3 +159,4 @@
     </div>
     <script src="assets/jquery/jquery-3.7.1.min.js"></script>
     <script src="/assets/js/search_clinic_js/script.js"></script>
+     
