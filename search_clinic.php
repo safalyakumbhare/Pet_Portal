@@ -93,7 +93,7 @@
                             <div class="row ">
                                 <div class="card-group justify-content-around">
                                     <?php
-                                    $sql = "SELECT * FROM clinic WHERE status= 'Active';";
+                                    $sql = "SELECT * FROM clinic WHERE status= 'Active' AND approval = 'Approved';";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         while ($row = mysqli_fetch_assoc($result)) {

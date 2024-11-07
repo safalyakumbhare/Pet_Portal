@@ -77,13 +77,28 @@
 
 
                     $sql = mysqli_query($conn, "UPDATE doctor SET status = 'Active' WHERE doctor_id = '$rid'");
-                    echo "<script>alert('User Activated');</script>";
-                    echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    $clinic = mysqli_query($conn, "UPDATE clinic SET status = 'Active' WHERE doctor_id = '$rid'");
+                    if ($sql && $clinic) {
+                        echo "<script>alert('Doctor Activated');</script>";
+                        echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    }
+                    else {
+                        echo "<script>alert('Failed to activate doctor');</script>";
+                        echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    }
+
                 }
                 if ($status == 'Active') {
                     $sql = mysqli_query($conn, "UPDATE doctor SET status = 'Inactive' WHERE doctor_id = '$rid'");
-                    echo "<script>alert('User Deactivated');</script>";
-                    echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    $clinic = mysqli_query($conn, "UPDATE clinic SET status = 'Inactive' WHERE doctor_id = '$rid'");
+                    if($sql && $clinic){
+                        echo "<script>alert('Doctor Deactivated');</script>";
+                        echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    }
+                    else {
+                        echo "<script>alert('Failed to deactivate doctor');</script>";
+                        echo "<script>window.location.href = 'doctor_table.php'</script>";
+                    }
                 }
             }
 
