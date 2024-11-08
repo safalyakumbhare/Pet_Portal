@@ -131,7 +131,7 @@
                                                             ?>
                                                         </p>
                                                         <p><b>Contact No. : </b><?php echo $row['phone'] ?></p>
-                                                        <a href="#" class="btn btn-primary btn-block">View Profile</a>
+                                                        <a href="clinic_view_profile.php?clinic_id=<?php echo $row['clinic_id']; ?>" class="btn btn-primary btn-block">View Profile</a>
                                                     </div>
                                                 </div>
                                             </div>

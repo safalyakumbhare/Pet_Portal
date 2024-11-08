@@ -3,103 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Listing Page</title>
+    <title>Clinic Profile</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container mt-5">
-    <!-- Search and Filter Section -->
-    <div class="row mb-4">
-        <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="Search for clinics by location, pet type, or service...">
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-primary btn-block">Search</button>
-        </div>
-    </div>
-    <div class="row mb-4">
-        <!-- Filter Options -->
-        <div class="col-md-3">
-            <select class="form-control">
-                <option value="">Location</option>
-                <option value="city1">City 1</option>
-                <option value="city2">City 2</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-control">
-                <option value="">Pet Type</option>
-                <option value="dogs">Dogs</option>
-                <option value="cats">Cats</option>
-                <option value="birds">Birds</option>
-                <option value="exotic">Exotic Pets</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-control">
-                <option value="">Service</option>
-                <option value="vaccination">Vaccination</option>
-                <option value="emergency">Emergency Care</option>
-                <option value="grooming">Grooming</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-control">
-                <option value="">Rating</option>
-                <option value="4stars">4 Stars & Above</option>
-                <option value="3stars">3 Stars & Above</option>
-            </select>
+    <!-- Clinic Header Section -->
+    <div class="card mb-4">
+        <div class="card-body text-center">
+            <img src="clinic-banner.jpg" class="img-fluid rounded mb-3" alt="Clinic Banner">
+            <h2 class="card-title">Happy Paws Veterinary Clinic</h2>
+            <p class="text-muted"><i class="fas fa-map-marker-alt"></i> 123 Pet Street, Petville</p>
+            <p><i class="fas fa-star text-warning"></i> 4.5 (150 Reviews)</p>
+            <button class="btn btn-primary">Contact Clinic</button>
         </div>
     </div>
 
-    <!-- Clinic Cards Section -->
-    <div class="row">
-        <!-- Clinic Card 1 -->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <img src="clinic-image.jpg" class="card-img-top" alt="Clinic Image">
-                <div class="card-body">
-                    <h5 class="card-title">Happy Paws Veterinary Clinic</h5>
-                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> City, Address Line</p>
-                    <p class="card-text">Specializes in Dogs, Cats, and Birds</p>
-                    <p class="card-text"><strong>Open:</strong> Mon-Sat | <strong>Hours:</strong> 10 AM - 6 PM</p>
-                    <p class="card-text"><i class="fas fa-star text-warning"></i> 4.5 (150 Reviews)</p>
-                    <a href="#" class="btn btn-primary btn-block">View Profile</a>
+    <!-- Contact Information -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Contact Information</h4>
+            <p><strong>Phone:</strong> +91 9876543210</p>
+            <p><strong>Email:</strong> contact@happypaws.com</p>
+            <p>
+                <strong>Follow Us:</strong> 
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </p>
+        </div>
+    </div>
+
+    <!-- About the Clinic -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>About the Clinic</h4>
+            <p>Happy Paws Veterinary Clinic specializes in the care of dogs, cats, and exotic pets, providing a warm, professional environment for all pet owners. Our team of certified veterinarians is dedicated to ensuring the best care for your pets.</p>
+        </div>
+    </div>
+
+    <!-- Services Offered -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Services Offered</h4>
+            <ul>
+                <li>Vaccinations - Starting from ₹500</li>
+                <li>Grooming Services - Starting from ₹700</li>
+                <li>Emergency Care - 24/7 availability</li>
+                <li>Spay & Neuter - Based on pet size</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Working Hours -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Working Hours</h4>
+            <p><strong>Open Days:</strong> Monday to Saturday</p>
+            <p><strong>Hours:</strong> 9:00 AM - 6:00 PM</p>
+            <p><strong>Closed:</strong> Sunday and Public Holidays</p>
+        </div>
+    </div>
+
+    <!-- Doctors Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Doctors at the Clinic</h4>
+            <div class="media mb-3">
+                <img src="doctor1.jpg" class="mr-3 rounded-circle" alt="Doctor 1" style="width: 60px;">
+                <div class="media-body">
+                    <h5>Dr. Priya Sharma</h5>
+                    <p>Specialist in Small Animals | 8 years of experience</p>
                 </div>
             </div>
-        </div>
-
-        <!-- Clinic Card 2 -->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <img src="clinic-image2.jpg" class="card-img-top" alt="Clinic Image">
-                <div class="card-body">
-                    <h5 class="card-title">PetCare Animal Hospital</h5>
-                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> Another City, Address Line</p>
-                    <p class="card-text">Specializes in Small Animals and Exotic Pets</p>
-                    <p class="card-text"><strong>Open:</strong> Mon-Fri | <strong>Hours:</strong> 9:30 AM - 8 PM</p>
-                    <p class="card-text"><i class="fas fa-star text-warning"></i> 4.7 (230 Reviews)</p>
-                    <a href="#" class="btn btn-primary btn-block">View Profile</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Clinic Card 3 -->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <img src="clinic-image3.jpg" class="card-img-top" alt="Clinic Image">
-                <div class="card-body">
-                    <h5 class="card-title">Exotic Animal Care Center</h5>
-                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> Nearby City, Address Line</p>
-                    <p class="card-text">Specializes in Reptiles and Birds</p>
-                    <p class="card-text"><strong>Open:</strong> Mon-Fri | <strong>Hours:</strong> 11 AM - 7 PM</p>
-                    <p class="card-text"><i class="fas fa-star text-warning"></i> 4.8 (90 Reviews)</p>
-                    <a href="#" class="btn btn-primary btn-block">View Profile</a>
+            <div class="media mb-3">
+                <img src="doctor2.jpg" class="mr-3 rounded-circle" alt="Doctor 2" style="width: 60px;">
+                <div class="media-body">
+                    <h5>Dr. Aman Verma</h5>
+                    <p>Specialist in Exotic Pets | 5 years of experience</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- User Reviews -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>User Reviews</h4>
+            <div class="media mb-3">
+                <div class="media-body">
+                    <h5>Rita Sharma <small class="text-muted">- 5 stars</small></h5>
+                    <p>Great service! The staff was very caring, and my dog received excellent treatment.</p>
+                </div>
+            </div>
+            <div class="media mb-3">
+                <div class="media-body">
+                    <h5>John Doe <small class="text-muted">- 4 stars</small></h5>
+                    <p>Good clinic but sometimes busy. Dr. Priya Sharma was very professional.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- FontAwesome and Bootstrap JS for icons and interactivity -->

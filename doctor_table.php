@@ -81,8 +81,7 @@
                     if ($sql && $clinic) {
                         echo "<script>alert('Doctor Activated');</script>";
                         echo "<script>window.location.href = 'doctor_table.php'</script>";
-                    }
-                    else {
+                    } else {
                         echo "<script>alert('Failed to activate doctor');</script>";
                         echo "<script>window.location.href = 'doctor_table.php'</script>";
                     }
@@ -91,11 +90,10 @@
                 if ($status == 'Active') {
                     $sql = mysqli_query($conn, "UPDATE doctor SET status = 'Inactive' WHERE doctor_id = '$rid'");
                     $clinic = mysqli_query($conn, "UPDATE clinic SET status = 'Inactive' WHERE doctor_id = '$rid'");
-                    if($sql && $clinic){
+                    if ($sql && $clinic) {
                         echo "<script>alert('Doctor Deactivated');</script>";
                         echo "<script>window.location.href = 'doctor_table.php'</script>";
-                    }
-                    else {
+                    } else {
                         echo "<script>alert('Failed to deactivate doctor');</script>";
                         echo "<script>window.location.href = 'doctor_table.php'</script>";
                     }
@@ -143,93 +141,105 @@
 
                                                 $doctor_result = mysqli_query($conn, $doctor_table);
 
-                                                while ($doctor = mysqli_fetch_array($doctor_result)) {
+                                                if (mysqli_num_rows($doctor_result)) {
 
 
-                                                    ?>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="avatar-xxl">
-                                                                <img src="assets/images/doctors/<?php echo $doctor['profile']; ?>"
-                                                                    class="avatar-img rounded-circle" alt="no image found">
-                                                            </div>
-                                                        </td>
-                                                        <td><?php echo $doctor['name'] ?></td>
-                                                        <td><?php echo $doctor['email'] ?></td>
-                                                        <td><?php echo $doctor['address'] ?></td>
-                                                        <td><?php
-                                                        if ($doctor['status'] == "Active") {
-                                                            echo "<span class='text-success'>Active</span>
-                                                     </td>";
-                                                        } else {
-                                                            echo "<span class='text-danger'>Inactive</span>
-                                                     </td>";
-                                                        }
+                                                    while ($doctor = mysqli_fetch_array($doctor_result)) {
+
 
                                                         ?>
-                                                        </td>
-                                                        <?php
-                                                        if ($doctor['approval'] == "Approved") {
-                                                            echo "<td class='text-success'>Approved</td>";
-                                                        } else if ($doctor['approval'] == "Pending") {
-                                                            echo "<td class='text-primary'>Pending</td>";
-                                                        } else if ($doctor['approval'] == "Rejected") {
-                                                            echo "<td class='text-danger'>Rejected</td>";
-                                                        } ?>
-                                                        <td>
-                                                            <div class="form-button-action">
-                                                                <a href="doctor_table.php?dlt_id=<?php echo $doctor['doctor_id'] ?>"
-                                                                    data-bs-toggle="tooltip" title="Remove"
-                                                                    class="btn btn-link btn-primary "
-                                                                    data-original-title="Remove" onclick="return remove()">
-                                                                    <i class="fa-solid fa-trash"></i>
-                                                                </a>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="avatar-xxl">
+                                                                    <img src="assets/images/doctors/<?php echo $doctor['profile']; ?>"
+                                                                        class="avatar-img rounded-circle" alt="no image found">
+                                                                </div>
+                                                            </td>
+                                                            <td><?php echo $doctor['name'] ?></td>
+                                                            <td><?php echo $doctor['email'] ?></td>
+                                                            <td><?php echo $doctor['address'] ?></td>
+                                                            <td><?php
+                                                            if ($doctor['status'] == "Active") {
+                                                                echo "<span class='text-success'>Active</span>
+                                                     </td>";
+                                                            } else {
+                                                                echo "<span class='text-danger'>Inactive</span>
+                                                     </td>";
+                                                            }
 
-                                                                <?php
+                                                            ?>
+                                                            </td>
+                                                            <?php
+                                                            if ($doctor['approval'] == "Approved") {
+                                                                echo "<td class='text-success'>Approved</td>";
+                                                            } else if ($doctor['approval'] == "Pending") {
+                                                                echo "<td class='text-primary'>Pending</td>";
+                                                            } else if ($doctor['approval'] == "Rejected") {
+                                                                echo "<td class='text-danger'>Rejected</td>";
+                                                            } ?>
+                                                            <td>
+                                                                <div class="form-button-action">
+                                                                    <a href="doctor_table.php?dlt_id=<?php echo $doctor['doctor_id'] ?>"
+                                                                        data-bs-toggle="tooltip" title="Remove"
+                                                                        class="btn btn-link btn-primary "
+                                                                        data-original-title="Remove" onclick="return remove()">
+                                                                        <i class="fa-solid fa-trash"></i>
+                                                                    </a>
 
-                                                                if ($doctor['approval'] == "Pending" || $doctor['approval'] == "Rejected") {
-                                                                    // echo "<span class='badge badge-danger'>$doctor[approval]</span>";
-                                                                } else {
+                                                                    <?php
 
-                                                                    if ($doctor['status'] == "Active") {
-                                                                        ?>
+                                                                    if ($doctor['approval'] == "Pending" || $doctor['approval'] == "Rejected") {
+                                                                        // echo "<span class='badge badge-danger'>$doctor[approval]</span>";
+                                                                    } else {
 
-
-                                                                        <a href="doctor_table.php?doctor_id=<?php echo $doctor['doctor_id'] ?>"
-                                                                            data-bs-toggle="tooltip" title="Inactive"
-                                                                            class="btn btn-link btn-danger"
-                                                                            onclick="return confirmDeactivation()"
-                                                                            data-original-title="Inactive">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
+                                                                        if ($doctor['status'] == "Active") {
+                                                                            ?>
 
 
-                                                                        <?php
-                                                                    } elseif ($doctor['status'] == "Inactive") {
-                                                                        ?>
+                                                                            <a href="doctor_table.php?doctor_id=<?php echo $doctor['doctor_id'] ?>"
+                                                                                data-bs-toggle="tooltip" title="Inactive"
+                                                                                class="btn btn-link btn-danger"
+                                                                                onclick="return confirmDeactivation()"
+                                                                                data-original-title="Inactive">
+                                                                                <i class="fa fa-times"></i>
+                                                                            </a>
 
-                                                                        <a href="doctor_table.php?doctor_id=<?php echo $doctor['doctor_id'] ?>"
-                                                                            data-bs-toggle="tooltip" title="Active"
-                                                                            class="btn btn-link btn-success"
-                                                                            onclick="return confirmactivation()"
-                                                                            data-original-title="Inactive">
-                                                                            <i class="fa-solid fa-check"></i>
-                                                                        </a>
 
-                                                                        <?php
+                                                                            <?php
+                                                                        } elseif ($doctor['status'] == "Inactive") {
+                                                                            ?>
+
+                                                                            <a href="doctor_table.php?doctor_id=<?php echo $doctor['doctor_id'] ?>"
+                                                                                data-bs-toggle="tooltip" title="Active"
+                                                                                class="btn btn-link btn-success"
+                                                                                onclick="return confirmactivation()"
+                                                                                data-original-title="Inactive">
+                                                                                <i class="fa-solid fa-check"></i>
+                                                                            </a>
+
+                                                                            <?php
+                                                                        }
                                                                     }
-                                                                }
-                                                                ?>
+                                                                    ?>
 
-                                                                <a href="doctor_detail.php?doctor_id=<?php echo $doctor['doctor_id']; ?>"
-                                                                    data-bs-toggle="tooltip" title="View Details"
-                                                                    class="btn btn-link btn-success"
-                                                                    data-original-title="View Details">
-                                                                    <i class="fa-solid fa-eye"></i>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                                    <a href="doctor_detail.php?doctor_id=<?php echo $doctor['doctor_id']; ?>"
+                                                                        data-bs-toggle="tooltip" title="View Details"
+                                                                        class="btn btn-link btn-success"
+                                                                        data-original-title="View Details">
+                                                                        <i class="fa-solid fa-eye"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                }
+                                                else{
+                                                    ?>
+                                                        <tr>
+                                                            <td colspan="7" class="text-center">No Doctor found.</td>
+                                                            
+                                                        </tr>
                                                     <?php
                                                 }
                                                 ?>

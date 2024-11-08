@@ -128,95 +128,101 @@
 
                                                 $clinic_result = mysqli_query($conn, $clinic_table);
 
-                                                while ($clinic = mysqli_fetch_array($clinic_result)) {
+                                                if (mysqli_num_rows($clinic_result) > 0) {
 
-                                                    $doctor_id = $clinic['doctor_id'];
-                                                    
-                                                    $doctor_query = "SELECT name FROM doctor WHERE doctor_id = $doctor_id";
-                                                    
-                                                    $doctor_result = mysqli_query($conn, $doctor_query);
-                                                    
-                                                    $doctor = mysqli_fetch_array($doctor_result);
-                                                    ?>
-                                                    <tr>
-                                                        
-                                                        <td><?php echo $clinic['name'] ?></td>
-                                                        <td><?php echo $doctor['name'] ?></td>
-                                                        <td><?php echo $clinic['address'] ?></td>
-                                                        <td><?php echo $clinic['phone'] ?></td>
-                                                        <td><?php
-                                                        if ($clinic['status'] == "Active") {
-                                                            echo "<span class='text-success'>Active</span>
-                                                     </td>";
-                                                        } else {
-                                                            echo "<span class='text-danger'>Inactive</span>
-                                                     </td>";
-                                                        }
+                                                    while ($clinic = mysqli_fetch_array($clinic_result)) {
 
+                                                        $doctor_id = $clinic['doctor_id'];
+
+                                                        $doctor_query = "SELECT name FROM doctor WHERE doctor_id = $doctor_id";
+
+                                                        $doctor_result = mysqli_query($conn, $doctor_query);
+
+                                                        $doctor = mysqli_fetch_array($doctor_result);
                                                         ?>
-                                                       <?php
-                                                        if ($clinic['approval'] == "Approved") {
-                                                            echo "<td class='text-success'>Approved</td>";
-                                                        } else if ($clinic['approval'] == "Pending") {
-                                                            echo "<td class='text-primary'>Pending</td>";
-                                                        } else if ($clinic['approval'] == "Rejected") {
-                                                            echo "<td class='text-danger'>Rejected</td>";
-                                                        } ?>
-                                                        <td>
-                                                            <div class="form-button-action">
-                                                                <a href="clinic_table.php?dlt_id=<?php echo $clinic['clinic_id'] ?>"
-                                                                    data-bs-toggle="tooltip" title="Remove"
-                                                                    class="btn btn-link btn-primary "
-                                                                    data-original-title="Remove" onclick="return remove()">
-                                                                    <i class="fa-solid fa-trash"></i>
-                                                                </a>
+                                                        <tr>
 
+                                                            <td><?php echo $clinic['name'] ?></td>
+                                                            <td><?php echo $doctor['name'] ?></td>
+                                                            <td><?php echo $clinic['address'] ?></td>
+                                                            <td><?php echo $clinic['phone'] ?></td>
+                                                            <td><?php
+                                                            if ($clinic['status'] == "Active") {
+                                                                echo "<span class='text-success'>Active</span>
+                                                     </td>";
+                                                            } else {
+                                                                echo "<span class='text-danger'>Inactive</span>
+                                                     </td>";
+                                                            }
+
+                                                            ?>
                                                                 <?php
+                                                                if ($clinic['approval'] == "Approved") {
+                                                                    echo "<td class='text-success'>Approved</td>";
+                                                                } else if ($clinic['approval'] == "Pending") {
+                                                                    echo "<td class='text-primary'>Pending</td>";
+                                                                } else if ($clinic['approval'] == "Rejected") {
+                                                                    echo "<td class='text-danger'>Rejected</td>";
+                                                                } ?>
+                                                            <td>
+                                                                <div class="form-button-action">
+                                                                    <a href="clinic_table.php?dlt_id=<?php echo $clinic['clinic_id'] ?>"
+                                                                        data-bs-toggle="tooltip" title="Remove"
+                                                                        class="btn btn-link btn-primary "
+                                                                        data-original-title="Remove" onclick="return remove()">
+                                                                        <i class="fa-solid fa-trash"></i>
+                                                                    </a>
 
-                                                                if ($clinic['approval'] == "Pending" || $clinic['approval'] == "Rejected") {
-                                                                    // echo "<span class='badge badge-danger'>$clinic[approval]</span>";
-                                                                } else {
+                                                                    <?php
 
-                                                                    if ($clinic['status'] == "Active") {
-                                                                        ?>
+                                                                    if ($clinic['approval'] == "Pending" || $clinic['approval'] == "Rejected") {
+                                                                        // echo "<span class='badge badge-danger'>$clinic[approval]</span>";
+                                                                    } else {
 
-
-                                                                        <a href="clinic_table.php?clinic_id=<?php echo $clinic['clinic_id'] ?>"
-                                                                            data-bs-toggle="tooltip" title="Inactive"
-                                                                            class="btn btn-link btn-danger"
-                                                                            onclick="return confirmDeactivation()"
-                                                                            data-original-title="Inactive">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
+                                                                        if ($clinic['status'] == "Active") {
+                                                                            ?>
 
 
-                                                                        <?php
-                                                                    } elseif ($clinic['status'] == "Inactive") {
-                                                                        ?>
+                                                                            <a href="clinic_table.php?clinic_id=<?php echo $clinic['clinic_id'] ?>"
+                                                                                data-bs-toggle="tooltip" title="Inactive"
+                                                                                class="btn btn-link btn-danger"
+                                                                                onclick="return confirmDeactivation()"
+                                                                                data-original-title="Inactive">
+                                                                                <i class="fa fa-times"></i>
+                                                                            </a>
 
-                                                                        <a href="clinic_table.php?clinic_id=<?php echo $clinic['clinic_id'] ?>"
-                                                                            data-bs-toggle="tooltip" title="Active"
-                                                                            class="btn btn-link btn-success"
-                                                                            onclick="return confirmactivation()"
-                                                                            data-original-title="Inactive">
-                                                                            <i class="fa-solid fa-check"></i>
-                                                                        </a>
 
-                                                                        <?php
+                                                                            <?php
+                                                                        } elseif ($clinic['status'] == "Inactive") {
+                                                                            ?>
+
+                                                                            <a href="clinic_table.php?clinic_id=<?php echo $clinic['clinic_id'] ?>"
+                                                                                data-bs-toggle="tooltip" title="Active"
+                                                                                class="btn btn-link btn-success"
+                                                                                onclick="return confirmactivation()"
+                                                                                data-original-title="Inactive">
+                                                                                <i class="fa-solid fa-check"></i>
+                                                                            </a>
+
+                                                                            <?php
+                                                                        }
                                                                     }
-                                                                }
-                                                                ?>
+                                                                    ?>
 
-                                                                <a href="clinic_detail.php?clinic_id=<?php echo $clinic['clinic_id']; ?>"
-                                                                    data-bs-toggle="tooltip" title="View Details"
-                                                                    class="btn btn-link btn-success"
-                                                                    data-original-title="View Details">
-                                                                    <i class="fa-solid fa-eye"></i>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
+                                                                    <a href="clinic_detail.php?clinic_id=<?php echo $clinic['clinic_id']; ?>"
+                                                                        data-bs-toggle="tooltip" title="View Details"
+                                                                        class="btn btn-link btn-success"
+                                                                        data-original-title="View Details">
+                                                                        <i class="fa-solid fa-eye"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                } else {
+                                                    echo "<tr><td colspan=7 class=text-center>No Clinic Found</td></tr>";
+
                                                 }
                                                 ?>
                                             </tbody>

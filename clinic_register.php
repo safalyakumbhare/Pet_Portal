@@ -62,7 +62,10 @@
                 $close_time = $_POST['closing_time'];
                 $open_day = $_POST['open_day'];
                 $close_day = $_POST['close_day'];
+                $photo = $_FILES['photo']['name'];
                 $fees = $_POST['fees'];
+
+                $folder = "assets/images/clinics/".basename($photo);
 
                 $sql = "SELECT * FROM clinic WHERE name = '$clinic_name';";
                 $result = mysqli_query($conn, $sql);
@@ -72,12 +75,18 @@
                     exit();
                 }
                 else{
-                    $sql = "INSERT INTO clinic (name,address,phone,doctor_id,open_time,close_time,open_days,close_days,fees,pet_type)
-                    VALUES ('$clinic_name','$clinic_address','$clinic_phone','$doctor_id','$open_time','$close_time','$open_day','$close_day','$fees','$pet_type');";
+                    $sql = "INSERT INTO clinic (name,address,phone,doctor_id,open_time,close_time,open_days,close_days,fees,pet_type,photo)
+                    VALUES ('$clinic_name','$clinic_address','$clinic_phone','$doctor_id','$open_time','$close_time','$open_day','$close_day','$fees','$pet_type','$photo');";
 
                     if (mysqli_query($conn, $sql)) {
+
+                        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $folder)) {
                         echo "<script>alert('Clinic Registered Successfully');
                         window.location.href='doctor-dashboard.php'</script>";
+                        } else {
+                            echo "<script>alert('Error Uploading Image');
+                            window.location.href='doctor-dashboard.php'</script>";
+                        }
                     } else {
                         echo "<script>alert('Failed to Register Clinic');</script>";
                     }
@@ -95,7 +104,7 @@
                                 <div class="card-title">Clinic Registration Form</div>
                             </div>
                             <div class="card-body">
-                                <form method="post" id="clinic">
+                                <form method="post" id="clinic" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -166,7 +175,14 @@
                                                     id="close_day">
                                             </div>
                                         </div>
+                                        
 
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="photo" class="form-label">Clinic Image :</label>
+                                                 <input type="file" class="form-control" name="photo" id="photo" required>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="fees" class="form-label">Fees : </label>

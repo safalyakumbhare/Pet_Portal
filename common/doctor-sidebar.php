@@ -60,8 +60,9 @@ if (!isset($_SESSION['logged_in'])) {
     $user_check = mysqli_query($conn, "SELECT * FROM users WHERE username = '$user';");
     $user_count = mysqli_num_rows($user_check);
     if ($user_count > 0) {
-        header('Location: /index.php');
-        exit;
+
+        echo "<script>alert('This is Doctors Page Press OK to login to your Page');
+        window.location.href='/index.php'</script>";
     }
 
     

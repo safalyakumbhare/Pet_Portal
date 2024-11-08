@@ -69,7 +69,7 @@
                     <div class="container">
                         <div class="page-inner">
                             <div class="page-header">
-                                <h3 class="fw-bold mb-3">Doctor Detail</h3>
+                                <h4 class="fw-bold mb-3">Doctor Detail</h4>
 
                             </div>
 
@@ -89,30 +89,30 @@
                                                 <div class="col-md-7 ">
                                                     <div class="row ">
                                                         <div class="col-md-5 m-md-2">
-                                                            <h3>Doctor Name :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['name'] ?></h4>
+                                                            <h4>Doctor Name :</h4>
+                                                            <h5  class="fw-light"><?php echo $doctor_row['name'] ?></h5 >
                                                         </div>
                                                         <div class="col-md-5 m-md-2">
-                                                            <h3 class="mt-1">Address :</h3>
+                                                            <h4 class="mt-1">Address :</h4>
 
-                                                            <h4 class="fw-light"><?php echo $doctor_row['address'] ?></h4>
+                                                            <h5  class="fw-light"><?php echo $doctor_row['address'] ?></h5 >
                                                         </div>
                                                         <div class="col-md-5 m-md-2">
-                                                            <h3 class="mt-1">Email :</h3>
+                                                            <h4 class="mt-1">Email :</h4>
 
-                                                            <h4 class="fw-light"><?php echo $doctor_row['email'] ?></h4>
+                                                            <h5  class="fw-light"><?php echo $doctor_row['email'] ?></h5 >
                                                         </div>
                                                         <div class="col-md-5 m-md-2">
-                                                            <h3 class="mt-1">Phone Number :</h3>
+                                                            <h4 class="mt-1">Phone Number :</h4>
 
-                                                            <h4 class="fw-light"><?php
+                                                            <h5  class="fw-light"><?php
                                                             echo $doctor_row['phone']
-                                                                ?></h4>
+                                                                ?></h5 >
                                                         </div>
                                                         <div class="col-md-5 m-md-2">
-                                                            <h3>Date of Birth :</h3>
-                                                            <h4 class="fw-light"><?php $date = date_create($doctor_row['dob']);
-                                                            echo date_format($date, "d-m-Y"); ?></h4>
+                                                            <h4>Date of Birth :</h4>
+                                                            <h5  class="fw-light"><?php $date = date_create($doctor_row['dob']);
+                                                            echo date_format($date, "d-m-Y"); ?></h5 >
                                                         </div>
 
 
@@ -133,12 +133,12 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h3>Status :</h3>
+                                                        <h4>Status :</h4>
                                                         <?php
                                                         if ($doctor_row['status'] == "Active") {
-                                                            echo "<h4 class='text-success'>Active</h4>";
+                                                            echo "<h5  class='text-success'>Active</h5 >";
                                                         } else {
-                                                            echo "<h4 class='text-danger'>Inactive</h4>";
+                                                            echo "<h5  class='text-danger'>Inactive</h5 >";
                                                         }
 
                                                         ?>
@@ -146,14 +146,14 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h3>Approval :</h3>
+                                                        <h4>Approval :</h4>
                                                         <?php
                                                         if ($doctor_row['approval'] == "Approved") {
-                                                            echo "<h4 class='text-success'>Approved</h4>";
+                                                            echo "<h5  class='text-success'>Approved</h5 >";
                                                         } else if ($doctor_row['approval'] == "Pending") {
-                                                            echo "<h4 class='text-primary'>Pending</h4>";
+                                                            echo "<h5  class='text-primary'>Pending</h5 >";
                                                         } else if ($doctor_row['approval'] == "Rejected") {
-                                                            echo "<h4 class='text-danger'>Rejected</h4>";
+                                                            echo "<h5  class='text-danger'>Rejected</h5 >";
                                                         }
 
                                                         ?>
@@ -162,17 +162,17 @@
 
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h3>Registration At :</h3>
-                                                        <h4 class="fw-light"><?php  $date = date_create($doctor_row['created_at']);
+                                                        <h4>Registration At :</h4>
+                                                        <h5  class="fw-light"><?php  $date = date_create($doctor_row['created_at']);
                                                         echo date_format($date, "d-m-Y");
                                                         echo "<br>";
-                                                        echo date_format($date,"h:m:s"); ?></h4>
+                                                        echo date_format($date,"h:m:s"); ?></h5 >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <h3>Updated At : </h3>
-                                                        <h4 class="fw-light"><?php
+                                                        <h4>Updated At : </h4>
+                                                        <h5  class="fw-light"><?php
                                                         
                                                         $date = date_create($doctor_row['updated_at']);
                                                         echo date_format($date, "d-m-Y");
@@ -180,7 +180,7 @@
                                                         echo date_format($date,"h:m:s");
                                                         // echo $doctor_row['updated_at'];
                                                         
-                                                        ?></h4>
+                                                        ?></h5 >
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,27 +197,27 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <h3>License Number :</h3>
-                                                        <h4 class="fw-light"><?php echo $doctor_row['license_no'] ?></h4>
+                                                        <h4>License Number :</h4>
+                                                        <h5  class="fw-light"><?php echo $doctor_row['license_no'] ?></h5 >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <h3>Specialization :</h3>
-                                                        <h4 class="fw-light"><?php echo $doctor_row['specialization'] ?></h4>
+                                                        <h4>Specialization :</h4>
+                                                        <h5  class="fw-light"><?php echo $doctor_row['specialization'] ?></h5 >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
 
                                                     <div class="form-group">
-                                                        <h3>Experience :</h3>
-                                                        <h4 class="fw-light"><?php echo $doctor_row['experience'] ?></h4>
+                                                        <h4>Experience :</h4>
+                                                        <h5  class="fw-light"><?php echo $doctor_row['experience'] ?></h5 >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <h3>Certifications and Qualifications :</h3>
-                                                        <h4 class="fw-light"><?php echo $doctor_row['certification'] ?></h4>
+                                                        <h4>Certifications and Qualifications :</h4>
+                                                        <h5  class="fw-light"><?php echo $doctor_row['certification'] ?></h5 >
                                                     </div>
                                                 </div>
                                             </div>
