@@ -60,12 +60,15 @@
                 $clinic_data = "SELECT * FROM clinic WHERE clinic_id='$clinic_id';";
                 $clinic_result = mysqli_query($conn, $clinic_data);
                 if (isset($_POST['submit'])) {
+
+                    $date = date_create($_POST['open_time']);
+                    $open_time = date_format($date, "H:i:s");
+                    $date = date_create($_POST['close_time']);
+                    $close_time = date_format($date, "H:i:s");
                     $clinic_name = $_POST['clinic_name'];
                     $address = $_POST['address'];
                     $phone = $_POST['phone'];
                     $email = $_POST['email'];
-                    $open_time = date_format($_POST['open_time'], 'H:i:s');
-                    $close_time = date_format($_POST['close_time'], 'H:i:s');
                     $open_day = $_POST['open_days'];
                     $close_day = $_POST['close_days'];
                     $pet_type = $_POST['pet_type'];
@@ -76,7 +79,8 @@
                     $clinic_update = "UPDATE clinic SET name='$clinic_name', address='$address', phone='$phone', email='$email', open_time='$open_time', close_time='$close_time', open_days='$open_day', close_days='$close_day', pet_type='$pet_type', fees='$fees', about_us='$about' , rating='$rating' WHERE clinic_id='$clinic_id';";
 
                     if (mysqli_query($conn, $clinic_update)) {
-                        echo "<script>alert('Clinic Updated Successfully');</script>";
+                        echo "<script>alert('Clinic Updated Successfully') 
+                        window.location.href='doctor-dashboard.php';</script>";
                     } else {
                         echo "<script>alert('Failed to Update Clinic Details');</script>";
                     }
@@ -216,26 +220,24 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="text-secondary">About Clinic :</label>
-                                                            <textarea name="about_clinic" id="about_clinic" class="form-control"
+                                                            <textarea name="about_us" id="about_us" class="form-control"
                                                                 rows="5"><?php echo $clinic_row['about_us'] ?></textarea>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-12 d-flex justify-content-center">
+                                                        <button type="submit" name="submit" class="btn btn-primary">Make
+                                                            Changes</button>
+                                                    </div>
 
                                                 </div>
+                                            </form>
+
                                         </div>
                                     </div>
 
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="col-md-12 d-flex justify-content-center">
-                                                <input type="submit" class="btn btn-primary" value="Make Changes" name="submit">
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
-                            </form>
 
                         </div>
 
