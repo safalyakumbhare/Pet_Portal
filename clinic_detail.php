@@ -73,7 +73,7 @@
                     <div class="container">
                         <div class="page-inner">
                             <div class="page-header">
-                                <h3 class="fw-bold mb-3">Clinic and Doctors Details</h3>
+                                <h5 class="fw-bold mb-3">Clinic and Doctors Details</h5>
 
                             </div>
 
@@ -91,36 +91,42 @@
                                 </div>
                                 <div class="col-md-12">
 
-                                    <div class="card">
+                                <div class="card">
                                         <div class="card-header rounded-top-3" style="background-color: lightgray;">
                                             <div class="card-title">Clinic Information</div>
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
+
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Clinic Name :</h3>
-                                                        <h4 class="fw-light"><?php echo $clinic_row['name'] ?></h4>
+                                                        <h5 class="text-secondary">Clinic Name :</h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['name'] ?></p>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Address :</h3>
-                                                        <h4 class="fw-light"><?php echo $clinic_row['address'] ?></h4>
+                                                        <h5 class="text-secondary">Address :</h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['address'] ?></p>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Phone Number :</h3>
-                                                        <h4 class="fw-light"><?php echo $clinic_row['phone'] ?></h4>
+                                                        <h5 class="text-secondary">Phone Number :</h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['phone'] ?></p>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Timing :</h3>
+                                                        <h5 class="text-secondary">Email Address :</h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['email'] ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5 class="text-secondary">Timing :</h5>
 
                                                         <?php
                                                         $date = date_create($clinic_row['open_time']);
@@ -129,37 +135,54 @@
                                                         $date = date_create($clinic_row['close_time']);
                                                         $close_time_12_hours = date_format($date, "h:i A");
 
-                                                        echo "<h4 class='fw-light'>$open_time_12_hours To $close_time_12_hours</h4>";
+                                                        echo "<p class='fw-light'>$open_time_12_hours To $close_time_12_hours</p>";
                                                         ?>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Days Open :</h3>
-                                                        <h4 class='fw-light'><?php echo $clinic_row['open_days'] ?></h4>
+                                                        <h5 class="text-secondary">Days Open :</h5>
+                                                        <p class='fw-light'><?php echo $clinic_row['open_days'] ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Days Close :</h3>
-                                                        <h4 class='fw-light'><?php echo $clinic_row['close_days'] ?></h4>
+                                                        <h5 class="text-secondary">Days Close :</h5>
+                                                        <p class='fw-light'><?php echo $clinic_row['close_days'] ?></p>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Types of Pets : </h3>
-                                                        <h4 class="fw-light"><?php echo $clinic_row['pet_type'] ?></h4>
+                                                        <h5 class="text-secondary">Types of Pets : </h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['pet_type'] ?></p>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h3>Fees :</h3>
-                                                        <h4 class="fw-light"><?php echo $clinic_row['fees'] ?></h4>
+                                                        <h5 class="text-secondary">Ratings :</h5>
+                                                        <p class="fw-light"><i class="fa-solid text-warning fa-star"></i>
+                                                            <?php echo $clinic_row['rating'] ?></p>
                                                     </div>
                                                 </div>
+                                                <div class="w-100"></div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5 class="text-secondary">Fees :</h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['fees'] ?></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5 class="text-secondary">About Clinic :</h5>
+                                                        <p class="fw-light"><?php echo $clinic_row['about_us'] ?></p>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -174,12 +197,12 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <h3>Clinic Status :</h3>
+                                                            <h5 class="text-secondary">Clinic Status :</h5>
                                                             <?php
                                                             if ($clinic_row['status'] == "Active") {
-                                                                echo "<h4 class='text-success'>Active</h4>";
+                                                                echo "<p class='text-success'>Active</p>";
                                                             } else {
-                                                                echo "<h4 class='text-danger'>Inactive</h4>";
+                                                                echo "<p class='text-danger'>Inactive</p>";
                                                             }
 
                                                             ?>
@@ -187,14 +210,14 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <h3>Clinic Approval :</h3>
+                                                            <h5 class="text-secondary">Clinic Approval :</h5>
                                                             <?php
                                                             if ($clinic_row['approval'] == "Approved") {
-                                                                echo "<h4 class='text-success'>Approved</h4>";
+                                                                echo "<p class='text-success'>Approved</p>";
                                                             } else if ($clinic_row['approval'] == "Pending") {
-                                                                echo "<h4 class='text-primary'>Pending</h4>";
+                                                                echo "<p class='text-warning'>Pending</p>";
                                                             } else if ($clinic_row['approval'] == "Rejected") {
-                                                                echo "<h4 class='text-danger'>Rejected</h4>";
+                                                                echo "<p class='text-danger'>Rejected</p>";
                                                             }
 
                                                             ?>
@@ -203,17 +226,17 @@
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <h3>Clinic Registered at :</h3>
-                                                            <h4 class="fw-light"><?php $date = date_create($clinic_row['created_at']);
+                                                            <h5 class="text-secondary">Clinic Registered at :</h5>
+                                                            <p class="fw-light"><?php $date = date_create($clinic_row['created_at']);
                                                             echo date_format($date, "d-m-Y");
                                                             echo "<br>";
-                                                            echo date_format($date, "h:m:s"); ?></h4>
+                                                            echo date_format($date, "h:m:s"); ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <h3>Clinic Updated at : </h3>
-                                                            <h4 class="fw-light"><?php
+                                                            <h5 class="text-secondary">Clinic Updated at : </h5>
+                                                            <p class="fw-light"><?php
 
                                                             $date = date_create($clinic_row['updated_at']);
                                                             echo date_format($date, "d-m-Y");
@@ -221,7 +244,7 @@
                                                             echo date_format($date, "h:m:s");
                                                             // echo $clinic_row['updated_at'];
                                                 
-                                                            ?></h4>
+                                                            ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,55 +262,55 @@
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h3>Doctor Name :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['name'] ?></h4>
+                                                            <h5 class="text-secondary">Doctor Name :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['name'] ?></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h3>Address : </h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['address'] ?></h4>
+                                                            <h5 class="text-secondary">Address : </h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['address'] ?></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h3>Phone Number :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['phone'] ?></h4>
+                                                            <h5 class="text-secondary">Phone Number :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['phone'] ?></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h3>Email Address :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['email'] ?></h4>
+                                                            <h5 class="text-secondary">Email Address :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['email'] ?></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h3>License Number :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['license_no'] ?></h4>
+                                                            <h5 class="text-secondary">License Number :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['license_no'] ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h3>Specialization :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['specialization'] ?></h4>
+                                                            <h5 class="text-secondary">Specialization :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['specialization'] ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
 
                                                         <div class="form-group">
-                                                            <h3>Experience :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['experience'] ?></h4>
+                                                            <h5 class="text-secondary">Experience :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['experience'] ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <h3>Certifications and Qualifications :</h3>
-                                                            <h4 class="fw-light"><?php echo $doctor_row['certification'] ?></h4>
+                                                            <h5 class="text-secondary">Certifications and Qualifications :</h5>
+                                                            <p class="fw-light"><?php echo $doctor_row['certification'] ?></p>
                                                         </div>
                                                     </div>
                                                 </div>

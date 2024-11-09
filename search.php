@@ -15,11 +15,9 @@ if (isset($_POST['input'])) {
             ?>
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
-                    <div class="card-header d-flex flex-column justify-content-center">
-                        <img src="assets/images/doctors/<?php echo $doctor_row['profile'] ?>"
-                            class="img-fluid rounded-circle w-50 align-self-center " alt="Clinic's Doctor Image">
-                        <h5 class="card-title text-center mt-2"><?php echo $doctor_row['name'] ?>
-                        </h5>
+                    <div class="card-header">
+                        <img src="assets/images/clinics/<?php echo $row['photo'] ?>" class="card-img-top"
+                            alt="Clinic's Doctor Image">
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title"><?php echo $row['name'] ?></h5>

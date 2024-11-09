@@ -69,16 +69,39 @@
                         <div class="page-header">
                             <h3 class="fw-bold mb-3">Clinic Profile</h3>
                         </div>
-                        <div class="card mb-4">
-                            
-                            <div class="card-body text-center">
-                                <img src="/assets/images/doctors/<?php echo $doctor['profile']?>" class="img-fluid rounded-circle mb-3 w-25" alt="Clinic Banner">
-                                <h2 class="card-title">Happy Paws Veterinary Clinic</h2>
-                                <p class="text-muted"><i class="fas fa-map-marker-alt"></i> 123 Pet Street, Petville</p>
-                                <p><i class="fas fa-star text-warning"></i> 4.5 (150 Reviews)</p>
-                                <button class="btn btn-primary">Contact Clinic</button>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h1 class="card-title">Clinic Information</h1>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <img src="/assets/images/clinics/<?php echo $clinic['photo'] ?>" class="img-fluid mb-3"
+                                            alt="Clinic Banner">
+                                        <h2 class="card-title"><?php echo $clinic['name'] ?></h2>
+                                        <p class="text-muted"><i class="fas fa-map-marker-alt"></i>
+                                            <?php echo $clinic['address'] ?></p>
+                                        <p><i class="fas fa-star text-warning"></i> <?php echo $clinic['rating'] ?></p>
+                                        <a href="callto:9766072987" class="btn btn-primary">Contact Clinic</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                <div class="card-header">
+                                        <h1 class="card-title">Contact Information</h1>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Phone:</strong> +91 <?php echo  $clinic['phone']?></p>
+                                        <p><strong>Email:</strong> </p>
+                                       
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                     <?php

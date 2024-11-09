@@ -62,101 +62,85 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row align-content-center">
-                                        <div class="form-group ms-5 col-md-3 align-content-center">
-                                            <h4>Search Clinic Location :</h4>
 
-                                        </div>
-                                        <div class="form-group col-md-4">
-
-                                            <nav
-                                                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <spam class="btn btn-search pe-1">
-                                                            <i class="fa fa-search search-icon"></i>
-                                                        </spam>
-                                                    </div>
-                                                    <input type="text" id="live-search" placeholder="Enter Your Location"
-                                                        class="form-control" />
-                                                </div>
-                                            </nav>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" id="live-search" placeholder="Enter Your Location"
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
-                        <h1 id="live-search-results" class="text-center"></h1>
-                        <div class="col-md-12" id="all-data">
-                            <div class="row ">
-                                <div class="card-group justify-content-around">
-                                    <?php
-                                    $sql = "SELECT * FROM clinic WHERE status= 'Active' AND approval = 'Approved';";
-                                    $result = mysqli_query($conn, $sql);
-                                    if (mysqli_num_rows($result) > 0) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            $doctor_id = $row['doctor_id'];
-                                            $doctor_data = "SELECT * FROM doctor WHERE doctor_id = $doctor_id;";
-                                            $doctor_result = mysqli_query($conn, $doctor_data);
-                                            $doctor_row = mysqli_fetch_assoc($doctor_result);
-                                            ?>
-                                            <div class="col-md-4 mb-4">
-                                                <div class="card shadow-sm">
-                                                    <div class="card-header d-flex flex-column justify-content-center">
-                                                        <img src="assets/images/doctors/<?php echo $doctor_row['profile'] ?>"
-                                                            class="img-fluid rounded-circle w-50 align-self-center "
-                                                            alt="Clinic's Doctor Image">
-                                                        <h5 class="card-title text-center mt-2"><?php echo $doctor_row['name'] ?>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="card-body ">
-                                                        <h5 class="card-title"><?php echo $row['name'] ?></h5>
-                                                        <p class="card-text"><i
-                                                                class="fas fa-map-marker-alt ms-1 me-2"></i><?php echo $row['address'] ?>
-                                                        </p>
-                                                        <p class="card-text"><b>Pets :
-                                                            </b><?php echo $doctor_row['specialization'] ?></p>
-                                                        <p class="card-text"><strong>Open : </strong><?php echo $row['open_days'] ?>
-                                                        </p>
-                                                        <p> <strong>Hours :</strong> <?php
-                                                        $date = date_create($row['open_time']);
-                                                        $open_time = date_format($date, "h:i A");
+                    <h1 id="live-search-results" class="text-center"></h1>
+                    <div class="col-md-12" id="all-data">
+                        <div class="row ">
+                            <div class="card-group justify-content-around">
+                                <?php
+                                $sql = "SELECT * FROM clinic WHERE status= 'Active' AND approval = 'Approved';";
+                                $result = mysqli_query($conn, $sql);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $doctor_id = $row['doctor_id'];
+                                        $doctor_data = "SELECT * FROM doctor WHERE doctor_id = $doctor_id;";
+                                        $doctor_result = mysqli_query($conn, $doctor_data);
+                                        $doctor_row = mysqli_fetch_assoc($doctor_result);
+                                        ?>
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header">
+                                                    <img src="assets/images/clinics/<?php echo $row['photo'] ?>"
+                                                        class="card-img-top" alt="Clinic's Doctor Image">
+                                                </div>
+                                                <div class="card-body ">
+                                                    <h5 class="card-title"><?php echo $row['name'] ?></h5>
+                                                    <p class="card-text"><i
+                                                            class="fas fa-map-marker-alt ms-1 me-2"></i><?php echo $row['address'] ?>
+                                                    </p>
+                                                    <p class="card-text"><b>Pets :
+                                                        </b><?php echo $doctor_row['specialization'] ?></p>
+                                                    <p class="card-text"><strong>Open : </strong><?php echo $row['open_days'] ?>
+                                                    </p>
+                                                    <p> <strong>Hours :</strong> <?php
+                                                    $date = date_create($row['open_time']);
+                                                    $open_time = date_format($date, "h:i A");
 
-                                                        $date = date_create($row['close_time']);
-                                                        $close_time = date_format($date, "h:i A");
+                                                    $date = date_create($row['close_time']);
+                                                    $close_time = date_format($date, "h:i A");
 
-                                                        echo "$open_time - $close_time"
-                                                            ?>
-                                                        </p>
-                                                        <p><b>Contact No. : </b><?php echo $row['phone'] ?></p>
-                                                        <a href="clinic_view_profile.php?clinic_id=<?php echo $row['clinic_id']; ?>" class="btn btn-primary btn-block">View Profile</a>
-                                                    </div>
+                                                    echo "$open_time - $close_time"
+                                                        ?>
+                                                    </p>
+                                                    <p><b>Contact No. : </b><?php echo $row['phone'] ?></p>
+                                                    <a href="clinic_view_profile.php?clinic_id=<?php echo $row['clinic_id']; ?>"
+                                                        class="btn btn-primary btn-block">View Profile</a>
                                                 </div>
                                             </div>
-                                            <?php
-                                        }
+                                        </div>
+                                        <?php
                                     }
-                                    ?>
-                                </div>
+                                }
+                                ?>
                             </div>
                         </div>
-                        <?php
+                    </div>
+                    <?php
         } else {
             echo "You are not authorized to view this page!";
         }
         ?>
 
-                </div>
             </div>
-
         </div>
-        <?php
-        include("common/footer.php");
 
-        ?>
+    </div>
+    <?php
+    include("common/footer.php");
+
+    ?>
     </div>
     <script src="assets/jquery/jquery-3.7.1.min.js"></script>
     <script src="/assets/js/search_clinic_js/script.js"></script>
-     

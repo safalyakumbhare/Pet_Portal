@@ -53,7 +53,7 @@
 
             $doctor_id = $row['doctor_id'];
 
-            if(isset($_POST['submit'])){
+            if (isset($_POST['submit'])) {
                 $clinic_name = $_POST['clinic_name'];
                 $clinic_address = $_POST['clinic_address'];
                 $clinic_phone = $_POST['clinic_phone'];
@@ -64,24 +64,25 @@
                 $close_day = $_POST['close_day'];
                 $photo = $_FILES['photo']['name'];
                 $fees = $_POST['fees'];
-
-                $folder = "assets/images/clinics/".basename($photo);
+                $email = $_POST['email'];
+                $rating = $_POST['rating'];
+                $about = $_POST['about'];
+                $folder = "assets/images/clinics/" . basename($photo);
 
                 $sql = "SELECT * FROM clinic WHERE name = '$clinic_name';";
                 $result = mysqli_query($conn, $sql);
 
-                if(mysqli_num_rows($result)){
+                if (mysqli_num_rows($result)) {
                     echo "<script>alert('Clinic Already Exists');</script>";
                     exit();
-                }
-                else{
-                    $sql = "INSERT INTO clinic (name,address,phone,doctor_id,open_time,close_time,open_days,close_days,fees,pet_type,photo)
-                    VALUES ('$clinic_name','$clinic_address','$clinic_phone','$doctor_id','$open_time','$close_time','$open_day','$close_day','$fees','$pet_type','$photo');";
+                } else {
+                    $sql = "INSERT INTO clinic (name,address,phone,doctor_id,open_time,close_time,open_days,close_days,fees,pet_type,photo,email,rating,about_us)
+                    VALUES ('$clinic_name','$clinic_address','$clinic_phone','$doctor_id','$open_time','$close_time','$open_day','$close_day','$fees','$pet_type','$photo','$email','$rating','$about');";
 
                     if (mysqli_query($conn, $sql)) {
 
                         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $folder)) {
-                        echo "<script>alert('Clinic Registered Successfully');
+                            echo "<script>alert('Clinic Registered Successfully');
                         window.location.href='doctor-dashboard.php'</script>";
                         } else {
                             echo "<script>alert('Error Uploading Image');
@@ -124,7 +125,12 @@
                                             </div>
 
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email" class="form-label">Email Address : </label>
+                                                <input type="email" class="form-control" name="email" id="email">
+                                            </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="clinic_phone" class="form-label">Clinic Phone :
@@ -142,7 +148,12 @@
                                                     placeholder="eg :- Dogs, Cats etc.." required>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="rate">Ratings : </label>
+                                                <input type="text" id="rating" placeholder="Enter your Rating stars and number of user rated eg : 3.3 (10)" name="rating" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="opening-time" class="form-label">Opening Time :</label>
@@ -175,12 +186,23 @@
                                                     id="close_day">
                                             </div>
                                         </div>
-                                        
+
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="photo" class="form-label">Clinic Image :</label>
-                                                 <input type="file" class="form-control" name="photo" id="photo" required>
+                                                <input type="file" class="form-control" name="photo" id="photo" required>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="about" class="form-label">About : </label>
+                                                <textarea class="form-control" placeholder="Enter your about"
+                                                    name="about" id="about" rows="3"></textarea>
+
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -211,7 +233,7 @@
         }
         ?>
 
-<script src="assets/jquery/jquery-3.7.1.min.js"></script>
-<script src="assets/jquery/jquery.validate.min.js"></script>
-<script src="assets/jquery/jquery-ui.min.js"></script>
-<script src="assets/js/clinic_registration_js/script.js"></script>
+        <script src="assets/jquery/jquery-3.7.1.min.js"></script>
+        <script src="assets/jquery/jquery.validate.min.js"></script>
+        <script src="assets/jquery/jquery-ui.min.js"></script>
+        <script src="assets/js/clinic_registration_js/script.js"></script>

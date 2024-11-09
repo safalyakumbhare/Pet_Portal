@@ -30,6 +30,14 @@ $(document).ready(function () {
             },
             fees: {
                 required: true
+            },
+            email:{
+                required: true,
+                email: true,
+                
+            },
+            rating:{
+                required: true,
             }
         },
         messages: {
