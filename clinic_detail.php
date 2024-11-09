@@ -81,17 +81,17 @@
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-header rounded-top-3" style="background-color: lightgray;">
-                                             <h1 class="card-title">Clinic Photo</h1>
+                                            <h1 class="card-title">Clinic Photo</h1>
                                         </div>
                                         <div class="card-body">
-                                             <img src="assets/images/clinics/<?php echo $clinic_row['photo']?>" alt="Clinic Photo"
-                                                 class="img-fluid" >
+                                            <img src="assets/images/clinics/<?php echo $clinic_row['photo'] ?>" alt="Clinic Photo"
+                                                class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
 
-                                <div class="card">
+                                    <div class="card">
                                         <div class="card-header rounded-top-3" style="background-color: lightgray;">
                                             <div class="card-title">Clinic Information</div>
                                         </div>

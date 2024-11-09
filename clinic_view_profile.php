@@ -39,6 +39,8 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="/assets/css/dashboard_css/demo.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -72,13 +74,18 @@
 
                         <div class="row">
                             <div class="col-md-12">
+
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <h1 class="card-title">Clinic Information</h1>
                                     </div>
                                     <div class="card-body text-center">
-                                        <img src="/assets/images/clinics/<?php echo $clinic['photo'] ?>" class="img-fluid mb-3"
-                                            alt="Clinic Banner">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <img src="assets/images/clinics/<?php echo $clinic['photo'] ?>"
+                                                    alt="Clinic Photo" class="img-fluid rounded-3">
+                                            </div>
+                                        </div>
                                         <h2 class="card-title"><?php echo $clinic['name'] ?></h2>
                                         <p class="text-muted"><i class="fas fa-map-marker-alt"></i>
                                             <?php echo $clinic['address'] ?></p>
@@ -90,13 +97,77 @@
 
                             <div class="col-md-12">
                                 <div class="card">
-                                <div class="card-header">
+                                    <div class="card-header">
                                         <h1 class="card-title">Contact Information</h1>
                                     </div>
                                     <div class="card-body">
-                                        <p><strong>Phone:</strong> +91 <?php echo  $clinic['phone']?></p>
-                                        <p><strong>Email:</strong> </p>
-                                       
+                                        <p><strong>Phone:</strong> +91 <?php echo $clinic['phone'] ?></p>
+                                        <p><strong>Email:</strong> <?php echo $clinic['email'] ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h1 class="card-title">About Clinic</h1>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <p><?php echo $clinic['about_us'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h1 class="card-title">Services Offered and Princing</h1>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class=""><?php echo $clinic['fees'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h1 class="card-title">Working Hours</h1>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Open Days : </strong><?php echo $clinic['open_days'] ?></p>
+                                        <p><strong>Hours : </strong> <?php
+                                        $date = date_create($clinic['open_time']);
+                                        $open_time_12_hours = date_format($date, "h:i A");
+
+                                        $date = date_create($clinic['close_time']);
+                                        $close_time_12_hours = date_format($date, "h:i A");
+
+                                        echo "$open_time_12_hours To $close_time_12_hours</p>";
+                                        ?></p>
+                                        <p><strong>Closed : </strong><?php echo $clinic['close_days'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h1 class="card-title">Doctors at the Clinic</h1>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="media mb-3">
+                                            <img src="/assets/images/doctors/<?php echo $doctor['profile'] ?>"
+                                                class="mr-3 rounded-circle" alt="Doctor 1" style="width: 60px;">
+                                            <div class="media-body">
+                                                <h5><?php echo $doctor['name'] ?></h5>
+                                                <p><?php echo $doctor['specialization'] ?> </p>
+                                                <p> <?php echo $doctor['experience'] ?></p>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -106,11 +177,8 @@
 
                     <?php
             } else {
-                ?>
-                    <div class="container">
-                        <h1>doctor Not Selected</h1>
-                    </div>
-                    <?php
+                echo "<script>alert('Clinic Not Selected');
+                window.location.href='search_clinic.php'</script>";
             }
             ?>
 
