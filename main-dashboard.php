@@ -203,7 +203,7 @@
                                                             <td class="text-end"> <?php echo $doctor_data['specialization']; ?></td>
                                                             <td class="text-center">
                                                                 <a
-                                                                    href="doctor_approval.php?doctor_id=<?php echo $doctor_data['doctor_id'] ?>"><i
+                                                                    href="doctor_detail.php?doctor_id=<?php echo $doctor_data['doctor_id'] ?>"><i
                                                                         class="fa-solid text-primary fa-eye"></i></a>
 
                                                             </td>

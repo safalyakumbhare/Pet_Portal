@@ -57,7 +57,7 @@
                 // $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE clinic_id = '$clinic_id'");
         
                 if ($sql && $dlt_pet) {
-                    echo "<script>alert('User Deleted');</script>";
+                    echo "<script>alert('Clinic Deleted');</script>";
                     echo "<script>window.location.href = 'clinic_table.php'</script>";
                 }
 
@@ -75,14 +75,27 @@
 
                 if ($status == 'Inactive') {
 
+                    $doctor_id = $check_row['doctor_id'];
+                    $check = mysqli_query($conn, "SELECT * FROM doctor WHERE doctor_id = '$doctor_id';");
+                    $check_result = mysqli_fetch_array($check);
 
-                    $sql = mysqli_query($conn, "UPDATE clinic SET status = 'Active' WHERE clinic_id = '$rid'");
-                    echo "<script>alert('User Activated');</script>";
-                    echo "<script>window.location.href = 'clinic_table.php'</script>";
+                    if ($check_result['status'] == 'Inactive') {
+
+                        echo "<script>alert('Doctor of this clinic is inactive. Please activate doctor first.');</script>";
+                        echo "<script>window.location.href = 'clinic_table.php'</script>";
+                    } else {
+                        $sql = mysqli_query($conn, "UPDATE clinic SET status = 'Active' WHERE clinic_id = '$rid'");
+                        echo "<script>alert('Clinic Activated');</script>";
+                        echo "<script>window.location.href = 'clinic_table.php'</script>";
+                    }
+
                 }
                 if ($status == 'Active') {
+
+
+
                     $sql = mysqli_query($conn, "UPDATE clinic SET status = 'Inactive' WHERE clinic_id = '$rid'");
-                    echo "<script>alert('User Deactivated');</script>";
+                    echo "<script>alert('Clinic Deactivated');</script>";
                     echo "<script>window.location.href = 'clinic_table.php'</script>";
                 }
             }
@@ -258,12 +271,12 @@
 
     <script>
         function confirmDeactivation() {
-            return confirm('Do you want to Deactivate this user?');
+            return confirm('Do you want to Deactivate this Clinic?');
         }
         function confirmactivation() {
-            return confirm('Do you want to activate this user?');
+            return confirm('Do you want to activate this Clinic?');
         }
         function remove() {
-            return confirm('Do you want to Remove this clinic?');
+            return confirm('Do you want to Remove this Clinic?');
         }
     </script>

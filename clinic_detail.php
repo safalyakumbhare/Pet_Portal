@@ -68,6 +68,7 @@
                     $doctor_data = "SELECT * FROM doctor WHERE doctor_id='$doctor_id';";
                     $doctor_result = mysqli_query($conn, $doctor_data);
                     $doctor_row = mysqli_fetch_assoc($doctor_result);
+
                     ?>
 
                     <div class="container">
@@ -168,14 +169,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-100"></div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">Fees :</h5>
                                                         <p class="fw-light"><?php echo $clinic_row['fees'] ?></p>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">About Clinic :</h5>
                                                         <p class="fw-light"><?php echo $clinic_row['about_us'] ?></p>
@@ -356,15 +357,18 @@
 
 
                 } else {
-                    ?>
-
-                        <div class="container">
-                            <h1 class="text-center">clinic already approved</h1>
-                        </div>
-
-                        <?php
+                    echo "<script>alert('Clinic Already Approved');
+                    window.location.href='clinic_table.php';</script>";
                 }
             }
+            else{
+                echo "<script>alert('Clinic not Selected');
+                window.location.href='clinic_table.php';</script>";
+            }
+        }
+        else{
+            echo "<script>alert('You Do not have right to view this page');
+            window.location.href='index.php';</script>";
         }
 
         ?>

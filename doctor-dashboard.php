@@ -126,7 +126,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a href="edit_clinic.php?edit_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                <a href="clinic_edit.php?edit_id=<?php echo $doctor_row['clinic_id']?>"
                                                                     class="btn btn-link btn-primary "
                                                                     data-original-title="Edit">
                                                                     <i class="fa fa-edit"></i>

@@ -57,7 +57,7 @@
                 // $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE doctor_id = '$doctor_id'");
         
                 if ($sql && $dlt_pet) {
-                    echo "<script>alert('User Deleted');</script>";
+                    echo "<script>alert('Doctor Deleted');</script>";
                     echo "<script>window.location.href = 'doctor_table.php'</script>";
                 }
 
@@ -276,10 +276,10 @@
 
     <script>
         function confirmDeactivation() {
-            return confirm('Do you want to Deactivate this user?');
+            return confirm('Do you want to Deactivate this Doctor?');
         }
         function confirmactivation() {
-            return confirm('Do you want to activate this user?');
+            return confirm('Do you want to activate this Doctor?');
         }
         function remove() {
             return confirm('Do you want to Remove this Doctor?');

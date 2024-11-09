@@ -151,7 +151,7 @@
                                                         if ($doctor_row['approval'] == "Approved") {
                                                             echo "<p  class='text-success'>Approved</p >";
                                                         } else if ($doctor_row['approval'] == "Pending") {
-                                                            echo "<p  class='text-primary'>Pending</p >";
+                                                            echo "<p  class='text-warning'>Pending</p >";
                                                         } else if ($doctor_row['approval'] == "Rejected") {
                                                             echo "<p  class='text-danger'>Rejected</p >";
                                                         }

@@ -65,7 +65,7 @@ if (!isset($_SESSION['logged_in'])) {
         window.location.href='/index.php'</script>";
     }
 
-    
+
     $sql = "SELECT * FROM doctor WHERE name = '$user';";
 
     $result = mysqli_query($conn, $sql);
@@ -101,27 +101,24 @@ if (!isset($_SESSION['logged_in'])) {
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
-                            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                            <a class="nav-link" href="main-dashboard.php">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
-                                <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="/clinic_register.php">
-                                            <span class="sub-item">Register Clinic</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="appointments.php">
-                                            <span class="sub-item">Appointments</span>
-                                        </a>
-                                    </li>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="pet_register.php">
+                                <i class="fa-solid fa-dog"></i>
+                                <p>Register Clinic</p>
+                            </a>
+                        </li>
 
-                                </ul>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="search_clinic.php">
+                                <i class="fa-solid fa-house-chimney-medical"></i>
+                                <p>Appointments</p>
+                            </a>
                         </li>
 
                     </ul>
