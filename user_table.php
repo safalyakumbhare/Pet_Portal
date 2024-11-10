@@ -56,11 +56,11 @@
                 $sql = mysqli_query($conn, "DELETE FROM users WHERE user_id = '$user_id'");
                 $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE user_id = '$user_id'");
 
-                if($sql && $dlt_pet){
+                if ($sql && $dlt_pet) {
                     echo "<script>alert('User Deleted');</script>";
                     echo "<script>window.location.href = 'user_table.php'</script>";
                 }
-               
+
             }
 
             if (isset($_GET['user_id'])) {
@@ -76,15 +76,27 @@
                 if ($status == 'Inactive') {
 
 
-                    $sql = mysqli_query($conn, "UPDATE users SET status = 'Active' WHERE user_id = '$rid'");
-                    
-                    echo "<script>alert('User Activated');</script>";
-                    echo "<script>window.location.href = 'user_table.php'</script>";
+                    $sql = mysqli_query($conn, "UPDATE users SET status = 'Active' WHERE user_id = '$rid';");
+                    $pet = mysqli_query($conn, "UPDATE pets SET status = 'Active' WHERE user_id = '$rid';");
+                    if ($sql && $pet) {
+                        echo "<script>alert('User Activated');</script>";
+                        echo "<script>window.location.href = 'user_table.php'</script>";
+                    } else {
+                        echo "<script>alert('Failed to Activate user');</script>";
+                        echo "<script>window.location.href = 'user_table.php'</script>";
+                    }
+
                 }
                 if ($status == 'Active') {
                     $sql = mysqli_query($conn, "UPDATE users SET status = 'Inactive' WHERE user_id = '$rid'");
-                    echo "<script>alert('User Deactivated');</script>";
-                    echo "<script>window.location.href = 'user_table.php'</script>";
+                    $pet = mysqli_query($conn, "UPDATE pets SET status = 'Inactive' WHERE user_id = '$rid'");
+                    if ($sql && $pet) {
+                        echo "<script>alert('User Deactivated');</script>";
+                        echo "<script>window.location.href = 'user_table.php'</script>";
+                    } else {
+                        echo "<script>alert('Failed to deactivate user');</script>";
+                        echo "<script>window.location.href = 'user_table.php'</script>";
+                    }
                 }
             }
 
@@ -157,8 +169,7 @@
                                                                 <a href="user_table.php?dlt_id=<?php echo $user['user_id'] ?>"
                                                                     data-bs-toggle="tooltip" title="Remove"
                                                                     class="btn btn-link btn-primary "
-                                                                    data-original-title="Remove"
-                                                                    onclick="return remove()">
+                                                                    data-original-title="Remove" onclick="return remove()">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
 
@@ -239,10 +250,10 @@
         function confirmDeactivation() {
             return confirm('Do you want to Deactivate this user?');
         }
-        function confirmactivation(){
+        function confirmactivation() {
             return confirm('Do you want to activate this user?');
         }
-        function remove(){
+        function remove() {
             return confirm('Do you want to Remove this user?');
         }
     </script>

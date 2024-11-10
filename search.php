@@ -19,7 +19,7 @@ if (isset($_POST['input'])) {
                         <img src="assets/images/clinics/<?php echo $row['photo'] ?>" class="card-img-top"
                             alt="Clinic's Doctor Image">
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body">
                         <h5 class="card-title"><?php echo $row['name'] ?></h5>
                         <p class="card-text"><i class="fas fa-map-marker-alt ms-1 me-2"></i><?php echo $row['address'] ?>
                         </p>
@@ -38,7 +38,8 @@ if (isset($_POST['input'])) {
                             ?>
                         </p>
                         <p><b>Contact No. : </b><?php echo $row['phone'] ?></p>
-                        <a href="#" class="btn btn-primary btn-block">View Profile</a>
+                        <a href="clinic_view_profile.php?clinic_id=<?php echo $row['clinic_id']; ?>"
+                        class="btn btn-primary btn-block">View Profile</a>
                     </div>
                 </div>
             </div>

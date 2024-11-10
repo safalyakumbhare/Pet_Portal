@@ -112,7 +112,7 @@
                                                     <td><?php echo $pet_row['gender'] ?></td>
                                                     <td>
                                                         <?php
-                                                        if ($pet_row['status'] == "active") {
+                                                        if ($pet_row['status'] == "Active") {
                                                             echo "<span class='text-success'>Active</span>
                                                          </td>";
                                                         } else {

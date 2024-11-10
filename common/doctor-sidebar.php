@@ -108,7 +108,7 @@ if (!isset($_SESSION['logged_in'])) {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="pet_register.php">
+                            <a class="nav-link" href="clinic_register.php">
                                 <i class="fa-solid fa-dog"></i>
                                 <p>Register Clinic</p>
                             </a>

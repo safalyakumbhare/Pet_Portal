@@ -86,7 +86,7 @@
                                                     alt="Clinic Photo" class="img-fluid rounded-3">
                                             </div>
                                         </div>
-                                        <h2 class="card-title"><?php echo $clinic['name'] ?></h2>
+                                        <h2 class="card-title mt-4"><?php echo $clinic['name'] ?></h2>
                                         <p class="text-muted"><i class="fas fa-map-marker-alt"></i>
                                             <?php echo $clinic['address'] ?></p>
                                         <p><i class="fas fa-star text-warning"></i> <?php echo $clinic['rating'] ?></p>
