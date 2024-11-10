@@ -125,7 +125,7 @@
                                         <h1 class="card-title">Services Offered and Princing</h1>
                                     </div>
                                     <div class="card-body">
-                                        <p class=""><?php echo $clinic['fees'] ?></p>
+                                        <textarea rows="7" class="form-control border-0"><?php echo $clinic['fees'] ?></textarea>
                                     </div>
                                 </div>
                             </div>

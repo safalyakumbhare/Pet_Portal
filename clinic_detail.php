@@ -172,7 +172,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">Fees :</h5>
-                                                        <p class="fw-light"><?php echo $clinic_row['fees'] ?></p>
+                                                       <textarea class="form-control border-0" rows="6"><?php echo $clinic_row['fees'] ?></textarea>
                                                     </div>
                                                 </div>
 

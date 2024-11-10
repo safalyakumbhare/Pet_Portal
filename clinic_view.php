@@ -170,14 +170,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-100"></div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">Fees :</h5>
-                                                        <p class="fw-light"><?php echo $clinic_row['fees'] ?></p>
+                                                        <textarea rows="7"
+                                                            class="form-control border-0"><?php echo $clinic_row['fees'] ?></textarea>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">About Clinic :</h5>
                                                         <p class="fw-light"><?php echo $clinic_row['about_us'] ?></p>

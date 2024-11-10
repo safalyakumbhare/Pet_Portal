@@ -74,13 +74,13 @@
                             <div class="col-md-12">
 
 
-                                <div class="row">
-                                    <div class="col-md-5 text-center">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-6 text-center">
                                         <div class="card">
 
                                             <div class="card-body">
                                                 <img src="assets/images/<?php echo $user_detail['profile']; ?>"
-                                                    style="height:155px; width:150px;" class=" rounded-circle"
+                                                    class="card-img-top" style="height: 230px;width: 200px;"
                                                     alt="no profile photo">
                                                 <h3 class="mt-md-4"><?php echo $user_detail['username']; ?></h3>
                                                 <p><?php if (isset($pet_detail['name'])) {
@@ -93,7 +93,7 @@
                                     </div>
 
 
-                                    <div class="col-md-7">
+                                    <div class="col-md-12">
 
                                         <div class="card">
                                             <div class="card-header">
@@ -101,11 +101,11 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Name :</h6>
                                                         <p><?php echo $user_detail['username']; ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Pet's Name :</h6>
                                                         <p> <?php if (isset($pet_detail['name'])) {
                                                             echo $pet_detail['name'];
@@ -113,20 +113,20 @@
                                                             echo "Pet not Registered";
                                                         } ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Email :</h6>
                                                         <p><?php echo $user_detail['email']; ?></p>
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Phone :</h6>
                                                         <p><?php echo $user_detail['phone']; ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Gender :</h6>
                                                         <p><?php echo $user_detail['gender']; ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Date of Birth :</h6>
                                                         <p>
                                                             <?php
@@ -136,30 +136,38 @@
 
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Address :</h6>
                                                         <p><?php echo $user_detail['address']; ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Account Created On :</h6>
                                                         <p><?php $date = date_create($user_detail['created_at']);
                                                         echo date_format($date, "d-m-Y"); ?></p>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <h6 class="text-secondary fw-bold">Status :</h6>
                                                         <p class="text-success"><?php echo $user_detail['status']; ?></p>
                                                     </div>
 
                                                     <div class="w-100"></div>
-                                                    <div class="col-md-6">
-                                                        <a href="user_profile_edit.php"
-                                                            class="btn btn-primary">Edit Profile</a>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-center">
+                                                        <a href="user_profile_edit.php" class="btn btn-primary">Edit Profile</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
