@@ -54,9 +54,9 @@
             if (isset($_GET['dlt_id'])) {
                 $doctor_id = $_GET['dlt_id'];
                 $sql = mysqli_query($conn, "DELETE FROM doctor WHERE doctor_id = '$doctor_id'");
-                // $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE doctor_id = '$doctor_id'");
+                $dlt_clinic = mysqli_query($conn, "DELETE FROM clinic WHERE doctor_id = '$doctor_id'");
         
-                if ($sql && $dlt_pet) {
+                if ($sql && $dlt_clinic) {
                     echo "<script>alert('Doctor Deleted');</script>";
                     echo "<script>window.location.href = 'doctor_table.php'</script>";
                 }

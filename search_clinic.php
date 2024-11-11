@@ -90,8 +90,8 @@
                                         $doctor_row = mysqli_fetch_assoc($doctor_result);
                                         ?>
                                         <div class="col-md-4 mb-4">
-                                            <div class="card shadow-sm">
-                                                <div class="card-header">
+                                            <div class="card h-100 shadow-sm">
+                                                <div class="card-header h-100">
                                                     <img src="assets/images/clinics/<?php echo $row['photo'] ?>"
                                                         class="card-img-top" alt="Clinic's Doctor Image">
                                                 </div>

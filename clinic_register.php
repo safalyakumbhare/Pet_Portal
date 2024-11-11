@@ -82,7 +82,7 @@
                     if (mysqli_query($conn, $sql)) {
 
                         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $folder)) {
-                            echo "<script>alert('Clinic Registered Successfully');
+                            echo "<script>alert('Clinic Approval Sent to Admin');
                         window.location.href='doctor-dashboard.php'</script>";
                         } else {
                             echo "<script>alert('Error Uploading Image');

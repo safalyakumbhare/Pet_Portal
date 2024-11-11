@@ -363,8 +363,8 @@
                                                 ?>
                                                 <div class="item-list">
                                                     <div class="avatar">
-                                                        <img src="assets/images/doctors/<?php echo $new_data['profile'] ?>" alt="..."
-                                                            class="avatar-img rounded-circle" />
+                                                        <img src="assets/images/doctors/<?php echo $new_data['profile'] ?>"
+                                                            alt="..." class="avatar-img rounded-circle" />
                                                     </div>
                                                     <div class="info-user ms-3">
                                                         <div class="username"><?php echo $new_data['name'] ?></div>

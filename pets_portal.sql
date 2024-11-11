@@ -116,3 +116,19 @@ INSERT INTO users (username, email, password, phone, address, gender, dob, role_
         status VARCHAR(10) NOT NULL DEFAULT 'Inactive',
         approval VARCHAR(10) DEFAULT 'Pending',
     );
+
+        CREATE TABLE appointment(
+            appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+            appointment_date DATE NOT NULL,
+            appointment_time TIME NOT NULL,
+            appointment_description TEXT NOT NULL,
+            doctor_id INT,
+            user_id INT,
+            clinic_id INT,
+            FOREIGN KEY (user_id) REFERENCES users (user_id)
+            FOREIGN KEY (doctor_id) REFERENCES doctor (doctor_id),
+            FOREIGN KEY (clinic_id) REFERENCES clinic (clinic_id),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            status VARCHAR(255) NOT NULL DEFAULT 'active',
+        );

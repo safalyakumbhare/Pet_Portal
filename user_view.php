@@ -80,7 +80,7 @@
 
                                             <div class="card-body">
                                                 <img src="assets/images/<?php echo $user_detail['profile']; ?>"
-                                                    class="card-img-top" style="height: 20px;width: 20px;"
+                                                    class="card-img-top rounded" style="height: 200px;width: 200px;"
                                                     alt="no profile photo">
                                                 <h3 class="mt-md-4"><?php echo $user_detail['username']; ?></h3>
                                                 <p><?php if (isset($pet_detail['name'])) {
