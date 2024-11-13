@@ -205,7 +205,7 @@
                                                 <?php
                                                     }
                                                 } else {
-                                                    echo "<td colspan=7>No Upcoming Appointments </td>";
+                                                    echo "<td colspan=8 class='text-center'>No  Appointments </td>";
                                                 }
                                                 ?>
                                             </tbody>

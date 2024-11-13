@@ -15,7 +15,9 @@
     <script src="/assets/js/dashboard_js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
-            google: { families: ["Public Sans:300,400,500,600,700"] },
+            google: {
+                families: ["Public Sans:300,400,500,600,700"]
+            },
             custom: {
                 families: [
                     "Font Awesome 5 Solid",
@@ -25,7 +27,7 @@
                 ],
                 urls: ["/assets/css/dashboard_css/fonts.min.css"],
             },
-            active: function () {
+            active: function() {
                 sessionStorage.fonts = true;
             },
         });
@@ -50,7 +52,7 @@
 
 
         if ($row['role_id'] == 3) {
-            ?>
+        ?>
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
@@ -62,7 +64,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="card-title">Your Clinic</h4>
+                                    <h4 class="card-title">Your Clinics</h4>
                                     <a href="clinic_register.php" class="btn btn-primary btn-round ms-auto">
                                         <i class="fa fa-plus"></i>
                                         Add Clinics
@@ -95,7 +97,7 @@
                                             if (mysqli_num_rows($doctor_result) > 0) {
 
                                                 while ($doctor_row = mysqli_fetch_assoc($doctor_result)) {
-                                                    ?>
+                                            ?>
                                                     <tr>
 
                                                         <td><?php echo $doctor_row['name'] ?></td>
@@ -126,12 +128,12 @@
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a href="clinic_edit.php?edit_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                <a href="clinic_edit.php?edit_id=<?php echo $doctor_row['clinic_id'] ?>"
                                                                     class="btn btn-link btn-primary "
                                                                     data-original-title="Edit">
                                                                     <i class="fa fa-edit"></i>
                                                                 </a>
-                                                                <a href="clinic_table.php?dlt_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                <a href="clinic_table.php?dlt_id=<?php echo $doctor_row['clinic_id'] ?>"
                                                                     data-bs-toggle="tooltip" title="Remove"
                                                                     class="btn btn-link btn-danger "
                                                                     data-original-title="Remove"
@@ -139,7 +141,7 @@
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
 
-                                                                <a href="clinic_view.php?clinic_id=<?php echo $doctor_row['clinic_id']?>"
+                                                                <a href="clinic_view.php?clinic_id=<?php echo $doctor_row['clinic_id'] ?>"
                                                                     data-bs-toggle="tooltip" title="View Details"
                                                                     class="btn btn-link btn-success "
                                                                     data-original-title="View Details">
@@ -148,14 +150,14 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <?php
+                                                <?php
                                                 }
                                             } else {
                                                 ?>
                                                 <tr>
                                                     <td colspan="6" class="text-center">No Clinic Registered</td>
                                                 </tr>
-                                                <?php
+                                            <?php
                                             }
                                             ?>
                                         </tbody>
@@ -169,10 +171,83 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="card-title">Upcoming Appointments</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Pet Name</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                $doctor_id = $row['doctor_id'];
+                                                $currentdate = date("Y-m-d");
+                                                $currenttime = date("H:i:s");
+
+                                                $appointment_table = "SELECT * FROM appointment WHERE doctor_id = $doctor_id AND appointment_date >= '$currentdate' AND appointment_time >= '$currenttime';";
+                                                
+                                                $appointment_result = mysqli_query($conn, $appointment_table);
+                                                
+                                                if (mysqli_num_rows($appointment_result) > 0) {
+                                                
+                                                    while($apt = mysqli_fetch_array($appointment_result))
+                                                    {
+                                                        
+                                                        $pet_id = $apt['pet_id'];
+                                                        $pet_query = "SELECT name FROM pet WHERE pet_id = $pet_id";
+                                                        
+                                                        $pet_result = mysqli_query($conn, $pet_query);
+                                                        $pet_data = mysqli_fetch_array($pet_result);
+                                                    }
+                                                    ?>
+
+                                                    <tr>
+                                                        
+                                                        <td><?php echo $apt['appointment_date']?></td>
+                                                        <td><?php echo $apt['appointment_time']?></td>
+                                                        <!-- <td><?php echo $apt['time']?></td> -->
+                                                        <td><?php echo $pet_data['name']?></td>
+                                                        <td><?php echo $apt['status']?></td>
+                                                        <td>
+                                                            <div class="form-button-action">
+                                                                <a href="appointment_view.php?apt_id=<?php echo $apt['appointment_id']?>"
+                                                                    class="btn btn-link btn-primary "
+                                                                    data-original-title="View">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+<?php
+
+                                                
+                                                }
+                                                else{
+                                                    echo "<td colspan=7 class=text-center>No Upcoming Appointments</td>";
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-            <?php
-        }
-        ?>
+                <?php
+            }
+                ?>
