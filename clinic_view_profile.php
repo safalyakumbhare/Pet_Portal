@@ -58,6 +58,7 @@
             if (isset($_GET['clinic_id'])) {
 
                 $clinic_id = $_GET['clinic_id'];
+
                 $sql = "SELECT * FROM clinic WHERE clinic_id = $clinic_id";
                 $result = mysqli_query($conn, $sql);
                 $clinic = mysqli_fetch_assoc($result);
@@ -67,25 +68,7 @@
                 $doctor_result = mysqli_query($conn, $doctor_sql);
                 $doctor = mysqli_fetch_assoc($doctor_result);
 
-                if (isset($_POST['submit'])) {
-                    $apt_date = $_POST['apt_date'];
-                    $apt_time = $_POST['apt_time'];
-                    $apt_description = $_POST['apt_description'];
-                    $user_id = $row['user_id'];
-                    $doctor_id = $doctor['doctor_id'];
-                    $clinic_id = $clinic['clinic_id'];
 
-                    $query = "INSERT INTO appointment (appointment_date, appointment_time, appointment_description, user_id, doctor_id, clinic_id) 
-                                VALUES ('$apt_date', '$apt_time', '$apt_description', $user_id, $doctor_id, $clinic_id)";
-
-                    $result = mysqli_query($conn, $query);
-
-                    if ($result) {
-                        echo '<script>alert("Appointment Booked Successfully!");</script>';
-                    } else {
-                        echo '<script>alert("Failed to Book Appointment!");</script>';
-                    }
-                }
         ?>
 
                 <div class="container">
@@ -108,7 +91,7 @@
                                                     alt="Clinic Photo" class="img-fluid rounded-3">
                                             </div>
                                         </div>
-                                        <h2 class="card-title "><?php echo $clinic['name'] ?></h2>
+                                        <h2 class="card-title mt-3"><?php echo $clinic['name'] ?></h2>
                                         <p class="text-muted"><i class="fas fa-map-marker-alt"></i>
                                             <?php echo $clinic['address'] ?></p>
                                         <p><i class="fas fa-star text-warning"></i> <?php echo $clinic['rating'] ?></p>
@@ -202,6 +185,41 @@
                                     </div>
 
                                     <div class="card-body">
+                                        <?php
+                                        if (isset($_POST['submit'])) {
+                                            $apt_date = $_POST['apt_date'];
+                                            $apt_time = $_POST['apt_time'];
+                                            $apt_description = $_POST['apt_description'];
+                                            $user_id = $row['user_id'];
+                                            $doctor_id = $doctor['doctor_id'];
+                                            $clinic_id = $clinic['clinic_id'];
+
+                                            $pet = mysqli_query($conn, "SELECT * FROM pets WHERE user_id = $user_id ");
+                                            $pet_data = mysqli_fetch_array($pet);
+
+                                            $pet_id = $pet_data['pet_id'];
+
+                                           
+                                            $check = mysqli_query($conn, "SELECT * FROM appointment WHERE appointment_date = '$apt_date' AND appointment_time = '$apt_time';");
+
+                                            if (mysqli_num_rows($check) > 0) {
+                                                echo '<script>alert("The Appointment is Already Booked Please Select Another Date and time");</script>';
+                                            } else {
+
+
+                                                $query = "INSERT INTO appointment (appointment_date, appointment_time, appointment_description, user_id, doctor_id, clinic_id,pet_id) 
+                                                            VALUES ('$apt_date', '$apt_time', '$apt_description', $user_id, $doctor_id, $clinic_id,$pet_id)";
+
+                                                $result = mysqli_query($conn, $query);
+
+                                                if ($result) {
+                                                    echo '<script>alert("Appointment Booked Successfully!");</script>';
+                                                } else {
+                                                    echo '<script>alert("Failed to Book Appointment!");</script>';
+                                                }
+                                            }
+                                        }
+                                        ?>
                                         <form method="post" id="apt_form">
                                             <div class="row">
                                                 <div class="col-md-6">

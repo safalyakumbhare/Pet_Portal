@@ -15,7 +15,9 @@
     <script src="/assets/js/dashboard_js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
-            google: { families: ["Public Sans:300,400,500,600,700"] },
+            google: {
+                families: ["Public Sans:300,400,500,600,700"]
+            },
             custom: {
                 families: [
                     "Font Awesome 5 Solid",
@@ -25,7 +27,7 @@
                 ],
                 urls: ["/assets/css/dashboard_css/fonts.min.css"],
             },
-            active: function () {
+            active: function() {
                 sessionStorage.fonts = true;
             },
         });
@@ -51,19 +53,23 @@
 
         if ($row['role_id'] == 2) {
 
-            ?>
+        ?>
 
             <div class="container">
                 <div class="page-inner">
 
 
-
                     <div class="row">
+                        <h1>Pets Clinic</h1>
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
 
                                     <div class="row">
+                                        <div class="col-md-2">
+                                            <p class="mt-2">Search Location :</p>
+                                        </div>
                                         <div class="col-md-4">
                                             <input type="text" id="live-search" placeholder="Enter Your Location"
                                                 class="form-control" />
@@ -88,7 +94,7 @@
                                         $doctor_data = "SELECT * FROM doctor WHERE doctor_id = $doctor_id;";
                                         $doctor_result = mysqli_query($conn, $doctor_data);
                                         $doctor_row = mysqli_fetch_assoc($doctor_result);
-                                        ?>
+                                ?>
                                         <div class="col-md-4 mb-4">
                                             <div class="card h-100 shadow-sm">
                                                 <div class="card-header h-100">
@@ -105,14 +111,14 @@
                                                     <p class="card-text"><strong>Open : </strong><?php echo $row['open_days'] ?>
                                                     </p>
                                                     <p> <strong>Hours :</strong> <?php
-                                                    $date = date_create($row['open_time']);
-                                                    $open_time = date_format($date, "h:i A");
+                                                                                    $date = date_create($row['open_time']);
+                                                                                    $open_time = date_format($date, "h:i A");
 
-                                                    $date = date_create($row['close_time']);
-                                                    $close_time = date_format($date, "h:i A");
+                                                                                    $date = date_create($row['close_time']);
+                                                                                    $close_time = date_format($date, "h:i A");
 
-                                                    echo "$open_time - $close_time"
-                                                        ?>
+                                                                                    echo "$open_time - $close_time"
+                                                                                    ?>
                                                     </p>
                                                     <p><b>Contact No. : </b><?php echo $row['phone'] ?></p>
                                                     <a href="clinic_view_profile.php?clinic_id=<?php echo $row['clinic_id']; ?>"
@@ -120,21 +126,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
                             </div>
                         </div>
                     </div>
-                    <?php
-        } else {
-            echo "You are not authorized to view this page!";
-        }
-        ?>
+                <?php
+            } else {
+                echo "You are not authorized to view this page!";
+            }
+                ?>
 
+                </div>
             </div>
-        </div>
 
     </div>
     <?php

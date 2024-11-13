@@ -7,10 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Fonts and icons -->
     <script src="/assets/js/dashboard_js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -109,8 +106,7 @@
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
-                        <h3 class="fw-bold mb-3">Pet Owners</h3>
-
+                        <h3 class="fw-bold mb-3">Pet Appointments</h3>
                     </div>
 
                     <div class="row">
@@ -125,12 +121,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>Pet's Owner Name</th>
-                                                    
+                                                    <th>Pet's Owner Phone Number</th>
                                                     <th>Appointment Date</th>
                                                     <th>Appointment Time</th>
                                                     <th>Clinic Name</th>
                                                     <th>Status</th>
-                                                    <th style="width: 10%; text-align:center;">Action</th>
+                                                    <th>Approval</th>
+                                                    <th style="text-align:center;">Action</th>
                                                 </tr>
                                             </thead>
 
@@ -144,11 +141,11 @@
                                                 if (mysqli_num_rows($user_result)) {
 
 
-                                                    while ($user = mysqli_fetch_array($user_result)) {
+                                                    while ($apt = mysqli_fetch_array($user_result)) {
 
-                                                        $user_id = $user['user_id'];
-                                                        $doctor_id = $user['doctor_id'];
-                                                        $clinic_id = $user['clinic_id'];
+                                                        $user_id = $apt['user_id'];
+                                                        $doctor_id = $apt['doctor_id'];
+                                                        $clinic_id = $apt['clinic_id'];
 
                                                         $user_result = mysqli_query($conn, "SELECT * FROM users WHERE user_id = $user_id");
                                                         $user_data = mysqli_fetch_assoc($user_result);
@@ -161,17 +158,21 @@
 
                                                 ?>
                                                         <tr>
-                                                            <!-- <td>
-                                                            <div class="avatar-xxl">
-                                                                <img src="assets/images/<?php echo $user['profile']; ?>"
-                                                                    class="avatar-img rounded-circle" alt="no image found">
-                                                            </div>
-                                                        </td> -->
-                                                            <td><?php echo $user_data['username'] ?></td>
-                                                            <td><?php echo $user['email'] ?></td>
-                                                            <td><?php echo $user['address'] ?></td>
+                                                            <td>
+                                                                <?php echo $user_data['username'] ?>
+                                                            </td>
+
+                                                            <td><?php echo $user_data['phone'] ?></td>
+
+                                                            <td><?php $date =  date_create($apt['appointment_date']);
+                                                                echo date_format($date, "d-m-Y") ?></td>
+                                                            <td><?php $time =  date_create($apt['appointment_time']);
+                                                                echo date_format($time, "h:i A") ?></td>
+
+                                                            <td><?php echo $clinic_data['name'] ?></td>
+
                                                             <td><?php
-                                                                if ($user['status'] == "Active") {
+                                                                if ($apt['status'] == "active") {
                                                                     echo "<span class='text-success'>Active</span>
                                                      </td>";
                                                                 } else {
@@ -180,58 +181,28 @@
                                                                 }
 
                                                                 ?>
+                                                          
                                                             <td>
-                                                                <div class="form-button-action">
-                                                                    <a href="doctor_appointments.php?dlt_id=<?php echo $user['user_id'] ?>"
-                                                                        data-bs-toggle="tooltip" title="Remove"
-                                                                        class="btn btn-link btn-primary "
-                                                                        data-original-title="Remove" onclick="return remove()">
-                                                                        <i class="fa-solid fa-trash"></i>
-                                                                    </a>
-
-                                                                    <?php
-                                                                    if ($user['status'] == "Active") {
-                                                                    ?>
-
-
-                                                                        <a href="doctor_appointments.php?user_id=<?php echo $user['user_id'] ?>"
-                                                                            data-bs-toggle="tooltip" title="Inactive"
-                                                                            class="btn btn-link btn-danger"
-                                                                            onclick="return confirmDeactivation()"
-                                                                            data-original-title="Inactive">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
-
-
-                                                                    <?php
-                                                                    } elseif ($user['status'] == "Inactive") {
-                                                                    ?>
-
-                                                                        <a href="doctor_appointments.php?user_id=<?php echo $user['user_id'] ?>"
-                                                                            data-bs-toggle="tooltip" title="Active"
-                                                                            class="btn btn-link btn-success"
-                                                                            onclick="return confirmactivation()"
-                                                                            data-original-title="Inactive">
-                                                                            <i class="fa-solid fa-check"></i>
-                                                                        </a>
-
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-
-                                                                    <a href="user_view.php?user_id=<?php echo $user['user_id']; ?>"
-                                                                        data-bs-toggle="tooltip" title="View Details"
-                                                                        class="btn btn-link btn-success"
-                                                                        data-original-title="View Details">
-                                                                        <i class="fa-solid fa-eye"></i>
-                                                                    </a>
-                                                                </div>
+                                                            <?php
+                                                            if ($apt['approval'] == "Pending") {
+                                                                echo "<span class='text-warning'>Pending</span>";
+                                                            } elseif ($apt['approval'] == "Approved") {
+                                                                echo "<span class='text-success'>Approved</span>";
+                                                            } elseif ($apt['approval'] == "Rejected") {
+                                                                echo "<span class='text-danger'>Rejected</span>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                      
+                                                            <td>
+                                                                <a href="doctor_appointments.php" class="p-1"><i class="fa-solid fa-user-check"></i></a>
+                                                                <a href="doctor_appointments.php?dlt_id=<?php echo $apt['user_id'] ?>" class="p-1"><i class="fa-solid fa-trash"></i></a>
                                                             </td>
                                                         </tr>
                                                 <?php
                                                     }
                                                 } else {
-                                                    echo "<td colspan> </td>";
+                                                    echo "<td colspan=7>No Upcoming Appointments </td>";
                                                 }
                                                 ?>
                                             </tbody>
