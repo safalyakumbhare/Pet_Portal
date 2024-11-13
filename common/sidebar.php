@@ -169,10 +169,6 @@ if (!isset($_SESSION['logged_in'])) {
                                         <li>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="user_profile.php">My Profile</a>
-                                            <a class="dropdown-item" href="#">My Balance</a>
-                                            <a class="dropdown-item" href="#">Inbox</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Account Setting</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="common/logout.php">Logout</a>
                                         </li>

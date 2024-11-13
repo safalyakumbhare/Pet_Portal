@@ -115,7 +115,7 @@ if (!isset($_SESSION['logged_in'])) {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="search_clinic.php">
+                            <a class="nav-link" href="doctor_appointments.php">
                                 <i class="fa-solid fa-house-chimney-medical"></i>
                                 <p>Appointments</p>
                             </a>

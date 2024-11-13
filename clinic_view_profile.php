@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Profile Edit</title>
+    <title>Pets Portal - Clinic Profile</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -15,7 +15,9 @@
     <script src="/assets/js/dashboard_js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
-            google: { families: ["Public Sans:300,400,500,600,700"] },
+            google: {
+                families: ["Public Sans:300,400,500,600,700"]
+            },
             custom: {
                 families: [
                     "Font Awesome 5 Solid",
@@ -25,7 +27,7 @@
                 ],
                 urls: ["/assets/css/dashboard_css/fonts.min.css"],
             },
-            active: function () {
+            active: function() {
                 sessionStorage.fonts = true;
             },
         });
@@ -49,7 +51,7 @@
 
         <!-- Including sidebar and navbar -->
         <?php
-        include("common/sidebar.php");
+        include "common/sidebar.php";
 
         if ($row['role_id'] == 2) {
 
@@ -64,7 +66,27 @@
                 $doctor_sql = "SELECT * FROM doctor WHERE doctor_id = $doctor_id";
                 $doctor_result = mysqli_query($conn, $doctor_sql);
                 $doctor = mysqli_fetch_assoc($doctor_result);
-                ?>
+
+                if (isset($_POST['submit'])) {
+                    $apt_date = $_POST['apt_date'];
+                    $apt_time = $_POST['apt_time'];
+                    $apt_description = $_POST['apt_description'];
+                    $user_id = $row['user_id'];
+                    $doctor_id = $doctor['doctor_id'];
+                    $clinic_id = $clinic['clinic_id'];
+
+                    $query = "INSERT INTO appointment (appointment_date, appointment_time, appointment_description, user_id, doctor_id, clinic_id) 
+                                VALUES ('$apt_date', '$apt_time', '$apt_description', $user_id, $doctor_id, $clinic_id)";
+
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result) {
+                        echo '<script>alert("Appointment Booked Successfully!");</script>';
+                    } else {
+                        echo '<script>alert("Failed to Book Appointment!");</script>';
+                    }
+                }
+        ?>
 
                 <div class="container">
                     <div class="page-inner">
@@ -86,7 +108,7 @@
                                                     alt="Clinic Photo" class="img-fluid rounded-3">
                                             </div>
                                         </div>
-                                        <h2 class="card-title mt-4"><?php echo $clinic['name'] ?></h2>
+                                        <h2 class="card-title "><?php echo $clinic['name'] ?></h2>
                                         <p class="text-muted"><i class="fas fa-map-marker-alt"></i>
                                             <?php echo $clinic['address'] ?></p>
                                         <p><i class="fas fa-star text-warning"></i> <?php echo $clinic['rating'] ?></p>
@@ -125,7 +147,8 @@
                                         <h1 class="card-title">Services Offered and Princing</h1>
                                     </div>
                                     <div class="card-body">
-                                        <textarea rows="7" class="form-control border-0"><?php echo $clinic['fees'] ?></textarea>
+                                        <textarea rows="7"
+                                            class="form-control border-0"><?php echo $clinic['fees'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -138,14 +161,14 @@
                                     <div class="card-body">
                                         <p><strong>Open Days : </strong><?php echo $clinic['open_days'] ?></p>
                                         <p><strong>Hours : </strong> <?php
-                                        $date = date_create($clinic['open_time']);
-                                        $open_time_12_hours = date_format($date, "h:i A");
+                                                                        $date = date_create($clinic['open_time']);
+                                                                        $open_time_12_hours = date_format($date, "h:i A");
 
-                                        $date = date_create($clinic['close_time']);
-                                        $close_time_12_hours = date_format($date, "h:i A");
+                                                                        $date = date_create($clinic['close_time']);
+                                                                        $close_time_12_hours = date_format($date, "h:i A");
 
-                                        echo "$open_time_12_hours To $close_time_12_hours</p>";
-                                        ?></p>
+                                                                        echo "$open_time_12_hours To $close_time_12_hours</p>";
+                                                                        ?></p>
                                         <p><strong>Closed : </strong><?php echo $clinic['close_days'] ?></p>
                                     </div>
                                 </div>
@@ -171,28 +194,92 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1 class="card-title">Book Appointment</h1>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form method="post" id="apt_form">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="apt_date">Appointment Date :</label>
+                                                        <input type="date" class="form-control" id="apt_date" name="apt_date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="apt_time">Appointment Time :</label>
+                                                        <input type="time" class="form-control" id="apt_time" name="apt_time">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="apt_description">Appointment Description :</label>
+                                                        <textarea class="form-control" id="apt_description"
+                                                            name="apt_description" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 d-flex justify-content-center">
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Book Appointment" name="submit"
+                                                            class="btn btn-primary btn-block ">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
 
-                    <?php
+                <?php
             } else {
                 echo "<script>alert('Clinic Not Selected');
                 window.location.href='search_clinic.php'</script>";
             }
-            ?>
+                ?>
 
-                <?php
+            <?php
         } else {
 
             echo "<script>alert('You are not authorized to this page.');
            window.location.href='index.php'</script>";
-
         }
-        ?>
-        </div>
-        <?php
-        include("common/footer.php");
+            ?>
+                </div>
+                <?php
+                include "common/footer.php";
 
-        ?>
+                ?>
     </div>
+
+
+    <script src="assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="assets/jquery/jquery.validate.min.js"></script>
+    <script src="assets/jquery/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#apt_form").validate({
+                rules: {
+                    apt_date: "required",
+                    apt_time: "required",
+                    apt_description: "required"
+                },
+                messages: {
+                    apt_date: "Please select appointment date",
+                    apt_time: "Please select appointment time",
+                    apt_description: "Please enter appointment description"
+                }
+            });
+        });
+    </script>
