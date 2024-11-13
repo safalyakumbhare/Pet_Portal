@@ -98,7 +98,7 @@ if (!isset($_SESSION['logged_in'])) {
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
-                            <a class="nav-link" href="main-dashboard.php">
+                            <a class="nav-link" href="doctor-dashboard.php">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -165,10 +165,10 @@ if (!isset($_SESSION['logged_in'])) {
                                         <li>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="doctor_profile.php">My Profile</a>
-                                            <a class="dropdown-item" href="#">My Balance</a>
+                                            <!-- <a class="dropdown-item" href="#">My Balance</a>
                                             <a class="dropdown-item" href="#">Inbox</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Account Setting</a>
+                                            <a class="dropdown-item" href="#">Account Setting</a> -->
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="common/logout.php">Logout</a>
                                         </li>

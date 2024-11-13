@@ -273,6 +273,10 @@
                 }
             }
         }
+        else{
+            echo "<script>alert('You are not a authorised to view this page');
+            window.location.href='index.php'</script>";
+        }
 
         ?>
 

@@ -121,7 +121,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Pet's Owner Name</th>
-                                                    <th>Pet's Owner Phone Number</th>
+                                                    <th>Pet Type</th>
                                                     <th>Appointment Date</th>
                                                     <th>Appointment Time</th>
                                                     <th>Clinic Name</th>
@@ -156,13 +156,16 @@
                                                         $doctor_result = mysqli_query($conn, "SELECT * FROM doctor WHERE doctor_id = $doctor_id ");
                                                         $doctor_data = mysqli_fetch_assoc($doctor_result);
 
+                                                        $pet_result = mysqli_query($conn, "SELECT * FROM pets WHERE user_id = $user_id");
+                                                        $pet_data = mysqli_fetch_assoc($pet_result);
+
                                                 ?>
                                                         <tr>
                                                             <td>
                                                                 <?php echo $user_data['username'] ?>
                                                             </td>
 
-                                                            <td><?php echo $user_data['phone'] ?></td>
+                                                            <td><?php echo $pet_data['type'] ?></td>
 
                                                             <td><?php $date =  date_create($apt['appointment_date']);
                                                                 echo date_format($date, "d-m-Y") ?></td>
@@ -195,8 +198,8 @@
                                                         </td>
                                                       
                                                             <td>
-                                                                <a href="doctor_appointments.php" class="p-1"><i class="fa-solid fa-user-check"></i></a>
-                                                                <a href="doctor_appointments.php?dlt_id=<?php echo $apt['user_id'] ?>" class="p-1"><i class="fa-solid fa-trash"></i></a>
+                                                                <a href="doctor_appointments.php?dlt_id=<?php echo $apt['user_id'] ?>" class="p-1" data-original-title="Remove" onclick="return remove()" data-bs-toggle="tooltip" title="Remove"><i class="fa-solid fa-trash text-danger" ></i></a>
+                                                                <a href="appointment_details.php?apt_id=<?php echo $apt['appointment_id']?>" data-bs-toggle="tooltip" title="View Appointment" class="p-1"><i class="fa-regular fa-eye"></i></a>
                                                             </td>
                                                         </tr>
                                                 <?php
@@ -238,14 +241,14 @@
 
     <script>
         function confirmDeactivation() {
-            return confirm('Do you want to Deactivate this user?');
+            return confirm('Do you want to Deactivate this Appointment?');
         }
 
         function confirmactivation() {
-            return confirm('Do you want to activate this user?');
+            return confirm('Do you want to activate this Appointment?');
         }
 
         function remove() {
-            return confirm('Do you want to Remove this user?');
+            return confirm('Do you want to Remove this Appointment?');
         }
     </script>
