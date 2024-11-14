@@ -81,6 +81,7 @@
                                                     <th>Appointment Time</th>
                                                     <th>Appointment Description</th>
                                                     <th>Approval</th>
+                                                    <th>Visit</th>
                                                 </tr>
                                             </thead>
 
@@ -135,6 +136,17 @@
                                                                 echo "<td class='text-success'>Approved</td>";
                                                             } elseif ($apt['approval'] == "Rejected") {
                                                                 echo "<td class='text-danger'>Rejected</td>";
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                            if ($apt['visit'] == "Pending") {
+                                                                echo "<td class='text-warning'>Pending</td>";
+                                                            } elseif ($apt['visit'] == "Booked") {
+                                                                echo "<td class='text-success'>Booked</td>";
+                                                            } elseif ($apt['visit'] == "Visited") {
+                                                                echo "<td class='text-primary'>Visited</td>";
+                                                            } elseif ($apt['visit'] == "Cancel") {
+                                                                echo "<td class='text-danger'>Cancelled</td>";
                                                             }
                                                             ?>
                                                         </td>

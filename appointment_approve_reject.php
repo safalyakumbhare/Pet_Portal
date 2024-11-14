@@ -1,10 +1,10 @@
-$apt_id<?php
+<?php
 include("common/connection.php");
 
 if (isset($_GET['approve_id'])) {
     // $approve_status = "1";
     $apt_id = $_GET['approve_id'];
-    $update_query = "UPDATE appointment SET approval = 'Approved', status = 'active' WHERE appointment_id=$apt_id;";
+    $update_query = "UPDATE appointment SET approval = 'Approved', status = 'active',visit = 'Booked' WHERE appointment_id=$apt_id;";
     $update_result = mysqli_query($conn, $update_query);
 
     if ($update_result) {
@@ -20,7 +20,7 @@ if (isset($_GET['approve_id'])) {
 if (isset($_GET['reject_id'])) {
     // $approve_status = "1";
     $apt_id = $_GET['reject_id'];
-    $update_query = "UPDATE appointment SET approval = 'Rejected' WHERE appointment_id=$apt_id;";
+    $update_query = "UPDATE appointment SET approval = 'Rejected' , visit = 'Cancel' WHERE appointment_id=$apt_id;";
     $update_result = mysqli_query($conn, $update_query);
 
     if ($update_result) {

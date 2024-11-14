@@ -53,49 +53,15 @@
             if (isset($_GET['dlt_id'])) {
                 $user_id = $_GET['dlt_id'];
                 $sql = mysqli_query($conn, "DELETE FROM appointment WHERE user_id = '$user_id'");
-                $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE user_id = '$user_id'");
+                // $dlt_pet = mysqli_query($conn, "DELETE FROM pets WHERE user_id = '$user_id'");
 
-                if ($sql && $dlt_pet) {
+                if ($sql) {
                     echo "<script>alert('User Deleted');</script>";
                     echo "<script>window.location.href = 'doctor_appointments.php'</script>";
                 }
             }
 
-            if (isset($_GET['user_id'])) {
-                $rid = intval($_GET['user_id']);
-
-                $check = "SELECT * FROM appointment WHERE user_id = $rid;";
-
-                $result = mysqli_query($conn, $check);
-                $check_row = mysqli_fetch_array($result);
-
-                $status = $check_row['status'];
-
-                if ($status == 'Inactive') {
-
-
-                    $sql = mysqli_query($conn, "UPDATE appointment SET status = 'Active' WHERE user_id = '$rid';");
-                    $pet = mysqli_query($conn, "UPDATE pets SET status = 'Active' WHERE user_id = '$rid';");
-                    if ($sql && $pet) {
-                        echo "<script>alert('User Activated');</script>";
-                        echo "<script>window.location.href = 'doctor_appointments.php'</script>";
-                    } else {
-                        echo "<script>alert('Failed to Activate user');</script>";
-                        echo "<script>window.location.href = 'doctor_appointments.php'</script>";
-                    }
-                }
-                if ($status == 'Active') {
-                    $sql = mysqli_query($conn, "UPDATE appointment SET status = 'Inactive' WHERE user_id = '$rid'");
-                    $pet = mysqli_query($conn, "UPDATE pets SET status = 'Inactive' WHERE user_id = '$rid'");
-                    if ($sql && $pet) {
-                        echo "<script>alert('User Deactivated');</script>";
-                        echo "<script>window.location.href = 'doctor_appointments.php'</script>";
-                    } else {
-                        echo "<script>alert('Failed to deactivate user');</script>";
-                        echo "<script>window.location.href = 'doctor_appointments.php'</script>";
-                    }
-                }
-            }
+           
 
 
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Clinic Detail</title>
+    <title>Pets Portal - Appointment Detail</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -102,7 +102,7 @@
                                             <h1 class="card-title">Patient Pet Photo</h1>
                                         </div>
                                         <div class="card-body">
-                                            <img src="assets/images/pets/<?php echo $pet_rows['image']; ?>" alt="Pet Photo"
+                                            <img src="/assets/images/pets/<?php echo $pet_row['image']?>" alt="Pet Photo"
                                                 class="img-fluid">
                                         </div>
                                     </div>
@@ -118,14 +118,20 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">Appointment Date :</h5>
-                                                        <p class="card-text"><?php echo $apt_row['appointment_date'] ?></p>
+                                                        <?php
+                                                        $date = date_create($apt_row['appointment_date']);
+                                                        echo date_format($date, "d-m-Y");
+                                                        ?>
                                                     </div>
 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5 class="text-secondary">Appointment Time :</h5>
-                                                        <p class="card-text"><?php echo $apt_row['appointment_time'] ?></p>
+                                                        <?php
+                                                        $appointment_time = date_create($apt_row['appointment_time']);
+                                                        echo date_format($appointment_time, "h:i A");
+                                                        ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

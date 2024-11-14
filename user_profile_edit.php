@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Pets Portal - Profile Edit</title>
+    <title>Pets Portal - User Profile Edit</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="/assets/images/kaiadmin/favicon.ico" type="image/x-icon" />
 

@@ -213,7 +213,8 @@
                                                 $result = mysqli_query($conn, $query);
 
                                                 if ($result) {
-                                                    echo '<script>alert("Appointment Booked Successfully!");</script>';
+                                                    echo '<script>alert("Appointment Booked Successfully!");
+                                                    window.location.href="user_appointment.php"</script>';
                                                 } else {
                                                     echo '<script>alert("Failed to Book Appointment!");</script>';
                                                 }
