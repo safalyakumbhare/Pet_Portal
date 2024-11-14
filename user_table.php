@@ -179,11 +179,11 @@
 
 
                                                                     <a href="user_table.php?user_id=<?php echo $user['user_id'] ?>"
-                                                                        data-bs-toggle="tooltip" title="Inactive"
+                                                                        data-bs-toggle="tooltip" title="Inactive User"
                                                                         class="btn btn-link btn-danger"
                                                                         onclick="return confirmDeactivation()"
                                                                         data-original-title="Inactive">
-                                                                        <i class="fa fa-times"></i>
+                                                                        <i class="fa-solid fa-user-xmark"></i>
                                                                     </a>
 
 
@@ -192,11 +192,11 @@
                                                                     ?>
 
                                                                     <a href="user_table.php?user_id=<?php echo $user['user_id'] ?>"
-                                                                        data-bs-toggle="tooltip" title="Active"
+                                                                        data-bs-toggle="tooltip" title="Active User"
                                                                         class="btn btn-link btn-success"
                                                                         onclick="return confirmactivation()"
                                                                         data-original-title="Inactive">
-                                                                        <i class="fa-solid fa-check"></i>
+                                                                        <i class="fa-solid fa-user-check"></i>
                                                                     </a>
 
                                                                     <?php
