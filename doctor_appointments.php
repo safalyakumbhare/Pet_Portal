@@ -50,6 +50,25 @@
         if ($row['role_id'] == 3) {
 
 
+
+
+            if(isset($_GET['visit_id'])){
+                $visit_id = $_GET['visit_id'];
+
+                $sql = "SELECT * FROM appointment WHERE appointment_id = $visit_id;";
+                
+                $result = mysqli_query($conn, $sql);
+                
+                $row = mysqli_fetch_assoc($result);
+
+                // if($row['visit'] == "Booked")
+                // {
+                //     $sql = "UPDATE appointment SET visit = 'Cancelled' WHERE appointment_id = $visit_id;";
+                //     $result = mysqli_query($conn, $sql);
+                // }
+                // elseif($_row['visit'] == "")
+            }
+
             if (isset($_GET['dlt_id'])) {
                 $user_id = $_GET['dlt_id'];
                 $sql = mysqli_query($conn, "DELETE FROM appointment WHERE user_id = '$user_id'");
@@ -61,7 +80,7 @@
                 }
             }
 
-           
+
 
 
 
@@ -150,22 +169,42 @@
                                                                 }
 
                                                                 ?>
-                                                          
+
                                                             <td>
-                                                            <?php
-                                                            if ($apt['approval'] == "Pending") {
-                                                                echo "<span class='text-warning'>Pending</span>";
-                                                            } elseif ($apt['approval'] == "Approved") {
-                                                                echo "<span class='text-success'>Approved</span>";
-                                                            } elseif ($apt['approval'] == "Rejected") {
-                                                                echo "<span class='text-danger'>Rejected</span>";
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                      
+                                                                <?php
+                                                                if ($apt['approval'] == "Pending") {
+                                                                    echo "<span class='text-warning'>Pending</span>";
+                                                                } elseif ($apt['approval'] == "Approved") {
+                                                                    echo "<span class='text-success'>Approved</span>";
+                                                                } elseif ($apt['approval'] == "Rejected") {
+                                                                    echo "<span class='text-danger'>Rejected</span>";
+                                                                }
+                                                                ?>
+                                                            </td>
+
                                                             <td>
-                                                                <a href="doctor_appointments.php?dlt_id=<?php echo $apt['user_id'] ?>" class="p-1" data-original-title="Remove" onclick="return remove()" data-bs-toggle="tooltip" title="Remove"><i class="fa-solid fa-trash text-danger" ></i></a>
-                                                                <a href="appointment_details.php?apt_id=<?php echo $apt['appointment_id']?>" data-bs-toggle="tooltip" title="View Appointment" class="p-1"><i class="fa-regular fa-eye"></i></a>
+                                                                <a href="doctor_appointments.php?dlt_id=<?php echo $apt['user_id'] ?>" class="p-1" data-original-title="Remove" onclick="return remove()" data-bs-toggle="tooltip" title="Remove"><i class="fa-solid fa-trash text-danger"></i></a>
+
+                                                                <a href="appointment_details.php?apt_id=<?php echo $apt['appointment_id'] ?>" data-bs-toggle="tooltip" title="View Appointment" class="p-1"><i class="fa-regular fa-eye"></i></a>
+
+                                                                <?php
+
+                                                                if ($apt['visit'] == 'Booked') {
+                                                                ?>
+
+                                                                    <a href="doctor_appointments.php?visit_id=<?php echo $apt['appointment_id'] ?>" class="p-1">
+                                                                        <i class="fa-solid fa-calendar-check text-success"></i>
+                                                                    </a>
+                                                                <?php
+                                                                } elseif ($apt['visit'] == 'Visited') {
+                                                                ?>
+                                                                    <a href="doctor_appointments.php?visit_id=<?php echo $apt['appointment_id'] ?>" class="p-1">
+                                                                        <i class="fa-solid fa-calendar-check text-success"></i>
+                                                                    </a>
+                                                                <?php
+                                                                }
+                                                                ?>
+
                                                             </td>
                                                         </tr>
                                                 <?php

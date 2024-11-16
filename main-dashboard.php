@@ -177,53 +177,126 @@
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <!-- Projects table -->
-                                        <table class="table align-items-center mb-0">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Doctor Name</th>
-                                                    <th scope="col" class="text-end">Address</th>
-                                                    <th scope="col" class="text-end">Specialization</th>
-                                                    <th scope="col" class="text-end">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <!-- Projects table -->
+                                            <table class="table align-items-center mb-0">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">Doctor Name</th>
+                                                        <th scope="col" class="text-end">Address</th>
+                                                        <th scope="col" class="text-end">Specialization</th>
+                                                        <th scope="col" class="text-end">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                <?php
-                                                $doctor = "SELECT * FROM doctor WHERE approval = 'Pending';";
-                                                $doctor_result = mysqli_query($conn, $doctor);
+                                                    <?php
+                                                    $doctor = "SELECT * FROM doctor WHERE approval = 'Pending';";
+                                                    $doctor_result = mysqli_query($conn, $doctor);
 
-                                                if (mysqli_num_rows($doctor_result)) {
-                                                    while ($doctor_data = mysqli_fetch_array($doctor_result)) {
-                                                ?>
+                                                    if (mysqli_num_rows($doctor_result)) {
+                                                        while ($doctor_data = mysqli_fetch_array($doctor_result)) {
+                                                    ?>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <?php echo $doctor_data['name']; ?>
+                                                                </th>
+                                                                <td class="text-end"> <?php echo $doctor_data['address']; ?></td>
+                                                                <td class="text-end"> <?php echo $doctor_data['specialization']; ?></td>
+                                                                <td class="text-center">
+                                                                    <a
+                                                                        href="doctor_detail.php?doctor_id=<?php echo $doctor_data['doctor_id'] ?>"><i
+                                                                            class="fa-solid text-primary fa-eye"></i></a>
+
+                                                                </td>
+                                                            </tr>
+                                                        <?php
+
+                                                        }
+                                                    } else {
+
+                                                        ?>
                                                         <tr>
-                                                            <th scope="row">
-                                                                <?php echo $doctor_data['name']; ?>
-                                                            </th>
-                                                            <td class="text-end"> <?php echo $doctor_data['address']; ?></td>
-                                                            <td class="text-end"> <?php echo $doctor_data['specialization']; ?></td>
-                                                            <td class="text-center">
-                                                                <a
-                                                                    href="doctor_detail.php?doctor_id=<?php echo $doctor_data['doctor_id'] ?>"><i
-                                                                        class="fa-solid text-primary fa-eye"></i></a>
-
-                                                            </td>
+                                                            <td colspan="4" class="text-center">No New Doctor Approvals</td>
                                                         </tr>
                                                     <?php
-
                                                     }
-                                                } else {
-
                                                     ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card card-round">
+                                    <div class="card-header">
+                                        <div class="card-head-row card-tools-still-right">
+                                            <div class="card-title">New Clinic Approvals</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <!-- Projects table -->
+                                            <table class="table align-items-center mb-0">
+                                                <thead class="thead-light">
                                                     <tr>
-                                                        <td colspan="4" class="text-center">No New Doctor Approvals</td>
+                                                        <th scope="col">Clinic Name</th>
+                                                        <th scope="col">Clinic Doctor</th>
+                                                        <th scope="col">Address</th>
+                                                        <th scope="col">Pets Type</th>
+                                                        <th scope="col">Action</th>
                                                     </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+
+                                                    <?php
+                                                    $clinic = "SELECT * FROM clinic WHERE approval = 'Pending';";
+                                                    $clinic_result = mysqli_query($conn, $clinic);
+
+
+                                                    if (mysqli_num_rows($clinic_result)) {
+                                                        while ($clinic_data = mysqli_fetch_array($clinic_result)) {
+                                                            $doctor_id = $clinic_data['doctor_id'];
+
+                                                            $doctor_data = "SELECT * FROM doctor WHERE doctor_id = $doctor_id;";
+
+                                                            $doctor_result = mysqli_query($conn, $doctor_data);
+
+                                                            $doctor_data = mysqli_fetch_assoc($doctor_result);
+                                                    ?>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <?php echo $clinic_data['name']; ?>
+                                                                </th>
+                                                                <td> <?php echo $doctor_data['name']; ?></td>
+                                                                <td> <?php echo $clinic_data['address']; ?></td>
+                                                                <td> <?php echo $clinic_data['pet_type']; ?></td>
+                                                                <td class="text-center">
+                                                                    <a
+                                                                        href="clinic_detail.php?clinic_id=<?php echo $clinic_data['clinic_id'] ?>"><i
+                                                                            class="fa-solid text-primary fa-eye"></i></a>
+
+                                                                </td>
+                                                            </tr>
+                                                        <?php
+
+                                                        }
+                                                    } else {
+
+                                                        ?>
+                                                        <tr>
+                                                            <td colspan="5" class="text-center">No New Clinic Approvals</td>
+                                                        </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -275,78 +348,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card card-round">
-                                <div class="card-header">
-                                    <div class="card-head-row card-tools-still-right">
-                                        <div class="card-title">New Clinic Approvals</div>
 
-                                    </div>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <!-- Projects table -->
-                                        <table class="table align-items-center mb-0">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Clinic Name</th>
-                                                    <th scope="col">Clinic Doctor</th>
-                                                    <th scope="col">Address</th>
-                                                    <th scope="col">Pets Type</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <?php
-                                                $clinic = "SELECT * FROM clinic WHERE approval = 'Pending';";
-                                                $clinic_result = mysqli_query($conn, $clinic);
-
-
-                                                if (mysqli_num_rows($clinic_result)) {
-                                                    while ($clinic_data = mysqli_fetch_array($clinic_result)) {
-                                                        $doctor_id = $clinic_data['doctor_id'];
-
-                                                        $doctor_data = "SELECT * FROM doctor WHERE doctor_id = $doctor_id;";
-
-                                                        $doctor_result = mysqli_query($conn, $doctor_data);
-
-                                                        $doctor_data = mysqli_fetch_assoc($doctor_result);
-                                                ?>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                <?php echo $clinic_data['name']; ?>
-                                                            </th>
-                                                            <td> <?php echo $doctor_data['name']; ?></td>
-                                                            <td> <?php echo $clinic_data['address']; ?></td>
-                                                            <td> <?php echo $clinic_data['pet_type']; ?></td>
-                                                            <td class="text-center">
-                                                                <a
-                                                                    href="clinic_detail.php?clinic_id=<?php echo $clinic_data['clinic_id'] ?>"><i
-                                                                        class="fa-solid text-primary fa-eye"></i></a>
-
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-
-                                                    }
-                                                } else {
-
-                                                    ?>
-                                                    <tr>
-                                                        <td colspan="5" class="text-center">No New Clinic Approvals</td>
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
                             <div class="card card-round">
                                 <div class="card-body">
                                     <div class="card-head-row card-tools-still-right">
@@ -394,6 +396,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
