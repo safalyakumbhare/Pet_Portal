@@ -1,6 +1,7 @@
 <?php
 
-    $conn = mysqli_connect("localhost","root","","pets");
+    $conn = mysqli_connect("localhost","root","","pets_portal");
+    
 
     if (!$conn) {
         die("Connection failed: ". mysqli_connect_error());

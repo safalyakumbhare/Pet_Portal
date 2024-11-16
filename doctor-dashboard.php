@@ -192,38 +192,37 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php 
-                                                $doctor_id = $row['doctor_id'];
-                                                $currentdate = date("Y-m-d");
-                                                $currenttime = date("H:i:s");
+                                            <?php
+                                            $doctor_id = $row['doctor_id'];
+                                            $currentdate = date("Y-m-d");
+                                            $currenttime = date("H:i:s");
 
-                                                $appointment_table = "SELECT * FROM appointment WHERE doctor_id = $doctor_id AND appointment_date >= '$currentdate' AND appointment_time >= '$currenttime';";
-                                                
-                                                $appointment_result = mysqli_query($conn, $appointment_table);
-                                                
-                                                if (mysqli_num_rows($appointment_result) > 0) {
-                                                
-                                                    while($apt = mysqli_fetch_array($appointment_result))
-                                                    {
-                                                        
-                                                        $pet_id = $apt['pet_id'];
-                                                        $pet_query = "SELECT name FROM pet WHERE pet_id = $pet_id";
-                                                        
-                                                        $pet_result = mysqli_query($conn, $pet_query);
-                                                        $pet_data = mysqli_fetch_array($pet_result);
-                                                    }
-                                                    ?>
+                                            $appointment_table = "SELECT * FROM appointment WHERE doctor_id = $doctor_id AND appointment_date >= '$currentdate' AND appointment_time >= '$currenttime';";
+
+                                            $appointment_result = mysqli_query($conn, $appointment_table);
+
+                                            if (mysqli_num_rows($appointment_result) > 0) {
+
+                                                while ($apt = mysqli_fetch_array($appointment_result)) {
+
+                                                    $pet_id = $apt['pet_id'];
+                                                    $pet_query = "SELECT name FROM pets WHERE pet_id = $pet_id";
+
+                                                    $pet_result = mysqli_query($conn, $pet_query);
+                                                    $pet_data = mysqli_fetch_array($pet_result);
+
+                                            ?>
 
                                                     <tr>
-                                                        
-                                                        <td><?php echo $apt['appointment_date']?></td>
-                                                        <td><?php echo $apt['appointment_time']?></td>
-                                                        <!-- <td><?php echo $apt['time']?></td> -->
-                                                        <td><?php echo $pet_data['name']?></td>
-                                                        <td><?php echo $apt['status']?></td>
+
+                                                        <td><?php echo $apt['appointment_date'] ?></td>
+                                                        <td><?php echo $apt['appointment_time'] ?></td>
+                                                        <!-- <td><?php echo $apt['time'] ?></td> -->
+                                                        <td><?php echo $pet_data['name'] ?></td>
+                                                        <td><?php echo $apt['status'] ?></td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a href="appointment_view.php?apt_id=<?php echo $apt['appointment_id']?>"
+                                                                <a href="appointment_details.php?apt_id=<?php echo $apt['appointment_id'] ?>"
                                                                     class="btn btn-link btn-primary "
                                                                     data-original-title="View">
                                                                     <i class="fa fa-eye"></i>
@@ -232,13 +231,12 @@
                                                         </td>
                                                     </tr>
 
-<?php
+                                            <?php
 
-                                                
                                                 }
-                                                else{
-                                                    echo "<td colspan=7 class=text-center>No Upcoming Appointments</td>";
-                                                }
+                                            } else {
+                                                echo "<td colspan=7 class=text-center>No Upcoming Appointments</td>";
+                                            }
                                             ?>
                                         </tbody>
                                     </table>

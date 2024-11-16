@@ -9,7 +9,7 @@ USE pets;
 CREATE TABLE roles (
     role_id INT AUTO_INCREMENT PRIMARY KEY,
     role VARCHAR(255) NOT NULL UNIQUE,
-    status VARCHAR(255) NOT NULL DEFAULT 'active',
+    status VARCHAR(255) NOT NULL DEFAULT 'Active',
 );
 
 INSERT INTO roles (role) VALUES
@@ -84,20 +84,6 @@ INSERT INTO users (username, email, password, phone, address, gender, dob, role_
         approval VARCHAR(10) DEFAULT 'Pending', 
     );
 
-    CREATE TABLE appointment (
-        appointment_id INT PRIMARY KEY AUTO_INCREMENT,
-        user_id INT,
-        doctor_id INT,
-        pet_id INT,
-        appointment_date DATE NOT NULL,
-        appointment_time TIME NOT NULL,
-        status VARCHAR(255) NOT NULL DEFAULT 'active',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id),
-        FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id),
-        FOREIGN KEY (pet_id) REFERENCES pets(pet_id)
-    );
 
     CREATE TABLE clinic (
         clinic_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -132,3 +118,18 @@ INSERT INTO users (username, email, password, phone, address, gender, dob, role_
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             status VARCHAR(255) NOT NULL DEFAULT 'active',
         );
+CREATE TABLE appointment(
+    appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_date DATE NOT NULL,
+    appointment_time TIME NOT NULL,
+    appointment_description TEXT NOT NULL,
+    doctor_id INT,
+    user_id INT,
+    clinic_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (user_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctor (doctor_id),
+    FOREIGN KEY (clinic_id) REFERENCES clinic (clinic_id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status VARCHAR(255) NOT NULL DEFAULT 'active'
+);

@@ -15,7 +15,9 @@
     <script src="/assets/js/dashboard_js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
-            google: { families: ["Public Sans:300,400,500,600,700"] },
+            google: {
+                families: ["Public Sans:300,400,500,600,700"]
+            },
             custom: {
                 families: [
                     "Font Awesome 5 Solid",
@@ -25,7 +27,7 @@
                 ],
                 urls: ["/assets/css/dashboard_css/fonts.min.css"],
             },
-            active: function () {
+            active: function() {
                 sessionStorage.fonts = true;
             },
         });
@@ -71,7 +73,7 @@
 
 
 
-            ?>
+        ?>
             <div class="container">
                 <div class="page-inner">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
@@ -194,7 +196,7 @@
 
                                                 if (mysqli_num_rows($doctor_result)) {
                                                     while ($doctor_data = mysqli_fetch_array($doctor_result)) {
-                                                        ?>
+                                                ?>
                                                         <tr>
                                                             <th scope="row">
                                                                 <?php echo $doctor_data['name']; ?>
@@ -208,7 +210,7 @@
 
                                                             </td>
                                                         </tr>
-                                                        <?php
+                                                    <?php
 
                                                     }
                                                 } else {
@@ -217,7 +219,7 @@
                                                     <tr>
                                                         <td colspan="4" class="text-center">No New Doctor Approvals</td>
                                                     </tr>
-                                                    <?php
+                                                <?php
                                                 }
                                                 ?>
                                             </tbody>
@@ -242,7 +244,7 @@
 
                                         if (mysqli_num_rows($new_result)) {
                                             while ($new_data = mysqli_fetch_array($new_result)) {
-                                                ?>
+                                        ?>
                                                 <div class="item-list">
                                                     <div class="avatar">
                                                         <img src="assets/images/<?php echo $new_data['profile'] ?>" alt="..."
@@ -258,7 +260,7 @@
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>
                                                 </div>
-                                                <?php
+                                            <?php
 
                                             }
                                         } else {
@@ -267,7 +269,7 @@
                                             <div class="item-list justify-content-center">
                                                 <p>No New User Found</p>
                                             </div>
-                                            <?php
+                                        <?php
                                         }
                                         ?>
                                     </div>
@@ -311,7 +313,7 @@
                                                         $doctor_result = mysqli_query($conn, $doctor_data);
 
                                                         $doctor_data = mysqli_fetch_assoc($doctor_result);
-                                                        ?>
+                                                ?>
                                                         <tr>
                                                             <th scope="row">
                                                                 <?php echo $clinic_data['name']; ?>
@@ -326,7 +328,7 @@
 
                                                             </td>
                                                         </tr>
-                                                        <?php
+                                                    <?php
 
                                                     }
                                                 } else {
@@ -335,7 +337,7 @@
                                                     <tr>
                                                         <td colspan="5" class="text-center">No New Clinic Approvals</td>
                                                     </tr>
-                                                    <?php
+                                                <?php
                                                 }
                                                 ?>
                                             </tbody>
@@ -360,7 +362,7 @@
 
                                         if (mysqli_num_rows($new_result)) {
                                             while ($new_data = mysqli_fetch_array($new_result)) {
-                                                ?>
+                                        ?>
                                                 <div class="item-list">
                                                     <div class="avatar">
                                                         <img src="assets/images/doctors/<?php echo $new_data['profile'] ?>"
@@ -376,7 +378,7 @@
                                                         <i class="fa-solid fa-eye"></i>
                                                     </a>
                                                 </div>
-                                                <?php
+                                            <?php
 
                                             }
                                         } else {
@@ -385,7 +387,7 @@
                                             <div class="item-list justify-content-center">
                                                 <p>No New User Found</p>
                                             </div>
-                                            <?php
+                                        <?php
                                         }
                                         ?>
                                     </div>
@@ -395,12 +397,12 @@
                     </div>
                 </div>
             </div>
-            <?php
+        <?php
         } elseif ($row['role_id'] == 2) {
 
 
 
-            ?>
+        ?>
 
             <div class="container">
                 <div class="page-inner">
@@ -445,7 +447,7 @@
                                             if (mysqli_num_rows($pet_result) > 0) {
 
                                                 while ($pet_row = mysqli_fetch_assoc($pet_result)) {
-                                                    ?>
+                                            ?>
                                                     <tr>
                                                         <td>
                                                             <div class="avatar-xxl">
@@ -476,14 +478,14 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <?php
+                                                <?php
                                                 }
                                             } else {
                                                 ?>
                                                 <tr>
                                                     <td colspan="5" class="text-center">No Pet Found</td>
                                                 </tr>
-                                                <?php
+                                            <?php
                                             }
                                             ?>
                                         </tbody>
@@ -515,11 +517,115 @@
                             </div>
                         </div>
                     </div>
+                    <h3 class="fw-bold mb-3">Your Pet Appointments</h3>
+
+                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="card-body">
+
+
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Clinic Name</th>
+                                                <th>Clinic Location</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Appointment Description</th>
+                                                <th>Approval</th>
+                                                <th>Visit</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <?php
+                                            $user_id = $row['user_id'];
+                                            $user_table = "SELECT * FROM appointment WHERE user_id = $user_id ";
+
+                                            $user_result = mysqli_query($conn, $user_table);
+
+                                            if (mysqli_num_rows($user_result)) {
+
+
+                                                while ($apt = mysqli_fetch_array($user_result)) {
+
+                                                    $user_id = $apt['user_id'];
+                                                    $doctor_id = $apt['doctor_id'];
+                                                    $clinic_id = $apt['clinic_id'];
+
+                                                    $user_result = mysqli_query($conn, "SELECT * FROM users WHERE user_id = $user_id");
+                                                    $user_data = mysqli_fetch_assoc($user_result);
+
+                                                    $clinic_result = mysqli_query($conn, "SELECT * FROM clinic WHERE clinic_id = $clinic_id;");
+                                                    $clinic_data = mysqli_fetch_assoc($clinic_result);
+
+                                                    $doctor_result = mysqli_query($conn, "SELECT * FROM doctor WHERE doctor_id = $doctor_id ");
+                                                    $doctor_data = mysqli_fetch_assoc($doctor_result);
+
+                                                    $pet_result = mysqli_query($conn, "SELECT * FROM pets WHERE user_id = $user_id");
+                                                    $pet_data = mysqli_fetch_assoc($pet_result);
+
+                                            ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $clinic_data['name'] ?>
+                                                        </td>
+
+                                                        <td><?php echo $clinic_data['address'] ?></td>
+
+                                                        <td><?php $date =  date_create($apt['appointment_date']);
+                                                            echo date_format($date, "d-m-Y") ?></td>
+                                                        <td><?php $time =  date_create($apt['appointment_time']);
+                                                            echo date_format($time, "h:i A") ?></td>
+
+                                                        <td><?php echo $apt['appointment_description'] ?></td>
+
+
+                                                        <?php
+                                                        if ($apt['approval'] == "Pending") {
+                                                            echo "<td class='text-warning'>Pending</td>";
+                                                        } elseif ($apt['approval'] == "Approved") {
+                                                            echo "<td class='text-success'>Approved</td>";
+                                                        } elseif ($apt['approval'] == "Rejected") {
+                                                            echo "<td class='text-danger'>Rejected</td>";
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if ($apt['visit'] == "Pending") {
+                                                            echo "<td class='text-warning'>Pending</td>";
+                                                        } elseif ($apt['visit'] == "Booked") {
+                                                            echo "<td class='text-success'>Booked</td>";
+                                                        } elseif ($apt['visit'] == "Visited") {
+                                                            echo "<td class='text-primary'>Visited</td>";
+                                                        } elseif ($apt['visit'] == "Cancel") {
+                                                            echo "<td class='text-danger'>Cancelled</td>";
+                                                        }
+                                                        ?>
+                                                        </td>
+
+
+                                                    </tr>
+                                            <?php
+                                                }
+                                            } else {
+                                                echo "<td colspan=7 class='text-center'>No  Appointments </td>";
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <?php
+        <?php
 
+        } else {
+            echo "<script>alert('Go back');</script>";
         }
         ?>
         <?php

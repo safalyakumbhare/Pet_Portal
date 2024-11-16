@@ -156,7 +156,7 @@
                                                 <?php
                                                     }
                                                 } else {
-                                                    echo "<td colspan=6 class='text-center'>No  Appointments </td>";
+                                                    echo "<td colspan=7 class='text-center'>No  Appointments </td>";
                                                 }
                                                 ?>
                                             </tbody>
