@@ -36,4 +36,4 @@ Welcome to the **Pet Portal**, a comprehensive web application designed for pet 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/pet-portal.git
+   git clone https://github.com/safalyakumbhare/Pet_Portal.git
