@@ -1,48 +1,49 @@
 <?php
 include("common/connection.php");
 if (isset($_POST['submit'])) {
-  $fname = $_POST['fname'];
-  $email = $_POST['email'];
-  $address = $_POST['address'];
-  $phone = $_POST['phone'];
-  $dob = $_POST['dob'];
-  $gender = $_POST['gender'];
-  $profile = $_FILES['profile']["name"];
-  $license = $_POST["license"];
-  $specialization = $_POST["specialization"];
-  $certification = $_POST["certification"];
-  $experience = $_POST["experience"];
-  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-  $confirm_password = $_POST['confirm_password'];
+  echo "<script>alert('Submit');</script>";
+  // $fname = $_POST['fname'];
+  // $email = $_POST['email'];
+  // $address = $_POST['address'];
+  // $phone = $_POST['phone'];
+  // $dob = $_POST['dob'];
+  // $gender = $_POST['gender'];
+  // $profile = $_FILES['profile']["name"];
+  // $license = $_POST["license"];
+  // $specialization = $_POST["specialization"];
+  // $certification = $_POST["certification"];
+  // $experience = $_POST["experience"];
+  // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+  // $confirm_password = $_POST['confirm_password'];
 
-  $folder = "assets/images/doctors/" . basename($profile);
+  // $folder = "assets/images/doctors/" . basename($profile);
 
-  if ($_POST['password'] !== $confirm_password) {
-    echo "<script>alert('Confirm Password do not match');
-    window.location.href='doctor_registration.php';</script>";
-  } else {
-    $check = "SELECT * FROM doctor WHERE name ='$fname';";
-    $check_result = mysqli_query($conn, $check);
+  // if ($_POST['password'] !== $confirm_password) {
+  //   echo "<script>alert('Confirm Password do not match');
+  //   window.location.href='doctor_registration.php';</script>";
+  // } else {
+  //   $check = "SELECT * FROM doctor WHERE name ='$fname';";
+  //   $check_result = mysqli_query($conn, $check);
 
-    if (mysqli_num_rows($check_result)) {
-      echo "<script>alert('Doctor Already Registered');
-      window.location.href='doctor_registration.php';</script>";
-    } else {
-      $sql = "INSERT INTO doctor(name,email,phone,dob,address,gender,password,profile,license_no,specialization,experience,certification) VALUES ('$fname','$email','$phone','$dob','$address','$gender','$password','$profile','$license','$specialization','$experience','$certification');";
+  //   if (mysqli_num_rows($check_result)) {
+  //     echo "<script>alert('Doctor Already Registered');
+  //     window.location.href='doctor_registration.php';</script>";
+  //   } else {
+  //     $sql = "INSERT INTO doctor(name,email,phone,dob,address,gender,password,profile,license_no,specialization,experience,certification) VALUES ('$fname','$email','$phone','$dob','$address','$gender','$password','$profile','$license','$specialization','$experience','$certification');";
 
-      $result = mysqli_query($conn, $sql);
+  //     $result = mysqli_query($conn, $sql);
 
-      if ($result) {
-        if (move_uploaded_file($_FILES["profile"]["tmp_name"], $folder)) {
-          echo "<script>alert('Approval Sent to Admin');
-          window.location.href='index.php';</script>";
-        } else {
-          echo "<script>alert('Failed to Upload Profile Image');
-          window.location.href='doctor_registration.php';</script>";
-        }
-      }
-    }
-  }
+  //     if ($result) {
+  //       if (move_uploaded_file($_FILES["profile"]["tmp_name"], $folder)) {
+  //         echo "<script>alert('Approval Sent to Admin');
+  //         window.location.href='index.php';</script>";
+  //       } else {
+  //         echo "<script>alert('Failed to Upload Profile Image');
+  //         window.location.href='doctor_registration.php';</script>";
+  //       }
+  //     }
+  //   }
+  // }
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +63,9 @@ if (isset($_POST['submit'])) {
   <script src="/assets/js/dashboard_js/plugin/webfont/webfont.min.js"></script>
   <script>
     WebFont.load({
-      google: { families: ["Public Sans:300,400,500,600,700"] },
+      google: {
+        families: ["Public Sans:300,400,500,600,700"]
+      },
       custom: {
         families: [
           "Font Awesome 5 Solid",
@@ -72,7 +75,7 @@ if (isset($_POST['submit'])) {
         ],
         urls: ["/assets/css/dashboard_css/fonts.min.css"],
       },
-      active: function () {
+      active: function() {
         sessionStorage.fonts = true;
       },
     });
@@ -96,8 +99,9 @@ if (isset($_POST['submit'])) {
       <div class="page-inner">
         <div class="page-header">
           <h1 class="fw-bold mb-3">Pets Portal Doctor's Registration</h1>
+
         </div>
-        <form action="doctor_registration.php" id="doctor_form" method="post" enctype="multipart/form-data">
+        <form id="doctor_form" method="post" enctype="multipart/form-data">
           <div class="row">
             <div class="col-md-12">
               <div class="card">
@@ -258,9 +262,8 @@ if (isset($_POST['submit'])) {
                 <div class="card-body justify-content-center">
                   <div class="row justify-content-center">
                     <div class="col-md-2">
-                      <button type="submit" class="btn btn-primary btn-block" name="submit">
-                        Send Approval
-                      </button>
+                      <input type="submit" class="btn btn-primary btn-block" value="Send Approval" name="submit">
+
                     </div>
                     <div class="col-md-2">
                       <a href="index.php" class="btn btn-danger btn-block">Cancel</a>
@@ -274,16 +277,16 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
 
-  <?php
+    <?php
 
-  include("common/footer.php");
-  ?>
+    include("common/footer.php");
+    ?>
   </div>
-
+  <!-- 
   <script src="assets/jquery/jquery-3.7.1.min.js"></script>
   <script src="assets/jquery/jquery.validate.min.js"></script>
-  <script src="assets/jquery/jquery-ui.min.js"></script>
-  <script src="assets/js/doctor_registration_js/script.js"></script>
+  <script src="assets/jquery/jquery-ui.min.js"></script> -->
+  <!-- <script src="assets/js/doctor_registration_js/script.js"></script> -->
 </body>
 
 </html>
